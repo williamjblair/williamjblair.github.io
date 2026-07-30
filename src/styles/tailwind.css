@@ -1,0 +1,135 @@
+@import 'tailwindcss';
+@import './fonts.css';
+@import './prism.css' layer(components);
+
+@plugin '@tailwindcss/typography';
+@config '../../typography.ts';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Vela palette, from packages/brand/generated/tokens.css. Warm paper, deep
+     navy ink, luminous gold as the single accent. No pure black anywhere.
+     These override Tailwind's zinc/teal/white/black so the template's existing
+     utility classes re-skin wholesale instead of being rewritten one by one. */
+  --color-white: #fbfaf7; /* surface-raised */
+  --color-black: #060e1c; /* deeper than midnight, for the dark ground */
+
+  --color-zinc-50: #f7f6f2; /* paper */
+  --color-zinc-100: #e7e5dc; /* hairlines on paper */
+  --color-zinc-200: #d9dbdf;
+  --color-zinc-300: #b8bdc5;
+  --color-zinc-400: #7c8592;
+  --color-zinc-500: #626a76;
+  --color-zinc-600: #4b5565;
+  --color-zinc-700: #334155; /* slate */
+  --color-zinc-800: #16233a;
+  --color-zinc-900: #081224; /* midnight */
+
+  /* Gold marks direction and provenance. It is not a general highlight. */
+  --color-teal-50: #f5efe0;
+  --color-teal-400: #c9a664; /* stardust, on midnight */
+  --color-teal-500: #8c6b20; /* direction, readable on paper */
+  --color-teal-600: #6f5418;
+
+  --font-sans: 'Switzer', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Gambetta', ui-serif, Georgia, serif;
+  --font-display: 'Zodiak', ui-serif, Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl: 2rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.5rem;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 1;
+  --text-9xl: 8rem;
+  --text-9xl--line-height: 1;
+}
+
+@layer base {
+  /* Editorial register: serif body, serif display for titles, sans reserved
+     for eyebrows, navigation, and uppercase metadata. */
+  body {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  /* Zodiak has high stroke contrast, so it carries at 400 and turns shouty
+     above it. Weight comes from size and air, not from the weight axis. */
+  h1 {
+    font-weight: 400;
+    letter-spacing: -0.021em;
+    line-height: 1.06;
+  }
+
+  h2,
+  h3 {
+    font-weight: 500;
+    letter-spacing: -0.012em;
+  }
+
+  /* One universal washi tooth over the whole page, the house paper treatment.
+     Fixed and pointer-transparent so it never enters the scroll cost. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23t)'/%3E%3C/svg%3E");
+  }
+
+  .dark body::after {
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* A quiet gold chapter-rule. Sections open under one of these. */
+  .rule-gold {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-teal-500) 55%, transparent),
+      color-mix(in oklab, var(--color-teal-500) 12%, transparent) 55%,
+      transparent
+    );
+  }
+}

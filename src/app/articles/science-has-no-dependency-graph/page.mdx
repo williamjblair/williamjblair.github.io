@@ -1,0 +1,93 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+  author: 'Will Blair',
+  date: '2026-07-30',
+  title: 'Science has no dependency graph',
+  description:
+    'Citations link documents, not claims. When a finding is contested or retracted, nothing downstream knows. The cost of that is measured in decades.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+{/* Pass children only. Spreading all page props hands `searchParams` to a
+    client component, which opts the route into dynamic rendering and breaks
+    `output: 'export'`. */}
+export default (props) => (
+  <ArticleLayout article={article}>{props.children}</ArticleLayout>
+)
+
+Last year I mapped the evidence landscape for Alzheimer's therapeutic targets
+across five subdisciplines: amyloid biology, tau pathology, neuroinflammation,
+lipid transport, and diagnostics. The findings were not what struck me. The gaps
+between them were.
+
+Blood-brain barrier breakdown in ApoE4 carriers was shown in 2019 to precede
+amyloid deposition by years. That result came out of neurovascular biology, and
+most amyloid researchers never encountered it. Nothing was hidden. The two
+communities read different journals, attend different conferences, and no
+infrastructure surfaces the connection between them.
+
+Once it was visible it changed which hypotheses looked viable. Making it visible
+took months of reading across literatures that do not cite each other. No tool
+automated that work, no database surfaced it, and nothing preserved it
+afterward, so the next person asking the same question starts from the
+beginning.
+
+This is not a search problem. PubMed would have returned the relevant papers if
+I had known what to type. I did not know what I did not know.
+
+## Citations link documents, not claims
+
+The underlying problem is that scientific findings have no dependency graph.
+When a finding is published, contested, replicated, or retracted, nothing
+downstream knows. Citations connect documents, and they are untyped, so the
+graph cannot tell "builds on" from "contradicts" from "mentions in passing."
+There is no mechanism for a correction to propagate through the work that
+depends on it, and no way to ask the obvious question: if this finding were
+invalidated, what else would change?
+
+The cost of that is measured in decades. Alzheimer's research converged on
+amyloid-beta for twenty years, through a 99.6% trial failure rate and billions
+in investment, while alternative targets sat underexplored because accumulating
+negative evidence could not move through the literature fast enough to redirect
+the field. When a foundational 2006 *Nature* paper on Aβ\*56 oligomers was
+flagged for image manipulation, the correction could not cascade. Every
+downstream lab had to discover the problem on its own.
+
+The tools we have work at the wrong level. PubMed indexes 37 million papers as
+documents, so you can find a paper but cannot ask whether its central claim has
+been replicated. Semantic Scholar maps 200 million citation links, but a paper
+that extends a finding and one that refutes it look identical in that graph.
+Extraction tools produce structured findings that are project-scoped and
+ephemeral, so the work never accumulates.
+
+## Why this is more urgent now
+
+Language models are starting to reason over the scientific literature, and they
+inherit whatever substrate they are handed. To a model reading today, a flagged
+paper and a well-replicated finding look nearly the same. Context falls away in
+transmission until uncertainty hardens into fact.
+
+Meanwhile the companies building science agents are constructing private
+knowledge representations: proprietary graphs, internal ontologies, closed
+extraction pipelines. Every month those calcify a little further. If an open
+dependency graph does not exist before private representations fragment the
+frontier, it gets much harder to establish afterward. The Protein Data Bank
+succeeded partly because it existed before the need was obvious, and it started
+with seven structures, because seven was what a few crystallographers could
+deposit by hand.
+
+What has changed is the extraction bottleneck. Compilation that would have taken
+a Cochrane team years can now be drafted in weeks and refined through expert
+review. That is what Vela is for. The atomic unit is the individual finding, a
+claim carrying its evidence, confidence, conditions, and lineage, linked to
+other findings by typed relationships that a machine can replay and a person can
+argue with.
+
+Whether that actually changes what scientists do is still open. The longer
+argument is in *Constellations of Borrowed Light*; this is the short version of
+why I think the problem is structural rather than a matter of better search.
