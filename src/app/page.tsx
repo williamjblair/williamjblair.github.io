@@ -81,12 +81,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <figure className="max-lg:hidden">
-          <Asterism className="text-zinc-400 dark:text-zinc-500" />
-          <figcaption className="mt-4 font-sans text-xs tracking-wide text-zinc-400 uppercase dark:text-zinc-500">
-            Vela · the Sails
-          </figcaption>
-        </figure>
+        <Asterism className="max-lg:hidden" />
       </div>
 
       <div className="mt-20 max-w-2xl sm:mt-24">

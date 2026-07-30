@@ -1,11 +1,9 @@
 import { type Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
-import portraitImage from '@/images/portrait.jpg'
 
 function SocialLink({
   className,
@@ -51,22 +49,12 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <Container className="mt-16 sm:mt-32">
-      <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-        <div className="lg:pl-20">
-          <div className="max-w-xs px-2.5 lg:max-w-none">
-            <Image
-              src={portraitImage}
-              alt=""
-              sizes="(min-width: 1024px) 32rem, 20rem"
-              className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
-            />
-          </div>
-        </div>
-        <div className="lg:order-first lg:row-span-2">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            I’m Will Blair. I build research infrastructure in San Francisco.
+      <div className="max-w-2xl">
+        <div>
+          <h1 className="text-4xl text-zinc-900 sm:text-5xl dark:text-zinc-100">
+            How I got here.
           </h1>
-          <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+          <div className="mt-8 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
               I grew up in Toronto. I spent part of my childhood as a patient,
               and what stayed with me was narrow and specific: what was wrong
@@ -85,13 +73,10 @@ export default function About() {
               work.
             </p>
             <p>
-              Since then I have built four things. A thermoelectric generator
-              that runs a pacemaker off body heat. A clinical trials platform I
-              co-founded out of Kleiner Perkins and ran as COO. An agent
-              simulation runtime at Aaru. Now Atlas, the researcher intelligence
-              platform at Episteme, a Bell Labs–style research organization in
-              San Francisco. Every one of them hit the same ceiling. I could
-              find the knowledge. I could not make it compound.
+              Four companies since, in medical devices, clinical trials, and
+              agent simulation, and now Atlas at Episteme. Every one of them hit
+              the same ceiling. I could find the knowledge. I could not make it
+              compound.
             </p>
             <p>
               That ceiling is the work now. Vela is a protocol that turns papers
@@ -104,7 +89,14 @@ export default function About() {
             </p>
           </div>
         </div>
-        <div className="lg:pl-20">
+      </div>
+
+      <div className="mt-20 max-w-2xl sm:mt-24">
+        <h2 className="font-sans text-xs font-medium tracking-[0.14em] text-zinc-500 uppercase dark:text-zinc-400">
+          Elsewhere
+        </h2>
+        <div className="rule-gold mt-3" />
+        <div className="mt-8">
           <ul role="list">
             <SocialLink href="https://github.com/williamjblair" icon={GitHubIcon}>
               Follow on GitHub
@@ -124,6 +116,12 @@ export default function About() {
               william.blair0708@gmail.com
             </SocialLink>
           </ul>
+          <Link
+            href="/cv"
+            className="mt-8 inline-flex font-sans text-sm font-medium text-zinc-500 transition hover:text-teal-500 dark:text-zinc-400 dark:hover:text-teal-400"
+          >
+            Full CV →
+          </Link>
         </div>
       </div>
     </Container>
