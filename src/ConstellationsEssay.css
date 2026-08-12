@@ -179,7 +179,7 @@ body.constellations-route {
 
 .victory-swim-watercolor {
   width: min(72vw, 42rem);
-  margin: clamp(1.25rem, 2.5vw, 2rem) 50%;
+  margin: -3rem 50%;
   transform: translateX(-50%);
 }
 
@@ -328,6 +328,8 @@ body.constellations-route {
 
   .victory-swim-watercolor {
     width: min(84vw, 42rem);
+    margin-top: -2rem;
+    margin-bottom: -2rem;
   }
 
   .borrowed-light-watercolor {
@@ -355,6 +357,8 @@ body.constellations-route {
 
   .victory-swim-watercolor {
     width: 90vw;
+    margin-top: -1.5rem;
+    margin-bottom: -1.5rem;
   }
 
   .borrowed-light-watercolor {
