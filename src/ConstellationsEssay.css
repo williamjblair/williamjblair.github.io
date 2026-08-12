@@ -36,12 +36,31 @@ body.constellations-route {
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 100vw auto;
-  filter: saturate(0.68) brightness(1.035);
-  opacity: 0.46;
+  filter: saturate(0.74) brightness(1.015);
+  opacity: 0.5;
   transform: scaleY(-1);
-  transform-origin: top;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 3%, rgb(0 0 0 / 22%) 26%, #000 100%);
-  mask-image: linear-gradient(to bottom, transparent 3%, rgb(0 0 0 / 22%) 26%, #000 100%);
+  transform-origin: center;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 2%, rgb(0 0 0 / 34%) 30%, #000 100%),
+    linear-gradient(to right, #000 0 31%, transparent 45% 61%, #000 75% 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 2%, rgb(0 0 0 / 34%) 30%, #000 100%),
+    linear-gradient(to right, #000 0 31%, transparent 45% 61%, #000 75% 100%);
+  mask-composite: intersect;
+}
+
+.constellations-hero::before {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% - 1px);
+  left: 50%;
+  width: 100%;
+  height: clamp(8rem, 14vw, 13rem);
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(ellipse 43% 108% at 50% 0%, var(--editorial-canvas) 0 42%, rgb(236 227 215 / 88%) 66%, transparent 92%);
+  transform: translateX(-50%);
 }
 
 .constellations-hero__art {
@@ -167,9 +186,13 @@ body.constellations-route {
 
 .constellations-copy blockquote {
   width: min(100%, 40rem);
-  margin: clamp(2.5rem, 5vw, 4rem) 0 clamp(2.5rem, 5vw, 4rem) clamp(0rem, 3vw, 2rem);
+  margin: clamp(1.25rem, 2.5vw, 2rem) 0 clamp(1.25rem, 2.5vw, 2rem) clamp(0rem, 3vw, 2rem);
   padding-left: clamp(1.25rem, 2.4vw, 2rem);
   border-left: 1px solid var(--gold);
+}
+
+.constellations-copy > blockquote + p {
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .constellations-copy blockquote p {
