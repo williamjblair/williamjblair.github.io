@@ -1,1 +1,1 @@
-[for Will.](https://wiki.secretgeek.net/the-enchanted-loom)
+for [Will.](https://wiki.secretgeek.net/the-enchanted-loom)
