@@ -131,7 +131,7 @@ main {
   top: clamp(4rem, 6vh, 6.5rem);
   right: -2.5rem;
   width: min(47vw, 47rem);
-  aspect-ratio: 1.08;
+  aspect-ratio: 1.2;
   color: var(--gold);
   pointer-events: none;
 }
@@ -183,8 +183,8 @@ main {
   top: 50%;
   left: 50%;
   z-index: 1;
-  width: 0.3rem;
-  height: 0.3rem;
+  width: var(--star-core-size);
+  height: var(--star-core-size);
   border: 1px solid rgb(111 89 46 / 76%);
   border-radius: 50%;
   background: var(--paper);
@@ -213,41 +213,66 @@ main {
   outline-offset: -0.28rem;
 }
 
-.vela__star-label {
+.vela__legend {
   position: absolute;
-  top: 50%;
-  left: calc(100% - 0.18rem);
-  width: max-content;
+  top: 86%;
+  left: 12%;
+  width: min(76%, 28rem);
   color: var(--gold-deep);
   font-family: var(--serif);
-  font-size: clamp(0.74rem, 0.85vw, 0.84rem);
+  font-size: clamp(0.62rem, 0.72vw, 0.74rem);
   font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0.015em;
   pointer-events: none;
-  text-shadow:
-    -0.08rem 0 var(--paper),
-    0.08rem 0 var(--paper),
-    0 0.08rem var(--paper),
-    0 -0.08rem var(--paper);
-  transform: translateY(-50%);
   animation: vela-label-in 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.vela__star[data-label-side="left"] .vela__star-label {
-  right: calc(100% - 0.18rem);
-  left: auto;
+.vela__symbols {
+  display: flex;
+  gap: clamp(0.55rem, 1.3vw, 1rem);
+  margin-bottom: 0.8rem;
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+  opacity: 0.58;
 }
 
-.vela__caption {
-  position: absolute;
-  right: 7%;
-  bottom: 5%;
+.vela__symbols span {
+  transition:
+    color 220ms ease,
+    opacity 220ms ease,
+    text-shadow 220ms ease;
+}
+
+.vela__symbols .is-selected {
   color: var(--gold-deep);
-  font-size: clamp(0.65rem, 0.75vw, 0.75rem);
+  opacity: 1;
+  text-shadow: 0 0 0.45rem rgb(154 122 62 / 34%);
+}
+
+.vela__title,
+.vela__detail,
+.vela__instruction {
+  margin: 0;
+}
+
+.vela__title {
+  margin-bottom: 0.45rem;
+  font-size: 1.06em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.vela__detail {
+  min-height: 1.42em;
+  color: var(--gold-deep);
+  line-height: 1.42;
+}
+
+.vela__instruction {
+  margin-top: 0.18rem;
+  font-size: 0.92em;
   font-style: italic;
-  letter-spacing: 0.08em;
-  opacity: 0.54;
+  line-height: 1.42;
+  opacity: 0.62;
 }
 
 @keyframes vela-flicker {
@@ -278,13 +303,13 @@ main {
   from {
     opacity: 0;
     filter: blur(2px);
-    transform: translateY(-50%) translateX(-0.25rem);
+    transform: translateY(0.2rem);
   }
 
   to {
     opacity: 1;
     filter: blur(0);
-    transform: translateY(-50%) translateX(0);
+    transform: translateY(0);
   }
 }
 
@@ -319,7 +344,7 @@ h1 {
 
 .essays {
   max-width: 68rem;
-  margin-top: clamp(2.5rem, 4.5vw, 4.25rem);
+  margin-top: clamp(1.9rem, 3.4vw, 3.25rem);
 }
 
 .essays h2 {
@@ -474,7 +499,7 @@ h1 {
   }
 
   .essays {
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 
   .essay-list li {

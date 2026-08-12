@@ -24,25 +24,25 @@ const essays = [
 ] as const;
 
 const velaStars = [
-  { name: "Phi Velorum", x: 18, y: 28, delay: "-1.8s", duration: "7.4s" },
-  { name: "Mu Velorum", x: 35, y: 17, delay: "-4.6s", duration: "8.2s" },
-  { name: "Suhail", x: 36, y: 50, delay: "-2.9s", duration: "6.8s" },
-  { name: "Regor", x: 58, y: 35, delay: "-5.2s", duration: "7.8s" },
-  { name: "Alsephina", x: 73, y: 52, delay: "-0.9s", duration: "8.6s" },
-  { name: "Markeb", x: 84, y: 78, delay: "-3.7s", duration: "7.1s", labelSide: "left" },
-  { name: "Psi Velorum", x: 51, y: 74, delay: "-6.1s", duration: "8.9s" },
+  { symbol: "γ", name: "Regor", catalogue: "γ Velorum", magnitude: 1.75, x: 12, y: 42, delay: "-1.8s", duration: "7.4s" },
+  { symbol: "δ", name: "Alsephina", catalogue: "δ Velorum", magnitude: 1.96, x: 29, y: 76, delay: "-4.6s", duration: "8.2s" },
+  { symbol: "κ", name: "Markeb", catalogue: "κ Velorum", magnitude: 2.47, x: 47, y: 78, delay: "-2.9s", duration: "6.8s" },
+  { symbol: "φ", name: "Phi Velorum", catalogue: "φ Velorum", magnitude: 3.54, x: 64, y: 75, delay: "-5.2s", duration: "7.8s" },
+  { symbol: "μ", name: "Mu Velorum", catalogue: "μ Velorum", magnitude: 2.69, x: 88, y: 52, delay: "-0.9s", duration: "8.6s" },
+  { symbol: "q", name: "q Velorum", catalogue: "q Velorum", magnitude: 3.85, x: 73, y: 19, delay: "-3.7s", duration: "7.1s" },
+  { symbol: "ψ", name: "Psi Velorum", catalogue: "ψ Velorum", magnitude: 3.6, x: 51, y: 12, delay: "-6.1s", duration: "8.9s" },
+  { symbol: "λ", name: "Suhail", catalogue: "λ Velorum", magnitude: 2.21, x: 40, y: 25, delay: "-2.3s", duration: "7.6s" },
 ] as const;
 
 const velaConnections = [
   [0, 1],
-  [0, 2],
-  [1, 3],
+  [1, 2],
   [2, 3],
-  [2, 6],
   [3, 4],
   [4, 5],
-  [4, 6],
   [5, 6],
+  [6, 7],
+  [7, 0],
 ] as const;
 
 const skyStars = [
@@ -105,7 +105,8 @@ function Atmosphere() {
 }
 
 function VelaConstellation() {
-  const [selectedStar, setSelectedStar] = useState<string | null>(null);
+  const [selectedStar, setSelectedStar] = useState(0);
+  const activeStar = velaStars[selectedStar];
 
   return (
     <section className="vela" aria-label="Interactive Vela constellation">
@@ -126,37 +127,49 @@ function VelaConstellation() {
           />
         ))}
       </svg>
-      {velaStars.map((star) => {
-        const isSelected = selectedStar === star.name;
+      {velaStars.map((star, index) => {
+        const isSelected = selectedStar === index;
+        const coreSize = 0.22 + (4.1 - star.magnitude) * 0.055;
 
         return (
           <button
             className={`vela__star${isSelected ? " is-selected" : ""}`}
             type="button"
             key={star.name}
-            aria-label={`${isSelected ? "Hide" : "Reveal"} ${star.name}`}
+            aria-label={`${star.catalogue}, ${star.name}, magnitude ${star.magnitude}`}
             aria-pressed={isSelected}
-            data-label-side={"labelSide" in star ? star.labelSide : "right"}
-            onClick={() => setSelectedStar(isSelected ? null : star.name)}
+            aria-describedby="vela-detail"
+            onClick={() => setSelectedStar(index)}
+            onMouseEnter={() => setSelectedStar(index)}
+            onFocus={() => setSelectedStar(index)}
             style={
               {
                 left: `${star.x}%`,
                 top: `${star.y}%`,
                 "--star-delay": star.delay,
                 "--star-duration": star.duration,
+                "--star-core-size": `${coreSize.toFixed(3)}rem`,
               } as CSSProperties
             }
           >
             <span className="vela__star-core" aria-hidden="true" />
-            {isSelected ? (
-              <span className="vela__star-label">{star.name}</span>
-            ) : null}
           </button>
         );
       })}
-      <span className="vela__caption" aria-hidden="true">
-        Vela
-      </span>
+      <div className="vela__legend">
+        <div className="vela__symbols" aria-hidden="true">
+          {velaStars.map((star, index) => (
+            <span className={selectedStar === index ? "is-selected" : ""} key={star.symbol}>
+              {star.symbol}
+            </span>
+          ))}
+        </div>
+        <p className="vela__title">Vela · The Sails</p>
+        <p className="vela__detail" id="vela-detail" aria-live="polite">
+          {activeStar.catalogue} · {activeStar.name} · magnitude {activeStar.magnitude}
+        </p>
+        <p className="vela__instruction">Hover, focus, or select a star.</p>
+      </div>
     </section>
   );
 }
