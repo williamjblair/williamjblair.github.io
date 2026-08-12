@@ -72,6 +72,15 @@ body {
   display: block;
   width: 100%;
   height: auto;
+  filter: saturate(0.56) contrast(0.84) brightness(1.06) sepia(0.07);
+}
+
+.home-sky::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: rgb(251 238 215 / 14%);
+  pointer-events: none;
 }
 
 .home-content {
