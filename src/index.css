@@ -281,30 +281,31 @@ h1 {
   padding-left: 1.75rem;
 }
 
-.essay-list__threads {
+.essay-list__thread {
   position: absolute;
-  top: 0.18rem;
-  bottom: 0.18rem;
-  left: -0.52rem;
-  width: 2.65rem;
-  height: calc(100% - 0.36rem);
+  top: 0.62em;
+  left: -1.75rem;
+  width: 1rem;
+  height: calc(100% + var(--essay-gap));
   overflow: visible;
   color: var(--gold);
-  opacity: 0.42;
+  opacity: 0.52;
   pointer-events: none;
 }
 
-.essay-list__threads path {
+.essay-list__thread path {
   vector-effect: non-scaling-stroke;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
-  stroke-width: 0.65;
+  stroke-width: 0.7;
 }
 
 .essay-list {
+  --essay-gap: clamp(0.45rem, 0.9vw, 0.8rem);
+
   display: grid;
-  gap: clamp(0.45rem, 0.9vw, 0.8rem);
+  gap: var(--essay-gap);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -314,6 +315,8 @@ h1 {
   position: relative;
   width: fit-content;
   max-width: 100%;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1.24;
 }
 
 .essay-list a,
@@ -321,9 +324,7 @@ h1 {
   position: relative;
   display: inline;
   color: var(--ink);
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
   font-weight: 400;
-  line-height: 1.24;
   letter-spacing: -0.022em;
   text-decoration: none;
   text-wrap: pretty;
@@ -358,15 +359,21 @@ h1 {
 
 .essay-list__star {
   position: absolute;
-  top: 0.7em;
-  left: -1.72rem;
+  top: 0;
+  left: -1.75rem;
   z-index: 1;
+  display: grid;
+  width: 1rem;
+  height: 1.24em;
+  place-items: center;
   color: var(--gold);
   font-family: Georgia, serif;
-  font-size: 0.52em;
   line-height: 1;
   text-shadow: 0 0 0.05em var(--paper);
-  transform: translateY(-50%);
+}
+
+.essay-list__star-glyph {
+  font-size: 0.52em;
 }
 
 @media (max-width: 48rem) {
@@ -438,8 +445,7 @@ h1 {
     margin-top: 6.25rem;
   }
 
-  .essay-list a,
-  .essay-list__title {
+  .essay-list li {
     font-size: clamp(1.45rem, 6.2vw, 1.85rem);
   }
 
@@ -448,8 +454,9 @@ h1 {
     padding-left: 1.6rem;
   }
 
-  .essay-list__star {
-    left: -1.52rem;
+  .essay-list__star,
+  .essay-list__thread {
+    left: -1.6rem;
   }
 }
 
