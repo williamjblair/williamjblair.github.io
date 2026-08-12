@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react";
+import { useState, type CSSProperties, type ReactNode } from "react";
 
 /*
 THESIS: A personal homepage as the opening folio of a scientific essay, refusing portfolio chrome.
@@ -22,6 +22,87 @@ const essays = [
     href: "/constellations-of-borrowed-light/",
   },
 ] as const;
+
+type Project = {
+  title: string;
+  href?: string;
+  description: ReactNode;
+  links?: ReadonlyArray<{ label: string; href: string }>;
+};
+
+const projects: ReadonlyArray<Project> = [
+  {
+    title: "Vela",
+    description:
+      "Vela is a protocol that turns scientific papers into structured, linked, correctable findings. A finding carries its evidence, confidence, conditions, and lineage. The state of a frontier is the deterministic replay of its event log.",
+    links: [
+      { label: "GitHub", href: "https://github.com/vela-science/vela" },
+      { label: "Publication web", href: "https://www.vela.space/" },
+    ],
+  },
+  {
+    title: "Atlas",
+    href: "https://episteme.com/",
+    description:
+      "The researcher intelligence platform at Episteme — how the lab maps talent, evidence, and direction across neuroscience, advanced materials, energy, and compute. Data model, ingest, LLM-driven extraction over open scientific corpora, and the product surface scientists use daily. Internal to the lab.",
+  },
+  {
+    title: "Founding Engineer, Aaru",
+    href: "https://aaru.com/simulation",
+    description:
+      "Large-scale AI-agent simulation for consulting, politics, and government. Built the core platform with the CTO as founding engineer: the simulation runtime, synthetic audience generation, benchmarking and observability, and the customer-facing app. The synthetic-audience pipeline shipped into every customer engagement.",
+  },
+  {
+    title: "Co-founder, Biogenesis",
+    href: "https://www.bayespredictive.com/",
+    description:
+      "End-to-end clinical trials platform, co-founded as COO out of Kleiner Perkins, where I was Engineer in Residence. Built the platform from scratch, hired a team of seven, raised $2.5M led by Jack Altman, and stood up partnerships across 250+ clinics.",
+  },
+  {
+    title: "Founder, ThermoBeat",
+    href: "https://github.com/williamjblair/ThermoBeat",
+    description:
+      "Thermoelectrics for implantable medical devices. A thermoelectric generator and boost-converter system that runs under a 2 °C gradient and produces 3.3 V, enough to power a pacemaker from body heat. Raised $300K+ non-dilutive across NSF I-Corps, NIBIB DEBUT, JHU Spark, and the JHU FUEL Grand Prize.",
+  },
+  {
+    title: "Prospect",
+    href: "https://github.com/williamjblair/prospect",
+    description:
+      "Checks which of an AI’s biological claims the underlying data actually supports, before you pass them on. Built with Claude for Life Sciences.",
+  },
+  {
+    title: "lean-proofs",
+    href: "https://github.com/williamjblair/lean-proofs",
+    description: (
+      <>
+        A self-checking index of formal Lean 4 proofs, CI-gated on <code>#print</code>{" "}
+        axioms so nothing sneaks in on trust. Targets drawn from the Formal Conjectures project.
+      </>
+    ),
+  },
+  {
+    title: "verified-combinatorics",
+    href: "https://github.com/williamjblair/verified-combinatorics",
+    description:
+      "Independently verifiable extremal combinatorial sets — binary Sidon and B₃ — shipped with a standalone checker. Backs contributions to the OEIS.",
+  },
+  {
+    title: "Omneer",
+    href: "https://github.com/williamjblair/Omneer",
+    description: "Brain tumor detection and analysis from MRI.",
+  },
+  {
+    title: "Charm City Science League",
+    href: "https://github.com/williamjblair/scienceolympiad",
+    description:
+      "Science Olympiad mentoring for Baltimore students, run as president: 100+ mentors across 20 schools, a $30K annual budget, and a 14-person executive board.",
+  },
+  {
+    title: "Seedling Hydroponics",
+    href: "https://www.seedlinginc.org/",
+    description: "Hydroponic growing systems for Baltimore neighbourhoods with no nearby grocer.",
+  },
+];
 
 const velaStars = [
   { symbol: "γ", name: "Regor", catalogue: "γ Velorum", magnitude: 1.75, x: 12, y: 42, delay: "-1.8s", duration: "7.4s" },
@@ -215,6 +296,82 @@ function EssayList() {
   );
 }
 
+function StarDisclosure({ title, isOpen, controls, onToggle }: {
+  title: string;
+  isOpen: boolean;
+  controls: string;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      className={`project-disclosure${isOpen ? " is-open" : ""}`}
+      type="button"
+      aria-expanded={isOpen}
+      aria-controls={controls}
+      aria-label={`${isOpen ? "Hide" : "Show"} details for ${title}`}
+      onClick={onToggle}
+    >
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+        <path d="M10 1.75C10.55 6.45 11.12 8.58 18.25 10C11.12 11.42 10.55 13.55 10 18.25C9.45 13.55 8.88 11.42 1.75 10C8.88 8.58 9.45 6.45 10 1.75Z" />
+        <circle cx="10" cy="10" r="1.15" />
+      </svg>
+    </button>
+  );
+}
+
+function ProjectItem({ project, index }: { project: Project; index: number }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const detailId = `project-detail-${index}`;
+
+  return (
+    <li className={`project-item${isOpen ? " is-open" : ""}`}>
+      <div className="project-item__row">
+        {project.href ? (
+          <a className="project-title" href={project.href}>{project.title}</a>
+        ) : (
+          <span className="project-title project-title--plain">{project.title}</span>
+        )}
+        <StarDisclosure
+          title={project.title}
+          isOpen={isOpen}
+          controls={detailId}
+          onToggle={() => setIsOpen((open) => !open)}
+        />
+      </div>
+      <div
+        className="project-item__disclosure"
+        id={detailId}
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+      >
+        <div className="project-item__disclosure-inner">
+          <p className="project-item__description">{project.description}</p>
+          {project.links?.length ? (
+            <div className="project-item__links">
+              {project.links.map((link) => (
+                <a href={link.href} key={link.href}>{link.label}</a>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </li>
+  );
+}
+
+function ProjectList() {
+  return (
+    <section className="projects" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <ul className="project-list">
+        {projects.map((project, index) => (
+          <ProjectItem project={project} index={index} key={project.title} />
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function Home() {
   return (
     <div className="page-shell">
@@ -222,6 +379,7 @@ function Home() {
       <main>
         <Intro />
         <EssayList />
+        <ProjectList />
       </main>
       <VelaConstellation />
     </div>

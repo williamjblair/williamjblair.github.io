@@ -1,6 +1,6 @@
 ---
 name: William Blair
-description: A quiet scientific folio for a personal introduction and essays.
+description: A quiet scientific folio for a personal introduction, essays, and projects.
 colors:
   paper: "#f5f2e9"
   paper-deep: "#ece7da"
@@ -10,6 +10,11 @@ colors:
   wash-deep: "#243a55"
   cartographic-gold: "#9a7a3e"
   cartographic-gold-deep: "#6f592e"
+  starlight: "#f8eed2"
+  starlight-gold: "#b7924b"
+  starlight-soft: "#f4e8c6"
+  starlight-muted: "#d9c996"
+  cartographic-gold-shadow: "#725824"
 typography:
   display:
     fontFamily: "Iowan Old Style, Baskerville, Times New Roman, serif"
@@ -32,6 +37,11 @@ typography:
     fontSize: "clamp(1.125rem, 1.45vw, 1.375rem)"
     fontWeight: 400
     lineHeight: 1.7
+  code:
+    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    fontSize: "0.88em"
+    fontWeight: 400
+    lineHeight: 1.48
 spacing:
   gutter: "clamp(1.5rem, 6vw, 6rem)"
   intro-gap: "clamp(1.75rem, 3vw, 2.5rem)"
@@ -41,6 +51,10 @@ components:
     textColor: "{colors.ink}"
     typography: "{typography.essay-title}"
     padding: "0.2em 0"
+  project-disclosure:
+    textColor: "{colors.cartographic-gold}"
+    typography: "{typography.essay-title}"
+    motion: "67.5deg rotation with a 240ms ease-out"
 ---
 
 # Design System: William Blair
@@ -98,6 +112,10 @@ The essay titles form one indented cluster beneath the larger “Essays” headi
 ### Interactive Vela constellation
 
 A large gold Vela diagram replaces the former decorative line chart at the right edge of wide screens and moves below the reading content on narrow screens. Every stellar node is a real button with a 44px target, visible keyboard focus, and no navigation behavior. Nodes carry slow, staggered, low-opacity light pulses; selecting one reveals its star name beside the point and selecting it again dismisses the label. Reduced-motion users receive steady light instead of looping flicker.
+
+### Project index
+
+Projects follow Essays as one flat, unnumbered list with the same heading and title scale. Linked titles inherit the essay link's fine gold underline and focus treatment; unlinked titles remain plain text. A small custom gold star beside every title is a semantic disclosure button. Opening a project rotates its star and reveals a restrained description directly below the row, without introducing cards, borders, or background panels. Several projects may remain open at once, and reduced-motion preferences collapse the transition to an effectively instant state change.
 
 ## Do's and Don'ts
 
