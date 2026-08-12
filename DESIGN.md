@@ -3,7 +3,7 @@ name: William Blair
 description: A quiet scientific folio for a personal introduction, essays, projects, and an editorial CV.
 colors:
   paper: "#f6eedf"
-  homepage-paper: "#fbeed7"
+  homepage-paper: "#f6eddc"
   paper-deep: "#ece7da"
   ink: "#111b30"
   ink-soft: "#3f5068"
@@ -103,9 +103,9 @@ The single-family system feels authored and literary without turning into a bran
 
 One decisively left-anchored reading column sits inside a fluid page gutter; it does not recenter on very wide screens. The headline may extend wider than the biography; the biography remains near 65 characters. The essay section begins after a substantial but responsive vertical pause. Mobile preserves the hierarchy with a minimum 24px gutter, quieter decoration, and naturally wrapping titles.
 
-The homepage is structured as a layered top composition followed by an independent ocean close. A full-bleed sky PNG is absolutely positioned behind the introduction and Vela overlay, while the introduction, Essays, Projects, disclosures, and signature row remain together in normal document flow on the paper surface. The 1916×821 sky and ocean paintings render at their native width relationship; expanding content lengthens the paper field and pushes the independently positioned ocean close downward without stretching either painting.
+The homepage is structured as a layered top composition followed by an independent ocean close. The hierarchy is explicit: real HTML and the interactive constellation sit above a transparent watercolor sky, and both float above the single paper surface owned by the homepage shell. The sky remains decorative and does not establish content position. On desktop, the sky and ocean paintings keep their aspect ratios and a 1536px minimum authored width, expanding proportionally only when needed to remain full bleed. The footer image reserves its complete natural height so the sailboat is never cropped. Expanding content lengthens the paper field and pushes the independently positioned ocean close downward without distorting the ocean painting.
 
-The reading canvas is a physical surface rather than a flat fill: a seamless, low-contrast cotton-paper grain overlays the cream substrate across the homepage body, interior pages, and essay reading field. The homepage uses `homepage-sky-final.png` and `homepage-ocean-final.png` as separate purpose-built paintings; their shared edge cream establishes the homepage paper token, and their native aspect ratios remain independent as the textured middle grows.
+The reading canvas is a physical surface rather than a flat fill: a seamless, low-contrast cotton-paper grain overlays the cream substrate across the homepage body, interior pages, and essay reading field. The homepage wrapper alone owns the paper surface. It uses `homepage-sky-watercolor.png` as a transparent decorative top layer and preserves `homepage-ocean-final.jpeg` as the independent boat-and-ocean close; intermediate wrappers remain transparent so the grain reads as one continuous sheet.
 
 ## Elevation & Depth
 

@@ -434,10 +434,10 @@ function HomeSky() {
     <div className="home-sky" aria-hidden="true">
       <img
         className="home-sky__art"
-        src="/artwork/homepage-sky-final.png"
+        src="/artwork/homepage-sky-watercolor.png"
         alt=""
-        width="1916"
-        height="821"
+        width="1536"
+        height="1024"
         fetchPriority="high"
       />
     </div>
