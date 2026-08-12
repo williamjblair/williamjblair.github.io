@@ -54,7 +54,7 @@ The page behaves like the opening leaf of an archival scientific essay: the writ
 **Key Characteristics:**
 
 - High-contrast old-style serif typography at regular weight
-- Warm paper field with peripheral watercolor atmosphere
+- Warm paper field with peripheral watercolor atmosphere in layered blue-grey washes
 - Deep navy ink and rare, muted cartographic gold
 - Asymmetric left-aligned composition with no application chrome
 - Flat, unboxed content and restrained link states
@@ -104,4 +104,5 @@ The essay titles form one indented cluster beneath the larger “Essays” headi
 
 - **Don't** add navigation, cards, badges, thumbnails, buttons, or portfolio chrome.
 - **Don't** place watercolor directly behind the biography or essay titles.
+- **Don't** distribute washes evenly; keep them sparse, irregular, and peripheral, with only occasional overlapping blooms and pinprick splatter.
 - **Don't** use pure black, bright gold, or saturated blue.

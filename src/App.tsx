@@ -2,7 +2,7 @@
 THESIS: A personal homepage as the opening folio of a scientific essay, refusing portfolio chrome.
 OWN-WORLD: Bone paper, navy ink, diluted blue-grey pigment, sparse cartographic gold, and fine celestial linework.
 STORY: Meet Will, understand his research work and preoccupations, then choose an essay.
-FIRST VIEWPORT: A vast left-aligned serif greeting and narrow biography occupy the quiet cream field; atmosphere gathers at the upper-right edge.
+FIRST VIEWPORT: A vast left-aligned serif greeting and narrow biography occupy the quiet cream field; atmosphere gathers at the upper-right edge and returns as faint peripheral washes.
 FORM: A single asymmetric editorial scroll, pinned by the supplied brief; no concept seed required.
 */
 
@@ -24,6 +24,8 @@ const essays = [
 function Atmosphere() {
   return (
     <div className="atmosphere" aria-hidden="true">
+      <span className="atmosphere__wash atmosphere__wash--middle" />
+      <span className="atmosphere__wash atmosphere__wash--lower" />
       <svg
         className="atmosphere__chart"
         viewBox="0 0 820 820"

@@ -13,7 +13,7 @@ Primary action: Follow one of the two published essay links. “Constellations o
 
 Proof and content: The supplied first-person biography, three essay titles, and two verified external URLs are the complete factual content for this surface.
 
-Chosen direction: The Constellation Folio — a cream scientific-essay opening set in navy old-style serif, with diluted blue-grey atmosphere and sparse gold cartographic linework held at the periphery.
+Chosen direction: The Constellation Folio — a cream scientific-essay opening set in navy old-style serif, with diluted blue-grey watercolor blooms and sparse gold cartographic linework held at the periphery.
 
 Memorable moment: The oversized “Hi, I’m Will.” occupies a quiet paper field while a faint constellation diagram appears beyond the reading margin and a smaller gold star-thread binds the essays into one authored group.
 

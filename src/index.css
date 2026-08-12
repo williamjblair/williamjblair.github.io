@@ -109,6 +109,100 @@ body {
   mask-image: radial-gradient(ellipse at 58% 43%, #000 20%, transparent 74%);
 }
 
+.atmosphere__wash {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.atmosphere__wash::before,
+.atmosphere__wash::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.atmosphere__wash--middle {
+  top: 41%;
+  right: -8rem;
+  width: min(40vw, 38rem);
+  height: 29rem;
+  opacity: 0.16;
+  border-radius: 48% 52% 42% 58% / 61% 39% 58% 42%;
+  background:
+    radial-gradient(ellipse at 30% 42%, rgb(53 83 113 / 48%), transparent 53%),
+    radial-gradient(ellipse at 66% 50%, rgb(129 154 174 / 55%), transparent 61%),
+    radial-gradient(ellipse at 50% 72%, rgb(36 66 96 / 34%), transparent 56%);
+  filter: blur(18px);
+  transform: rotate(9deg);
+  -webkit-mask-image: radial-gradient(ellipse at 52% 49%, #000 13%, rgb(0 0 0 / 76%) 48%, transparent 76%);
+  mask-image: radial-gradient(ellipse at 52% 49%, #000 13%, rgb(0 0 0 / 76%) 48%, transparent 76%);
+}
+
+.atmosphere__wash--middle::before {
+  top: 8rem;
+  left: -8rem;
+  width: 18rem;
+  height: 14rem;
+  border-radius: 58% 42% 62% 38% / 45% 58% 42% 55%;
+  background:
+    radial-gradient(ellipse at 42% 48%, rgb(114 145 169 / 58%), transparent 58%),
+    radial-gradient(ellipse at 68% 62%, rgb(46 78 108 / 34%), transparent 66%);
+  transform: rotate(-18deg);
+}
+
+.atmosphere__wash--middle::after {
+  inset: -5rem -2rem -4rem -10rem;
+  background:
+    radial-gradient(circle at 18% 58%, rgb(46 76 105 / 50%) 0 0.16rem, transparent 0.22rem),
+    radial-gradient(circle at 28% 36%, rgb(89 121 147 / 58%) 0 0.1rem, transparent 0.17rem),
+    radial-gradient(circle at 40% 74%, rgb(42 72 101 / 44%) 0 0.13rem, transparent 0.2rem),
+    radial-gradient(circle at 63% 18%, rgb(122 149 170 / 52%) 0 0.18rem, transparent 0.25rem),
+    radial-gradient(circle at 78% 66%, rgb(51 81 110 / 45%) 0 0.11rem, transparent 0.18rem),
+    radial-gradient(circle at 88% 42%, rgb(102 131 154 / 55%) 0 0.08rem, transparent 0.15rem);
+  filter: blur(0.4px);
+  transform: rotate(-9deg);
+}
+
+.atmosphere__wash--lower {
+  bottom: -6rem;
+  left: -9rem;
+  width: min(38vw, 34rem);
+  height: 24rem;
+  opacity: 0.13;
+  border-radius: 61% 39% 48% 52% / 44% 58% 42% 56%;
+  background:
+    radial-gradient(ellipse at 44% 55%, rgb(67 99 127 / 55%), transparent 57%),
+    radial-gradient(ellipse at 71% 36%, rgb(139 162 179 / 62%), transparent 48%),
+    radial-gradient(ellipse at 24% 31%, rgb(33 63 92 / 38%), transparent 51%);
+  filter: blur(20px);
+  transform: rotate(-11deg);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 53%, #000 16%, rgb(0 0 0 / 72%) 51%, transparent 77%);
+  mask-image: radial-gradient(ellipse at 50% 53%, #000 16%, rgb(0 0 0 / 72%) 51%, transparent 77%);
+}
+
+.atmosphere__wash--lower::before {
+  top: 2rem;
+  right: -8rem;
+  width: 17rem;
+  height: 12rem;
+  border-radius: 43% 57% 37% 63% / 55% 41% 59% 45%;
+  background: radial-gradient(ellipse at 46% 48%, rgb(111 141 164 / 52%), transparent 64%);
+  transform: rotate(19deg);
+}
+
+.atmosphere__wash--lower::after {
+  inset: -3rem -10rem -4rem 4rem;
+  background:
+    radial-gradient(circle at 12% 30%, rgb(54 84 112 / 48%) 0 0.12rem, transparent 0.19rem),
+    radial-gradient(circle at 31% 17%, rgb(113 142 164 / 50%) 0 0.08rem, transparent 0.15rem),
+    radial-gradient(circle at 54% 43%, rgb(45 75 103 / 42%) 0 0.15rem, transparent 0.22rem),
+    radial-gradient(circle at 72% 24%, rgb(126 152 171 / 54%) 0 0.1rem, transparent 0.17rem),
+    radial-gradient(circle at 91% 57%, rgb(57 87 114 / 46%) 0 0.14rem, transparent 0.21rem);
+  filter: blur(0.35px);
+}
+
 .atmosphere__chart {
   position: absolute;
   top: -6rem;
@@ -304,6 +398,20 @@ h1 {
     top: -15rem;
     right: -28rem;
     opacity: 0.14;
+  }
+
+  .atmosphere__wash--middle {
+    top: 46%;
+    right: -16rem;
+    width: 31rem;
+    opacity: 0.11;
+  }
+
+  .atmosphere__wash--lower {
+    bottom: -8rem;
+    left: -15rem;
+    width: 29rem;
+    opacity: 0.09;
   }
 
   main {
