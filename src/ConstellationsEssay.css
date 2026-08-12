@@ -1,24 +1,52 @@
 .constellations-essay {
+  --editorial-canvas: #ece3d7;
+
   min-width: 0;
   min-height: 100vh;
   min-height: 100svh;
   overflow: hidden;
   color: var(--ink);
-  background: var(--paper);
+  background: var(--editorial-canvas);
   font-family: var(--serif);
 }
 
 body.constellations-route {
   min-width: 0;
+  background: #ece3d7;
 }
 
 .constellations-hero {
   position: relative;
+  isolation: isolate;
   width: 100%;
-  background: var(--paper);
+  margin-bottom: clamp(6.5rem, 10vw, 10rem);
+  background: var(--editorial-canvas);
+}
+
+.constellations-hero::after {
+  position: absolute;
+  z-index: 1;
+  top: calc(100% - 1px);
+  right: 0;
+  left: 0;
+  height: clamp(8rem, 14vw, 13rem);
+  content: "";
+  pointer-events: none;
+  background-image: url("/artwork/constellations/constellations-hero.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100vw auto;
+  filter: saturate(0.68) brightness(1.035);
+  opacity: 0.46;
+  transform: scaleY(-1);
+  transform-origin: top;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 3%, rgb(0 0 0 / 22%) 26%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 3%, rgb(0 0 0 / 22%) 26%, #000 100%);
 }
 
 .constellations-hero__art {
+  position: relative;
+  z-index: 2;
   width: 100%;
   margin: 0;
 }
@@ -31,6 +59,7 @@ body.constellations-route {
 
 .constellations-hero__heading {
   position: absolute;
+  z-index: 3;
   top: 43%;
   left: clamp(2.25rem, 6.5vw, 7.5rem);
   width: min(49vw, 43rem);
@@ -64,9 +93,26 @@ body.constellations-route {
 }
 
 .constellations-copy {
+  position: relative;
+  z-index: 2;
   width: min(calc(100% - 3rem), 46rem);
-  margin: clamp(4.5rem, 8vw, 8.5rem) auto 0;
+  margin: 0 auto;
   padding-bottom: clamp(7rem, 13vw, 12rem);
+}
+
+.constellations-copy::before {
+  position: absolute;
+  z-index: -1;
+  top: clamp(-7rem, -9vw, -4.5rem);
+  left: 50%;
+  width: 100vw;
+  height: clamp(8rem, 15vw, 14rem);
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 36% 48% at 18% 16%, rgb(91 119 148 / 7%), transparent 72%),
+    radial-gradient(ellipse 44% 42% at 76% 12%, rgb(74 105 137 / 6%), transparent 74%);
+  transform: translateX(-50%);
 }
 
 .constellations-copy p {
@@ -92,7 +138,7 @@ body.constellations-route {
 
 .cottage-memory-watercolor {
   width: min(85vw, 56.25rem);
-  margin: clamp(1.25rem, 2.5vw, 2rem) 50% clamp(4rem, 7vw, 6rem);
+  margin: clamp(1.25rem, 2.5vw, 2rem) 50%;
   transform: translateX(-50%);
 }
 
@@ -104,7 +150,7 @@ body.constellations-route {
 }
 
 .cottage-memory-watercolor + p {
-  margin-top: clamp(4rem, 7vw, 6rem);
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .victory-swim-watercolor {
@@ -200,6 +246,7 @@ body.constellations-route {
   .constellations-hero {
     display: flex;
     flex-direction: column;
+    margin-bottom: clamp(5.5rem, 18vw, 8rem);
     padding-top: clamp(6.5rem, 18vw, 8rem);
   }
 
@@ -236,7 +283,6 @@ body.constellations-route {
 
   .constellations-copy {
     width: min(calc(100% - 3rem), 42rem);
-    margin-top: clamp(4rem, 13vw, 6rem);
   }
 
   .constellations-copy p {
