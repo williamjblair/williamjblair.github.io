@@ -47,14 +47,16 @@ components:
 
 ## Overview
 
-**Creative North Star: “The Constellation Folio”**
+**Creative North Star: “The Night-Sailing Folio”**
 
-The page behaves like the opening leaf of an archival scientific essay: the writing occupies a clear cream field while irregular, diluted blue-grey pigment and sparse cartographic marks collect at the edges. The interface is not a portfolio shell; it is a composed reading surface whose authority comes from typography, restraint, and real negative space.
+The page behaves like the opening leaf of an archival scientific essay set beneath a painted night sky. Deep navy watercolor gathers along the top edge, dissolves irregularly into a clear cream reading field, and returns as a pale ocean wash at the bottom. A small sailboat sits right-of-center on the waterline. The interface is not a portfolio shell; it is a composed reading surface whose authority comes from typography, restraint, and real negative space.
 
 **Key Characteristics:**
 
 - High-contrast old-style serif typography at regular weight
-- Warm paper field with peripheral watercolor atmosphere in layered blue-grey washes and sparse splatter
+- Deep midnight watercolor sky fading through blue-grey blooms into warm paper
+- A pale ocean wash at the bottom with a small right-of-center sailboat
+- Sparse live starlight concentrated above the reading field and diminishing before the essays
 - Deep navy ink and rare, muted cartographic gold
 - Asymmetric left-aligned composition with no application chrome
 - Flat, unboxed content and restrained link states
@@ -64,7 +66,7 @@ The page behaves like the opening leaf of an archival scientific essay: the writ
 
 The palette resembles aged drawing paper, navy drafting ink, diluted blue-grey pigment, and a single quiet metallic annotation.
 
-**The Quiet Center Rule.** Watercolor and constellation marks stay outside the main reading measure; the cream field behind copy remains calm even when a wash enters from above-left.
+**The Quiet Center Rule.** The watercolor opens into a broad, low-contrast cream field behind the copy. The sky is darkest above, the stars diminish before the essays, and the ocean remains at the bottom rather than competing with the reading measure.
 
 ## Typography
 
@@ -81,11 +83,11 @@ One decisively left-anchored reading column sits inside a fluid page gutter; it 
 
 ## Elevation & Depth
 
-There are no shadows or raised surfaces. Depth comes only from translucent atmospheric layers behind a flat paper plane.
+There are no raised surfaces. Depth comes from the watercolor’s passage from night sky to paper to ocean, plus the quiet difference between static painted stars and a few live points of light.
 
 ## Shapes
 
-Content has no containers, radii, cards, or pills. Geometry appears only as fine celestial paths and stellar nodes. Watercolor blooms use irregular overlapping silhouettes rather than repeated circles.
+Content has no containers, radii, cards, or pills. Geometry appears only as fine celestial paths and stellar nodes. Watercolor blooms use irregular overlapping silhouettes; the boat remains painterly and small enough to read as atmosphere rather than illustration content.
 
 ## Components
 
@@ -105,10 +107,12 @@ A large gold Vela diagram replaces the former decorative line chart at the right
 - **Do** keep non-interactive decoration peripheral, translucent, and hidden from assistive technology.
 - **Do** preserve semantic headings, links, list structure, and visible focus.
 - **Do** keep constellation-node interaction optional, quiet, and fully keyboard accessible.
+- **Do** concentrate flickering stars in the navy sky and let them thin out before the essay region.
 
 ### Don't:
 
 - **Don't** add navigation, cards, badges, thumbnails, conventional buttons, or portfolio chrome; the stellar nodes are the sole exception because their control form is visually intrinsic to the constellation.
 - **Don't** place watercolor directly behind the biography or essay titles.
 - **Don't** distribute washes evenly; keep them irregular and peripheral, with occasional overlapping blooms and a loose field of pinprick splatter.
+- **Don't** place live stars over the ocean or crowd the cream essay field.
 - **Don't** use pure black, bright gold, or saturated blue.

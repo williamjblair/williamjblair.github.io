@@ -45,13 +45,61 @@ const velaConnections = [
   [5, 6],
 ] as const;
 
+const skyStars = [
+  [3, 8, 0.12, -1.2, 7.8, 0.82],
+  [8, 18, 0.08, -4.4, 9.2, 0.58],
+  [13, 6, 0.1, -2.8, 8.4, 0.72],
+  [18, 29, 0.07, -6.1, 10.2, 0.46],
+  [22, 13, 0.13, -3.5, 7.4, 0.8],
+  [28, 22, 0.09, -7.2, 9.6, 0.62],
+  [33, 5, 0.07, -1.8, 8.8, 0.52],
+  [38, 31, 0.11, -5.3, 7.9, 0.68],
+  [43, 16, 0.08, -3.9, 9.4, 0.56],
+  [48, 7, 0.14, -6.7, 8.1, 0.84],
+  [53, 25, 0.07, -2.1, 10.4, 0.48],
+  [58, 12, 0.1, -4.9, 8.7, 0.7],
+  [63, 34, 0.08, -7.6, 9.8, 0.52],
+  [68, 5, 0.09, -2.6, 7.6, 0.7],
+  [73, 21, 0.12, -5.8, 8.9, 0.78],
+  [78, 11, 0.07, -3.1, 10.1, 0.48],
+  [83, 29, 0.09, -6.4, 9.1, 0.58],
+  [88, 7, 0.13, -1.5, 7.7, 0.82],
+  [93, 18, 0.08, -4.2, 9.7, 0.55],
+  [97, 33, 0.07, -7.1, 10.5, 0.42],
+  [6, 45, 0.08, -5.1, 10.8, 0.42],
+  [17, 53, 0.06, -2.4, 11.2, 0.3],
+  [31, 42, 0.07, -6.8, 9.9, 0.4],
+  [46, 58, 0.06, -3.4, 11.6, 0.26],
+  [61, 48, 0.07, -7.3, 10.7, 0.36],
+  [76, 56, 0.06, -1.9, 11.4, 0.25],
+  [91, 44, 0.07, -5.7, 10.3, 0.34],
+  [24, 72, 0.05, -4.6, 12.1, 0.18],
+  [57, 78, 0.05, -2.7, 12.6, 0.16],
+  [84, 69, 0.05, -6.2, 11.9, 0.18],
+] as const;
+
 function Atmosphere() {
   return (
     <div className="atmosphere" aria-hidden="true">
-      <span className="atmosphere__wash atmosphere__wash--upper-left" />
-      <span className="atmosphere__wash atmosphere__wash--middle" />
-      <span className="atmosphere__wash atmosphere__wash--lower" />
-      <span className="atmosphere__splatters" />
+      <div className="night-stars">
+        {skyStars.map(([x, y, size, delay, duration, opacity], index) => (
+          <span
+            className="night-stars__star"
+            key={`${x}-${y}-${index}`}
+            style={
+              {
+                left: `${x}%`,
+                top: `${y}%`,
+                "--sky-star-size": `${size}rem`,
+                "--sky-star-delay": `${delay}s`,
+                "--sky-star-duration": `${duration}s`,
+                "--sky-star-opacity": opacity,
+                "--sky-star-dim": Number((opacity * 0.55).toFixed(2)),
+              } as CSSProperties
+            }
+          />
+        ))}
+      </div>
     </div>
   );
 }

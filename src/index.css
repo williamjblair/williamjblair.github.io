@@ -42,225 +42,94 @@ body {
   isolation: isolate;
   min-height: 100vh;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 92% 9%, rgb(55 79 105 / 14%), transparent 28rem),
-    radial-gradient(ellipse at 8% 106%, rgb(125 148 165 / 12%), transparent 34rem),
-    linear-gradient(112deg, var(--paper) 0%, #f7f4ec 52%, var(--paper-deep) 100%);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(180deg, rgb(4 15 34 / 5%) 0%, transparent 36%, rgb(245 242 233 / 5%) 65%, rgb(46 73 103 / 8%) 100%),
+    url("/artwork/night-sky-ocean.png");
+  background-position: 62% top;
+  background-size: cover;
 }
 
 .page-shell::before,
 .page-shell::after {
   position: absolute;
-  z-index: -2;
+  z-index: 0;
   content: "";
   pointer-events: none;
-  border-radius: 50%;
-  filter: blur(42px);
 }
 
 .page-shell::before {
-  top: -24rem;
-  right: -16rem;
-  width: min(76vw, 68rem);
-  height: 54rem;
-  opacity: 0.76;
+  top: clamp(3rem, 8vh, 7rem);
+  left: -13rem;
+  width: min(82vw, 78rem);
+  height: 34rem;
+  opacity: 0.88;
+  border-radius: 47% 53% 42% 58% / 58% 43% 57% 42%;
   background:
-    radial-gradient(ellipse at 34% 58%, rgb(77 103 129 / 38%), transparent 44%),
-    radial-gradient(ellipse at 66% 42%, rgb(25 51 78 / 38%), transparent 48%),
-    radial-gradient(ellipse at 52% 76%, rgb(140 157 171 / 30%), transparent 45%);
-  transform: rotate(-12deg);
+    radial-gradient(ellipse at 42% 46%, rgb(247 244 236 / 98%) 0 25%, rgb(245 242 233 / 80%) 46%, transparent 72%),
+    radial-gradient(ellipse at 68% 70%, rgb(236 231 218 / 66%), transparent 58%);
+  filter: blur(28px);
+  transform: rotate(-3deg);
+  -webkit-mask-image: radial-gradient(ellipse at 48% 48%, #000 24%, rgb(0 0 0 / 82%) 53%, transparent 78%);
+  mask-image: radial-gradient(ellipse at 48% 48%, #000 24%, rgb(0 0 0 / 82%) 53%, transparent 78%);
 }
 
 .page-shell::after {
-  right: 8%;
-  bottom: -25rem;
-  width: 44rem;
-  height: 34rem;
-  opacity: 0.3;
-  background: radial-gradient(ellipse, rgb(107 133 154 / 42%), transparent 68%);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 25%;
+  background: linear-gradient(180deg, transparent, rgb(44 75 105 / 8%) 72%, rgb(29 57 86 / 12%));
 }
 
 .atmosphere {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 1;
   overflow: hidden;
   pointer-events: none;
 }
 
-.atmosphere::before {
+.night-stars {
   position: absolute;
-  top: -11rem;
-  right: -13rem;
-  width: min(74vw, 64rem);
-  height: 48rem;
-  content: "";
-  opacity: 0.26;
-  background:
-    radial-gradient(ellipse at 18% 63%, rgb(44 70 96 / 26%) 0 12%, transparent 39%),
-    radial-gradient(ellipse at 43% 35%, rgb(106 128 147 / 34%) 0 8%, transparent 33%),
-    radial-gradient(ellipse at 69% 57%, rgb(36 58 84 / 32%) 0 15%, transparent 43%),
-    radial-gradient(ellipse at 87% 23%, rgb(130 146 159 / 38%) 0 10%, transparent 36%),
-    radial-gradient(ellipse at 56% 78%, rgb(90 115 136 / 24%) 0 11%, transparent 38%);
-  filter: blur(15px);
-  mix-blend-mode: multiply;
-  transform: rotate(-8deg);
-  -webkit-mask-image: radial-gradient(ellipse at 58% 43%, #000 20%, transparent 74%);
-  mask-image: radial-gradient(ellipse at 58% 43%, #000 20%, transparent 74%);
+  inset: 0 0 auto;
+  height: min(42rem, 60vh);
 }
 
-.atmosphere__wash {
+.night-stars__star {
   position: absolute;
-  display: block;
-  pointer-events: none;
-  mix-blend-mode: multiply;
+  width: var(--sky-star-size);
+  height: var(--sky-star-size);
+  border-radius: 50%;
+  background: #f8eed2;
+  box-shadow:
+    0 0 0.18rem rgb(248 238 210 / 58%),
+    0.04rem 0.08rem 0.34rem rgb(205 176 110 / 38%);
+  opacity: var(--sky-star-opacity);
+  transform: translate(-50%, -50%);
+  animation: sky-star-flicker var(--sky-star-duration) ease-in-out var(--sky-star-delay) infinite;
 }
 
-.atmosphere__wash::before,
-.atmosphere__wash::after {
-  position: absolute;
-  content: "";
-  pointer-events: none;
-}
+@keyframes sky-star-flicker {
+  0%,
+  42%,
+  100% {
+    filter: blur(0.15px);
+    opacity: var(--sky-star-dim);
+    transform: translate(-50%, -50%) scale(0.82);
+  }
 
-.atmosphere__wash--upper-left {
-  top: -2rem;
-  left: -9rem;
-  width: min(34vw, 34rem);
-  height: 24rem;
-  opacity: 0.2;
-  border-radius: 54% 46% 61% 39% / 46% 57% 43% 54%;
-  background:
-    radial-gradient(ellipse at 58% 62%, rgb(63 96 126 / 56%), transparent 57%),
-    radial-gradient(ellipse at 29% 43%, rgb(137 160 178 / 61%), transparent 48%),
-    radial-gradient(ellipse at 78% 31%, rgb(42 72 101 / 36%), transparent 53%);
-  filter: blur(19px);
-  transform: rotate(-8deg);
-  -webkit-mask-image: radial-gradient(ellipse at 51% 52%, #000 14%, rgb(0 0 0 / 74%) 48%, transparent 77%);
-  mask-image: radial-gradient(ellipse at 51% 52%, #000 14%, rgb(0 0 0 / 74%) 48%, transparent 77%);
-}
+  48% {
+    filter: blur(0);
+    opacity: var(--sky-star-opacity);
+    transform: translate(-50%, -50%) scale(1.16);
+  }
 
-.atmosphere__wash--upper-left::before {
-  right: -5rem;
-  bottom: 2rem;
-  width: 15rem;
-  height: 11rem;
-  border-radius: 43% 57% 54% 46% / 61% 42% 58% 39%;
-  background:
-    radial-gradient(ellipse at 42% 53%, rgb(103 135 160 / 52%), transparent 61%),
-    radial-gradient(ellipse at 72% 38%, rgb(44 75 105 / 28%), transparent 54%);
-  transform: rotate(17deg);
-}
-
-.atmosphere__wash--upper-left::after {
-  inset: -1rem -9rem -4rem 5rem;
-  background:
-    radial-gradient(circle at 8% 61%, rgb(50 81 111 / 55%) 0 0.13rem, transparent 0.2rem),
-    radial-gradient(circle at 24% 33%, rgb(110 140 164 / 58%) 0 0.09rem, transparent 0.16rem),
-    radial-gradient(circle at 43% 72%, rgb(41 72 102 / 48%) 0 0.17rem, transparent 0.24rem),
-    radial-gradient(circle at 68% 22%, rgb(126 151 171 / 55%) 0 0.1rem, transparent 0.18rem),
-    radial-gradient(circle at 91% 49%, rgb(57 88 117 / 52%) 0 0.12rem, transparent 0.19rem);
-  filter: blur(0.3px);
-}
-
-.atmosphere__wash--middle {
-  top: 41%;
-  right: -8rem;
-  width: min(40vw, 38rem);
-  height: 29rem;
-  opacity: 0.22;
-  border-radius: 48% 52% 42% 58% / 61% 39% 58% 42%;
-  background:
-    radial-gradient(ellipse at 30% 42%, rgb(53 83 113 / 48%), transparent 53%),
-    radial-gradient(ellipse at 66% 50%, rgb(129 154 174 / 55%), transparent 61%),
-    radial-gradient(ellipse at 50% 72%, rgb(36 66 96 / 34%), transparent 56%);
-  filter: blur(18px);
-  transform: rotate(9deg);
-  -webkit-mask-image: radial-gradient(ellipse at 52% 49%, #000 13%, rgb(0 0 0 / 76%) 48%, transparent 76%);
-  mask-image: radial-gradient(ellipse at 52% 49%, #000 13%, rgb(0 0 0 / 76%) 48%, transparent 76%);
-}
-
-.atmosphere__wash--middle::before {
-  top: 8rem;
-  left: -8rem;
-  width: 18rem;
-  height: 14rem;
-  border-radius: 58% 42% 62% 38% / 45% 58% 42% 55%;
-  background:
-    radial-gradient(ellipse at 42% 48%, rgb(114 145 169 / 58%), transparent 58%),
-    radial-gradient(ellipse at 68% 62%, rgb(46 78 108 / 34%), transparent 66%);
-  transform: rotate(-18deg);
-}
-
-.atmosphere__wash--middle::after {
-  inset: -5rem -2rem -4rem -10rem;
-  background:
-    radial-gradient(circle at 18% 58%, rgb(46 76 105 / 50%) 0 0.16rem, transparent 0.22rem),
-    radial-gradient(circle at 28% 36%, rgb(89 121 147 / 58%) 0 0.1rem, transparent 0.17rem),
-    radial-gradient(circle at 40% 74%, rgb(42 72 101 / 44%) 0 0.13rem, transparent 0.2rem),
-    radial-gradient(circle at 63% 18%, rgb(122 149 170 / 52%) 0 0.18rem, transparent 0.25rem),
-    radial-gradient(circle at 78% 66%, rgb(51 81 110 / 45%) 0 0.11rem, transparent 0.18rem),
-    radial-gradient(circle at 88% 42%, rgb(102 131 154 / 55%) 0 0.08rem, transparent 0.15rem);
-  filter: blur(0.4px);
-  transform: rotate(-9deg);
-}
-
-.atmosphere__wash--lower {
-  bottom: -6rem;
-  left: -9rem;
-  width: min(38vw, 34rem);
-  height: 24rem;
-  opacity: 0.19;
-  border-radius: 61% 39% 48% 52% / 44% 58% 42% 56%;
-  background:
-    radial-gradient(ellipse at 44% 55%, rgb(67 99 127 / 55%), transparent 57%),
-    radial-gradient(ellipse at 71% 36%, rgb(139 162 179 / 62%), transparent 48%),
-    radial-gradient(ellipse at 24% 31%, rgb(33 63 92 / 38%), transparent 51%);
-  filter: blur(20px);
-  transform: rotate(-11deg);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 53%, #000 16%, rgb(0 0 0 / 72%) 51%, transparent 77%);
-  mask-image: radial-gradient(ellipse at 50% 53%, #000 16%, rgb(0 0 0 / 72%) 51%, transparent 77%);
-}
-
-.atmosphere__wash--lower::before {
-  top: 2rem;
-  right: -8rem;
-  width: 17rem;
-  height: 12rem;
-  border-radius: 43% 57% 37% 63% / 55% 41% 59% 45%;
-  background: radial-gradient(ellipse at 46% 48%, rgb(111 141 164 / 52%), transparent 64%);
-  transform: rotate(19deg);
-}
-
-.atmosphere__wash--lower::after {
-  inset: -3rem -10rem -4rem 4rem;
-  background:
-    radial-gradient(circle at 12% 30%, rgb(54 84 112 / 48%) 0 0.12rem, transparent 0.19rem),
-    radial-gradient(circle at 31% 17%, rgb(113 142 164 / 50%) 0 0.08rem, transparent 0.15rem),
-    radial-gradient(circle at 54% 43%, rgb(45 75 103 / 42%) 0 0.15rem, transparent 0.22rem),
-    radial-gradient(circle at 72% 24%, rgb(126 152 171 / 54%) 0 0.1rem, transparent 0.17rem),
-    radial-gradient(circle at 91% 57%, rgb(57 87 114 / 46%) 0 0.14rem, transparent 0.21rem);
-  filter: blur(0.35px);
-}
-
-.atmosphere__splatters {
-  position: absolute;
-  inset: 0;
-  opacity: 0.28;
-  background:
-    radial-gradient(circle at 7% 18%, rgb(61 93 122 / 52%) 0 0.11rem, transparent 0.19rem),
-    radial-gradient(circle at 14% 8%, rgb(122 149 169 / 56%) 0 0.08rem, transparent 0.15rem),
-    radial-gradient(circle at 27% 31%, rgb(48 80 109 / 38%) 0 0.09rem, transparent 0.16rem),
-    radial-gradient(circle at 43% 13%, rgb(111 140 162 / 48%) 0 0.12rem, transparent 0.2rem),
-    radial-gradient(circle at 61% 29%, rgb(48 79 108 / 42%) 0 0.08rem, transparent 0.15rem),
-    radial-gradient(circle at 72% 8%, rgb(125 150 170 / 52%) 0 0.1rem, transparent 0.17rem),
-    radial-gradient(circle at 89% 36%, rgb(55 87 115 / 48%) 0 0.13rem, transparent 0.21rem),
-    radial-gradient(circle at 95% 61%, rgb(117 144 165 / 48%) 0 0.08rem, transparent 0.15rem),
-    radial-gradient(circle at 76% 79%, rgb(45 76 105 / 43%) 0 0.11rem, transparent 0.18rem),
-    radial-gradient(circle at 52% 91%, rgb(132 156 175 / 51%) 0 0.09rem, transparent 0.16rem),
-    radial-gradient(circle at 29% 82%, rgb(52 84 113 / 44%) 0 0.14rem, transparent 0.22rem),
-    radial-gradient(circle at 9% 69%, rgb(112 141 164 / 50%) 0 0.08rem, transparent 0.15rem);
-  filter: blur(0.25px);
+  54% {
+    filter: blur(0.1px);
+    opacity: var(--sky-star-dim);
+    transform: translate(-50%, -50%) scale(0.94);
+  }
 }
 
 main {
@@ -581,47 +450,23 @@ h1 {
 
 @media (max-width: 48rem) {
   .page-shell {
-    background:
-      radial-gradient(circle at 106% 2%, rgb(55 79 105 / 10%), transparent 20rem),
-      linear-gradient(112deg, var(--paper) 0%, #f7f4ec 70%, var(--paper-deep) 100%);
+    background-position: 82% top;
   }
 
   .page-shell::before {
-    top: -22rem;
-    right: -25rem;
-    opacity: 0.48;
+    top: 5rem;
+    left: -19rem;
+    width: 52rem;
+    height: 31rem;
+    opacity: 0.9;
   }
 
   .page-shell::after {
-    right: -18rem;
-    opacity: 0.2;
+    opacity: 0.72;
   }
 
-  .atmosphere::before {
-    top: -15rem;
-    right: -28rem;
-    opacity: 0.2;
-  }
-
-  .atmosphere__wash--upper-left {
-    top: -5rem;
-    left: -12rem;
-    width: 29rem;
-    opacity: 0.14;
-  }
-
-  .atmosphere__wash--middle {
-    top: 46%;
-    right: -16rem;
-    width: 31rem;
-    opacity: 0.15;
-  }
-
-  .atmosphere__wash--lower {
-    bottom: -8rem;
-    left: -15rem;
-    width: 29rem;
-    opacity: 0.13;
+  .night-stars {
+    height: min(34rem, 48vh);
   }
 
   main {
@@ -684,5 +529,10 @@ h1 {
 
   .vela__star::after {
     opacity: 0.38;
+  }
+
+  .night-stars__star {
+    animation: none;
+    opacity: var(--sky-star-dim);
   }
 }
