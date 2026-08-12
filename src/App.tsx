@@ -65,17 +65,33 @@ function EssayList() {
   return (
     <section className="essays" aria-labelledby="essays-heading">
       <h2 id="essays-heading">Essays</h2>
-      <ul className="essay-list">
-        {essays.map((essay) => (
-          <li key={essay.title}>
-            {essay.href ? (
-              <a href={essay.href}>{essay.title}</a>
-            ) : (
-              <span>{essay.title}</span>
-            )}
-          </li>
-        ))}
-      </ul>
+      <div className="essay-list__cluster">
+        <svg
+          className="essay-list__threads"
+          viewBox="0 0 56 176"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M18 19C48 37 4 58 21 86C36 110 49 126 19 156" />
+          <path d="M20 19C3 46 44 66 21 86" />
+          <path d="M21 86C3 108 42 132 19 156" />
+        </svg>
+        <ul className="essay-list">
+          {essays.map((essay) => (
+            <li key={essay.title}>
+              <span className="essay-list__star" aria-hidden="true">
+                ✦
+              </span>
+              {essay.href ? (
+                <a href={essay.href}>{essay.title}</a>
+              ) : (
+                <span className="essay-list__title">{essay.title}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

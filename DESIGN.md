@@ -88,9 +88,9 @@ Content has no containers, radii, cards, or pills. Geometry appears only as fine
 
 ## Components
 
-### Essay links
+### Essay constellation
 
-Essay links are semantic text links set in the display serif. A fine gold underline grows into view over 200ms on hover and focus; focus-visible also receives a clear offset outline. The forthcoming essay uses the same typography without anchor behavior.
+The essay titles form one indented cluster beneath the larger “Essays” heading. Each title begins with a small muted-gold star, while sub-pixel curved gold paths wander through the bullet gutter to suggest a hand-drawn constellation without creating a rigid timeline. The marks are decorative and hidden from assistive technology. Essay links remain semantic text links set in the display serif; a fine gold underline grows into view over 200ms on hover and focus, and focus-visible also receives a clear offset outline. The unpublished essay uses the same typography without anchor behavior.
 
 ## Do's and Don'ts
 

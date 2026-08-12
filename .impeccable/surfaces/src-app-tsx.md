@@ -15,7 +15,7 @@ Proof and content: The supplied first-person biography, three essay titles, and 
 
 Chosen direction: The Constellation Folio — a cream scientific-essay opening set in navy old-style serif, with diluted blue-grey atmosphere and sparse gold cartographic linework held at the periphery.
 
-Memorable moment: The oversized “Hi, I’m Will.” occupies a quiet paper field while a faint constellation diagram appears to have been drafted beyond the reading margin.
+Memorable moment: The oversized “Hi, I’m Will.” occupies a quiet paper field while a faint constellation diagram appears beyond the reading margin and a smaller gold star-thread binds the essays into one authored group.
 
 Constraints: No navigation, cards, controls, metadata, thumbnails, or invented claims. Preserve accessibility, reduced motion, responsive composition, and Vite static deployment.
 
