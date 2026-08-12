@@ -157,7 +157,6 @@ body.constellations-route {
 }
 
 .constellations-copy__recollection {
-  color: var(--ink-soft) !important;
   font-style: italic;
 }
 
