@@ -42,7 +42,7 @@ body.constellations-route {
 .constellations-hero__heading {
   position: absolute;
   z-index: 2;
-  top: 28%;
+  top: 18%;
   left: clamp(2.25rem, 6.25vw, 7rem);
   width: min(49vw, 43rem);
 }
@@ -230,7 +230,7 @@ body.constellations-route {
 @media (max-width: 46rem) {
   .constellations-hero__heading {
     position: absolute;
-    top: 27%;
+    top: 17%;
     left: clamp(1.25rem, 5vw, 2.25rem);
     z-index: 2;
     width: 56vw;
