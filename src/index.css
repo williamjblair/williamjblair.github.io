@@ -37,6 +37,12 @@ body {
   min-height: 100vh;
 }
 
+.essay-blank-slate {
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--paper);
+}
+
 .page-shell {
   position: relative;
   isolation: isolate;

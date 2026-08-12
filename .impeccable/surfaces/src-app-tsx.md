@@ -9,7 +9,7 @@ Scope: Single-route personal homepage. Visitor mode: Read.
 
 Audience and job: Readers and potential collaborators need to understand who Will is and choose an essay without portfolio or marketing detours.
 
-Primary action: Follow one of the two published essay links. “Constellations of Borrowed Light” remains visibly listed but non-interactive until its destination exists.
+Primary action: Follow a published essay link or open “Constellations of Borrowed Light,” which currently leads to a blank cream essay route.
 
 Proof and content: The supplied first-person biography, three essay titles, and two verified external URLs are the complete factual content for this surface.
 
@@ -19,4 +19,4 @@ Memorable moment: Sparse starlight flickers through the painted navy sky, thinni
 
 Constraints: No navigation, cards, controls, metadata, thumbnails, or invented claims. Preserve accessibility, reduced motion, responsive composition, and Vite static deployment.
 
-Unresolved: The eventual destination and publication state for “Constellations of Borrowed Light.”
+Unresolved: The essay content and publication state for “Constellations of Borrowed Light.”

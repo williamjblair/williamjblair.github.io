@@ -19,7 +19,7 @@ const essays = [
   },
   {
     title: "Constellations of Borrowed Light",
-    href: null,
+    href: "/constellations-of-borrowed-light/",
   },
 ] as const;
 
@@ -206,11 +206,7 @@ function EssayList() {
               <span className="essay-list__star" aria-hidden="true">
                 <span className="essay-list__star-glyph">✦</span>
               </span>
-              {essay.href ? (
-                <a href={essay.href}>{essay.title}</a>
-              ) : (
-                <span className="essay-list__title">{essay.title}</span>
-              )}
+              <a href={essay.href}>{essay.title}</a>
             </li>
           ))}
         </ul>
@@ -232,4 +228,14 @@ function Home() {
   );
 }
 
-export default Home;
+function ConstellationsOfBorrowedLight() {
+  return <main className="essay-blank-slate" aria-label="Constellations of Borrowed Light" />;
+}
+
+export default function App() {
+  if (window.location.pathname === "/constellations-of-borrowed-light/") {
+    return <ConstellationsOfBorrowedLight />;
+  }
+
+  return <Home />;
+}

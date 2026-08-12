@@ -25,8 +25,8 @@ The homepage is a quiet, vertically scrolling reading surface. Visitors arrive f
 ## Capabilities and Constraints
 
 - React and Vite in the existing repository, deployed as a static Vercel-compatible build.
-- Two external essay links are live.
-- “Constellations of Borrowed Light” is listed without a destination and must remain non-interactive until its URL exists.
+- Two external essay links are live, alongside a local blank-slate route for “Constellations of Borrowed Light.”
+- “Constellations of Borrowed Light” opens to a blank cream page until its essay content is ready.
 - No navigation, cards, calls to action, portfolio grids, or application-style chrome.
 
 ## Brand Commitments
