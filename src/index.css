@@ -121,7 +121,7 @@ main {
   width: min(100%, 104rem);
   min-height: 100vh;
   margin: 0;
-  padding: clamp(7.5rem, 18vh, 12rem) clamp(1.5rem, 6vw, 6rem)
+  padding: clamp(8.5rem, 20vh, 13.5rem) clamp(1.5rem, 6vw, 6rem)
     clamp(6rem, 12vw, 10rem);
 }
 
@@ -319,7 +319,7 @@ h1 {
 
 .essays {
   max-width: 68rem;
-  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+  margin-top: clamp(2.5rem, 4.5vw, 4.25rem);
 }
 
 .essays h2 {
@@ -446,7 +446,7 @@ h1 {
 
   main {
     min-height: auto;
-    padding-top: clamp(6.5rem, 17vh, 8.5rem);
+    padding-top: clamp(7.5rem, 19vh, 9.5rem);
   }
 
   .vela {
@@ -474,7 +474,7 @@ h1 {
   }
 
   .essays {
-    margin-top: 3.75rem;
+    margin-top: 3rem;
   }
 
   .essay-list li {
