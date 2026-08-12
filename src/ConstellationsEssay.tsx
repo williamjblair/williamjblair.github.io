@@ -5,7 +5,7 @@ import "./ConstellationsEssay.css";
 THESIS: A single transparent watercolor hero becomes the opening leaf of the essay and dissolves directly into the paper.
 OWN-WORLD: Warm paper, navy Iowan Old Style, muted cartographic gold, and unframed watercolor works.
 STORY: The reader moves from a child beneath a constellation into Will’s exact account of illness, recovery, human connection, and borrowed light.
-FIRST VIEWPORT: The final supplied hero spans the page with its title, date, sailboat, constellation, lake, and lower watercolor dispersion intact.
+FIRST VIEWPORT: The no-text watercolor spans the page while the live title and date occupy its open left field and the first live paragraph rests in its pale lower wash.
 FORM: A continuous illustrated folio pinned by the supplied composition and manuscript; no concept seed required.
 */
 
@@ -17,17 +17,25 @@ function EssayHero() {
     <header className="constellations-hero">
       <figure className="constellations-hero__art">
         <img
-          src="/artwork/constellations/constellations-hero-final.png"
+          src="/artwork/constellations/constellations-hero-no-text.png"
           alt="Watercolor illustration of a child sailing beneath a constellation over a mountain lake."
-          width="1536"
-          height="1024"
+          width="1448"
+          height="1086"
           fetchPriority="high"
         />
       </figure>
-      <h1 className="constellations-sr-only">Constellations of Borrowed Light</h1>
-      <time className="constellations-sr-only" dateTime="2022-10-02">
-        2022-10-02
-      </time>
+      <div className="constellations-hero__heading">
+        <h1 className="constellations-hero__title">
+          <span>Constellations of</span>{" "}
+          <span>Borrowed Light</span>
+        </h1>
+        <time className="constellations-hero__date" dateTime="2022-10-02">
+          2022-10-02
+        </time>
+      </div>
+      <p className="constellations-hero__lede">
+        When I was six years old, I was such a happy kid.
+      </p>
     </header>
   );
 }
@@ -108,8 +116,6 @@ export default function ConstellationsEssay() {
     <article className="constellations-essay">
       <EssayHero />
       <div className="constellations-copy">
-        <p>When I was six years old, I was such a happy kid.</p>
-
         <p>
           I loved playing soccer and spending time with my friends. I had many friends in my Rosedale and Whitney neighbourhoods in Ontario. I loved travelling, especially to places like Prince Edward Island and Florida. But toward the end of Grade one, around April, I began to feel seriously ill. I developed severe headaches, nausea, and a fever. Naturally, I saw several doctors, but none of them knew what was wrong. They assumed it was a virus and told me it would pass within a week or two. Each time I returned, the answer was the same: one more week. This continued for nearly two months. I missed school, stayed home, and spent most of my days resting or sleeping. Meanwhile, the headaches kept getting worse. It felt as though pressure was building inside my head, and I had no idea what was causing it.
         </p>
