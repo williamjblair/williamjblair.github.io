@@ -171,12 +171,12 @@ body {
 
 .vela__star::after {
   position: absolute;
-  inset: 0.62rem;
+  inset: 0.4rem;
   content: "";
   border-radius: 50%;
-  background: radial-gradient(circle, rgb(218 190 122 / 62%) 0 10%, rgb(171 132 61 / 32%) 30%, transparent 68%);
-  filter: blur(1.2px);
-  opacity: 0.68;
+  background: radial-gradient(circle, rgb(248 238 210 / 96%) 0 7%, rgb(218 190 122 / 72%) 22%, rgb(171 132 61 / 42%) 43%, transparent 72%);
+  filter: blur(0.8px);
+  opacity: 0.82;
   animation: vela-flicker var(--star-duration) ease-in-out var(--star-delay) infinite;
 }
 
@@ -315,23 +315,23 @@ body {
   0%,
   38%,
   100% {
-    opacity: 0.28;
-    transform: scale(0.86);
+    opacity: 0.2;
+    transform: scale(0.72);
   }
 
   44% {
-    opacity: 0.64;
-    transform: scale(1.08);
+    opacity: 1;
+    transform: scale(1.28);
   }
 
   50% {
-    opacity: 0.36;
-    transform: scale(0.94);
+    opacity: 0.34;
+    transform: scale(0.88);
   }
 
   56% {
-    opacity: 0.52;
-    transform: scale(1.02);
+    opacity: 0.86;
+    transform: scale(1.16);
   }
 }
 
