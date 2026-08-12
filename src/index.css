@@ -50,28 +50,11 @@ body {
   background-size: cover;
 }
 
-.page-shell::before,
 .page-shell::after {
   position: absolute;
   z-index: 0;
   content: "";
   pointer-events: none;
-}
-
-.page-shell::before {
-  top: clamp(3rem, 8vh, 7rem);
-  left: -13rem;
-  width: min(82vw, 78rem);
-  height: 34rem;
-  opacity: 0.88;
-  border-radius: 47% 53% 42% 58% / 58% 43% 57% 42%;
-  background:
-    radial-gradient(ellipse at 42% 46%, rgb(247 244 236 / 98%) 0 25%, rgb(245 242 233 / 80%) 46%, transparent 72%),
-    radial-gradient(ellipse at 68% 70%, rgb(236 231 218 / 66%), transparent 58%);
-  filter: blur(28px);
-  transform: rotate(-3deg);
-  -webkit-mask-image: radial-gradient(ellipse at 48% 48%, #000 24%, rgb(0 0 0 / 82%) 53%, transparent 78%);
-  mask-image: radial-gradient(ellipse at 48% 48%, #000 24%, rgb(0 0 0 / 82%) 53%, transparent 78%);
 }
 
 .page-shell::after {
@@ -451,14 +434,6 @@ h1 {
 @media (max-width: 48rem) {
   .page-shell {
     background-position: 82% top;
-  }
-
-  .page-shell::before {
-    top: 5rem;
-    left: -19rem;
-    width: 52rem;
-    height: 31rem;
-    opacity: 0.9;
   }
 
   .page-shell::after {
