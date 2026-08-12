@@ -912,13 +912,7 @@ body.constellations-route .sail-home::before {
   }
 
   .vela {
-    top: clamp(0.75rem, 2vw, 1.5rem);
-    right: 2vw;
-    width: min(18rem, 56vw);
-  }
-
-  .vela__identity {
-    left: -12%;
+    display: none;
   }
 
   .intro__bio {
