@@ -22,7 +22,7 @@ body.constellations-route {
 .constellations-hero {
   position: relative;
   width: 100%;
-  margin: 0 0 clamp(3.5rem, 6vw, 6rem);
+  margin: 0;
   background-color: var(--editorial-canvas);
   background-image: var(--paper-texture);
   background-size: 32rem 32rem;
@@ -73,12 +73,14 @@ body.constellations-route {
   letter-spacing: 0.08em;
 }
 
-.constellations-hero__lede {
-  position: absolute;
+.constellations-hero__opening-copy {
+  position: relative;
   z-index: 2;
-  bottom: clamp(2rem, 4.3vw, 4.5rem);
-  left: 50%;
   width: min(calc(100% - 3rem), 46rem);
+  margin: clamp(-6.75rem, -7.5vw, -4.5rem) auto 0;
+}
+
+.constellations-hero__opening-copy p {
   margin: 0;
   color: var(--ink);
   font-family: var(--serif);
@@ -87,14 +89,23 @@ body.constellations-route {
   line-height: 1.76;
   letter-spacing: -0.006em;
   text-wrap: pretty;
-  transform: translateX(-50%);
+}
+
+.constellations-hero__opening-copy p + p {
+  margin-top: 1.55em;
+}
+
+.constellations-hero__opening-copy .constellations-hero__lede {
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+  line-height: 1.35;
+  letter-spacing: -0.018em;
 }
 
 .constellations-copy {
   position: relative;
   z-index: 2;
   width: min(calc(100% - 3rem), 46rem);
-  margin: 0 auto;
+  margin: 1.55em auto 0;
   padding-bottom: clamp(7rem, 13vw, 12rem);
 }
 
@@ -217,10 +228,6 @@ body.constellations-route {
 }
 
 @media (max-width: 46rem) {
-  .constellations-hero {
-    margin-bottom: clamp(3rem, 10vw, 4.5rem);
-  }
-
   .constellations-hero__heading {
     position: absolute;
     top: 27%;
@@ -245,15 +252,19 @@ body.constellations-route {
     font-size: clamp(0.62rem, 1.8vw, 0.75rem);
   }
 
-  .constellations-hero__lede {
-    position: relative;
-    bottom: auto;
-    left: auto;
+  .constellations-hero__opening-copy {
     width: min(calc(100% - 3rem), 42rem);
-    margin: -2rem auto 0;
+    margin-top: clamp(-3.5rem, -8vw, -2rem);
+  }
+
+  .constellations-hero__opening-copy p {
     font-size: clamp(1.05rem, 4.35vw, 1.15rem);
     line-height: 1.72;
-    transform: none;
+  }
+
+  .constellations-hero__opening-copy .constellations-hero__lede {
+    font-size: clamp(1.35rem, 6vw, 1.65rem);
+    line-height: 1.38;
   }
 
   .constellations-copy {
@@ -286,7 +297,7 @@ body.constellations-route {
 
 @media (max-width: 30rem) {
   .constellations-hero__heading,
-  .constellations-hero__lede,
+  .constellations-hero__opening-copy,
   .constellations-copy {
     width: calc(100% - 2.5rem);
   }

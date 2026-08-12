@@ -33,9 +33,14 @@ function EssayHero() {
           2022-10-02
         </time>
       </div>
-      <p className="constellations-hero__lede">
-        When I was six years old, I was such a happy kid.
-      </p>
+      <div className="constellations-hero__opening-copy">
+        <p className="constellations-hero__lede">
+          When I was six years old, I was such a happy kid.
+        </p>
+        <p>
+          I loved playing soccer and spending time with my friends. I had many friends in my Rosedale and Whitney neighbourhoods in Ontario. I loved travelling, especially to places like Prince Edward Island and Florida. But toward the end of Grade one, around April, I began to feel seriously ill. I developed severe headaches, nausea, and a fever. Naturally, I saw several doctors, but none of them knew what was wrong. They assumed it was a virus and told me it would pass within a week or two. Each time I returned, the answer was the same: one more week. This continued for nearly two months. I missed school, stayed home, and spent most of my days resting or sleeping. Meanwhile, the headaches kept getting worse. It felt as though pressure was building inside my head, and I had no idea what was causing it.
+        </p>
+      </div>
     </header>
   );
 }
@@ -116,10 +121,6 @@ export default function ConstellationsEssay() {
     <article className="constellations-essay">
       <EssayHero />
       <div className="constellations-copy">
-        <p>
-          I loved playing soccer and spending time with my friends. I had many friends in my Rosedale and Whitney neighbourhoods in Ontario. I loved travelling, especially to places like Prince Edward Island and Florida. But toward the end of Grade one, around April, I began to feel seriously ill. I developed severe headaches, nausea, and a fever. Naturally, I saw several doctors, but none of them knew what was wrong. They assumed it was a virus and told me it would pass within a week or two. Each time I returned, the answer was the same: one more week. This continued for nearly two months. I missed school, stayed home, and spent most of my days resting or sleeping. Meanwhile, the headaches kept getting worse. It felt as though pressure was building inside my head, and I had no idea what was causing it.
-        </p>
-
         <p>
           One day, everything reached a fever pitch. I felt incredibly sick, and my temperature had climbed to 105 degrees. It was time to rush to the hospital. My mom was frantic. She got me into the car, and we drove to SickKids. The doctors ordered an MRI to see whether something was wrong with my brain. After a short wait, the scan confirmed my mom’s worst fear: there was a tumour growing in my cerebellum. I remember sitting in the waiting room. A volunteer, perhaps fourteen or fifteen years old, tried to comfort my mom and me. But once the news came, there was nothing she could say that would console my mother. My first reaction was confusion, which was perhaps normal for a boy in grade school. I am not even sure I felt afraid at first. Until then, my life had been easy in so many ways. My parents were always there for me, and I felt free to go anywhere. I loved visiting the cottage by the lake in Muskoka and spending time in Westport, a small town in Eastern Ontario. Everything had felt ideal—almost perfect.
         </p>
