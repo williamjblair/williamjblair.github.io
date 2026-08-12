@@ -519,11 +519,13 @@ function Home() {
   return (
     <div className="page-shell">
       <HomeSky />
-      <main className="home-content">
-        <EssayList />
-        <ProjectList />
-        <ContactRow />
-      </main>
+      <section className="home-content-section">
+        <main className="home-content">
+          <EssayList />
+          <ProjectList />
+          <ContactRow />
+        </main>
+      </section>
       <OceanFooter />
     </div>
   );

@@ -102,7 +102,7 @@ The single-family system feels authored and literary without turning into a bran
 
 One decisively left-anchored reading column sits inside a fluid page gutter; it does not recenter on very wide screens. The headline may extend wider than the biography; the biography remains near 65 characters. The essay section begins after a substantial but responsive vertical pause. Mobile preserves the hierarchy with a minimum 24px gutter, quieter decoration, and naturally wrapping titles.
 
-The homepage is structurally divided into three sibling regions. A fixed-height responsive sky owns the introduction, starlight, and Vela; an auto-height paper content region owns Essays, Projects, disclosures, and the signature row; a fixed-height ocean footer owns the water and sailboat. Expanding content changes only the middle region's document height, pushing the ocean downward without rescaling either decorative crop.
+The homepage is structurally divided into three sibling regions. A fixed-height responsive sky owns the introduction, starlight, and Vela; an auto-height paper content region owns Essays, Projects, disclosures, and the signature row; a fixed-height ocean footer owns the water and sailboat. All three sit on the same full-viewport paper canvas, while readable content is constrained only by inner containers. The sky artwork is a full-bleed, aspect-ratio-preserving layer with slight horizontal overscan and a transparent fade into paper. Expanding content changes only the middle region's document height, pushing the ocean downward without rescaling either decorative crop.
 
 ## Elevation & Depth
 
