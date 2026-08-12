@@ -120,14 +120,14 @@ const projects: ReadonlyArray<Project> = [
 ];
 
 const velaStars = [
-  { symbol: "γ", name: "Regor", catalogue: "γ Velorum", magnitude: 1.75, x: 12, y: 42, delay: "-1.8s", duration: "7.4s" },
-  { symbol: "δ", name: "Alsephina", catalogue: "δ Velorum", magnitude: 1.96, x: 29, y: 76, delay: "-4.6s", duration: "8.2s" },
-  { symbol: "κ", name: "Markeb", catalogue: "κ Velorum", magnitude: 2.47, x: 47, y: 78, delay: "-2.9s", duration: "6.8s" },
-  { symbol: "φ", name: "Phi Velorum", catalogue: "φ Velorum", magnitude: 3.54, x: 64, y: 75, delay: "-5.2s", duration: "7.8s" },
-  { symbol: "μ", name: "Mu Velorum", catalogue: "μ Velorum", magnitude: 2.69, x: 88, y: 52, delay: "-0.9s", duration: "8.6s" },
-  { symbol: "q", name: "q Velorum", catalogue: "q Velorum", magnitude: 3.85, x: 73, y: 19, delay: "-3.7s", duration: "7.1s" },
-  { symbol: "ψ", name: "Psi Velorum", catalogue: "ψ Velorum", magnitude: 3.6, x: 51, y: 12, delay: "-6.1s", duration: "8.9s" },
-  { symbol: "λ", name: "Suhail", catalogue: "λ Velorum", magnitude: 2.21, x: 40, y: 25, delay: "-2.3s", duration: "7.6s" },
+  { symbol: "γ", name: "Regor", catalogue: "γ Velorum", magnitude: 1.75, x: 12, y: 42, delay: "-2.7s", duration: "11.1s" },
+  { symbol: "δ", name: "Alsephina", catalogue: "δ Velorum", magnitude: 1.96, x: 29, y: 76, delay: "-6.9s", duration: "12.3s" },
+  { symbol: "κ", name: "Markeb", catalogue: "κ Velorum", magnitude: 2.47, x: 47, y: 78, delay: "-4.4s", duration: "10.2s" },
+  { symbol: "φ", name: "Phi Velorum", catalogue: "φ Velorum", magnitude: 3.54, x: 64, y: 75, delay: "-7.8s", duration: "11.7s" },
+  { symbol: "μ", name: "Mu Velorum", catalogue: "μ Velorum", magnitude: 2.69, x: 88, y: 52, delay: "-1.4s", duration: "12.9s" },
+  { symbol: "q", name: "q Velorum", catalogue: "q Velorum", magnitude: 3.85, x: 73, y: 19, delay: "-5.6s", duration: "10.7s" },
+  { symbol: "ψ", name: "Psi Velorum", catalogue: "ψ Velorum", magnitude: 3.6, x: 51, y: 12, delay: "-9.2s", duration: "13.4s" },
+  { symbol: "λ", name: "Suhail", catalogue: "λ Velorum", magnitude: 2.21, x: 40, y: 25, delay: "-3.5s", duration: "11.4s" },
 ] as const;
 
 const velaConnections = [

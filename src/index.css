@@ -174,9 +174,9 @@ body {
   inset: 0.4rem;
   content: "";
   border-radius: 50%;
-  background: radial-gradient(circle, rgb(248 238 210 / 96%) 0 7%, rgb(218 190 122 / 72%) 22%, rgb(171 132 61 / 42%) 43%, transparent 72%);
-  filter: blur(0.8px);
-  opacity: 0.82;
+  background: radial-gradient(circle, rgb(248 238 210 / 78%) 0 7%, rgb(218 190 122 / 54%) 22%, rgb(171 132 61 / 28%) 43%, transparent 72%);
+  filter: blur(1px);
+  opacity: 0.68;
   animation: vela-flicker var(--star-duration) ease-in-out var(--star-delay) infinite;
 }
 
@@ -315,23 +315,23 @@ body {
   0%,
   38%,
   100% {
-    opacity: 0.2;
-    transform: scale(0.72);
+    opacity: 0.24;
+    transform: scale(0.8);
   }
 
   44% {
-    opacity: 1;
-    transform: scale(1.28);
+    opacity: 0.7;
+    transform: scale(1.12);
   }
 
   50% {
-    opacity: 0.34;
-    transform: scale(0.88);
+    opacity: 0.32;
+    transform: scale(0.9);
   }
 
   56% {
-    opacity: 0.86;
-    transform: scale(1.16);
+    opacity: 0.58;
+    transform: scale(1.04);
   }
 }
 
