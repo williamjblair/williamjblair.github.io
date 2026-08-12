@@ -3,7 +3,7 @@ import "./ConstellationsEssay.css";
 
 /*
 THESIS: The watercolor illustration becomes the opening leaf of the essay, refusing a detached title-and-image stack.
-OWN-WORLD: Warm paper, navy Iowan Old Style, muted cartographic gold, and two unframed watercolor works.
+OWN-WORLD: Warm paper, navy Iowan Old Style, muted cartographic gold, and unframed watercolor works.
 STORY: The reader moves from a child beneath a constellation into Will’s exact account of illness, recovery, human connection, and borrowed light.
 FIRST VIEWPORT: The sailboat artwork spans the page while the HTML title and date rest in its open left-hand sky, clear of the boat and celestial geometry.
 FORM: A continuous illustrated folio pinned by the supplied composition and manuscript; no concept seed required.
@@ -58,6 +58,21 @@ function CottageMemoryWatercolor() {
       <img
         src="/artwork/constellations/chi-chi-cottage-memory.png"
         alt="A young child runs with a small dog along a lakeside cottage path."
+        width="1536"
+        height="1024"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  );
+}
+
+function BorrowedLightWatercolor() {
+  return (
+    <figure className="borrowed-light-watercolor">
+      <img
+        src="/artwork/constellations/borrowed-light-closing.png"
+        alt="Two children sit together beside a moonlit lake beneath constellations of golden light."
         width="1536"
         height="1024"
         loading="lazy"
@@ -198,6 +213,8 @@ export default function ConstellationsEssay() {
         <p>
           I want the life I build from here to reflect the light I have received from so many others—and, in turn, to cast some of that light back into the constellations.
         </p>
+
+        <BorrowedLightWatercolor />
 
         <p className="constellations-copy__dedication">For M.</p>
       </div>
