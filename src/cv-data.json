@@ -1,0 +1,76 @@
+{
+  "name": "William Blair",
+  "email": "william.blair0708@gmail.com",
+  "subtitle": "Work, research, publications, and awards.",
+  "sections": [
+    {
+      "title": "Work",
+      "entries": [
+        { "title": "Episteme", "date": "2025 — Present", "subtitle": "Episteme Fellow · San Francisco", "description": "A privately funded Bell Labs–style research organization, around fifteen scientists working across neuroscience, advanced materials, energy, and compute. I design and build Atlas, the in-house researcher intelligence platform the lab uses to map talent, evidence, and direction across those pillars. I own it end to end: data model, ingest, LLM-driven extraction over open scientific corpora, and the product surface scientists use day to day." },
+        { "title": "Aaru", "date": "2024 — 2025", "subtitle": "Founding Engineer · New York", "description": "Large-scale AI-agent simulation for consulting, politics, and government. Built the core platform with the CTO: the agent simulation runtime, synthetic audience generation, benchmarking and observability tooling, and the customer-facing web app. The synthetic-audience pipeline I shipped was used in every customer engagement.", "href": "https://www.aaru.com" },
+        { "title": "Biogenesis", "date": "2023 — 2024", "subtitle": "Co-Founder & COO · Palo Alto", "description": "End-to-end clinical trials platform, incubated as Engineer in Residence at Kleiner Perkins. Built the platform from scratch and hired a team of seven. Raised $2.5M led by Jack Altman, with Kleiner Perkins and Fairchild. Stood up partnerships with small and mid-sized biotech across 250+ clinics.", "href": "https://www.mybiogenesis.com" },
+        { "title": "ThermoBeat", "date": "2019 — 2023", "subtitle": "Founder & CEO · Baltimore", "description": "Thermoelectrics for implantable medical devices. Developed a thermoelectric generator and boost-converter system that runs under a 2 °C gradient and produces 3.3 V, enough to power a pacemaker from body heat. Raised $300K+ in non-dilutive funding across NSF I-Corps, NIBIB DEBUT, JHU Spark, and the JHU FUEL Grand Prize. Supervised by Dr. Andreas Andreou." }
+      ]
+    },
+    {
+      "title": "Independent",
+      "entries": [
+        { "title": "Borrowed Light", "date": "2025 — Present", "subtitle": "Open infrastructure for scientific knowledge", "description": "Built independently of any employer. Encompasses Vela, a git-native protocol that turns scientific papers into structured, linked, correctable findings, with a working Rust reference implementation and an MCP server for agent reasoning over compiled state; the lead essay Constellations of Borrowed Light; and an open-source Obsidian theme carrying the same visual identity. Open spec, Apache-2.0 implementation.", "href": "https://borrowedlight.org" }
+      ]
+    },
+    {
+      "title": "Education",
+      "entries": [
+        { "title": "Johns Hopkins University", "date": "2019 — 2023", "subtitle": "B.S. Honors, Cognitive Science; minor in Entrepreneurship · GPA 3.8" },
+        { "title": "Upper Canada College", "date": "2015 — 2019", "subtitle": "International Baccalaureate Diploma · Lang Scholar, one of ten across the school" }
+      ]
+    },
+    {
+      "title": "Publications",
+      "entries": [
+        { "title": "Emerging targets of α-synuclein spreading in α-synucleinopathies", "date": "2025", "subtitle": "Kuo G, Kumbhar R, Blair W, Dawson V, Dawson T, Mao X · Molecular Neurodegeneration", "description": "A review of mechanistic pathways and interventions." },
+        { "title": "Optimizing a hyaluronic acid–based hydrogel for delivery of neural progenitor cells for ischemic stroke treatment", "date": "2022", "subtitle": "Blair W, Letko-Khait N, Shoichet M · Nature Technologies for Neuroengineering" },
+        { "title": "Evaluation of 5-aminolevulinic acid–induced fluorescence during breast cancer surgery with a handheld prototype imaging device", "date": "2019", "subtitle": "Gibson C, Ottolino-Perry K, et al., incl. Blair W · World Molecular Imaging Congress" }
+      ]
+    },
+    {
+      "title": "Research",
+      "entries": [
+        { "title": "Johns Hopkins University, Biomedical Engineering", "date": "2022 — 2023", "subtitle": "Advisors: Xiaobo Mao, Ph.D. and Ram Kumbhar, Ph.D.", "description": "Methods to inhibit PARP-1 activation in Parkinson’s disease." },
+        { "title": "University of Toronto, Chemical Engineering", "date": "2022", "subtitle": "Advisors: Molly Shoichet, Ph.D. and Nitzan Letko-Khait, Ph.D.", "description": "Hyaluronic acid hydrogels for delivery of neural progenitor cells in ischemic stroke." },
+        { "title": "Johns Hopkins University, Division of Neurosurgery", "date": "2021 — 2022", "subtitle": "Advisor: Youssef Salimpour, Ph.D.", "description": "Novel neuromodulation techniques for epilepsy and Parkinson’s." },
+        { "title": "University of Toronto, Medical Biophysics", "date": "2019", "subtitle": "Advisor: Ralph DaCosta, Ph.D.", "description": "Handheld fluorescence imaging device for breast cancer visualization." },
+        { "title": "McMaster Children’s Hospital, Infectious Disease", "date": "2018", "subtitle": "Advisor: Jeffrey Pernica, M.D. FRCPC", "description": "BALANCE-Kids: duration of antimicrobial therapy for bacteremia in pediatric patients." }
+      ]
+    },
+    {
+      "title": "Fellowships & Awards",
+      "entries": [
+        { "title": "Z Fellows", "date": "2024" },
+        { "title": "Kleiner Perkins Fellowship", "date": "2023" },
+        { "title": "JHU FUEL Grand Prize", "date": "2023", "subtitle": "$25,000 · Founder, ThermoBeat" },
+        { "title": "NSERC USRA & PROMOTE Grant", "date": "2022", "subtitle": "$10,000 · PI, University of Toronto" },
+        { "title": "NSERC CREATE Fellowship", "date": "2022" },
+        { "title": "Sigma Squared Fellowship", "date": "2022" },
+        { "title": "NIBIB DEBUT Grant", "date": "2021", "subtitle": "$5,000 · PI, ThermoBeat" },
+        { "title": "NSF Regional I-Corps Grant", "date": "2021", "subtitle": "$5,000 · PI, ThermoBeat" },
+        { "title": "Hamilton Health Sciences Research Bursary", "date": "2018", "subtitle": "$10,000 · Infectious disease research" }
+      ]
+    },
+    {
+      "title": "Service & Teaching",
+      "entries": [
+        { "title": "Charm City Science League", "date": "2022 — 2023", "subtitle": "President · Baltimore", "description": "Science Olympiad mentoring for Baltimore students, 100+ mentors across 20 schools. Managed a $30K annual budget and led a 14-person executive board." },
+        { "title": "JHU Student Advisory Board", "date": "2022 — 2023", "subtitle": "President", "description": "Biweekly meetings with university leadership on first-year orientation, housing, and student mental health." },
+        { "title": "JHU News-Letter, Sci-Tech", "date": "2021 — 2022", "subtitle": "Editor", "description": "Led 20+ writers at roughly seven articles a week. Authored 25+ pieces on science and technology." },
+        { "title": "Johns Hopkins University, Krieger School", "date": "2021 — 2023", "subtitle": "Teaching Assistant, Leading Change (Entrepreneurship & Management)" }
+      ]
+    },
+    {
+      "title": "Contact",
+      "entries": [
+        { "title": "william.blair0708@gmail.com", "href": "mailto:william.blair0708@gmail.com" }
+      ]
+    }
+  ]
+}

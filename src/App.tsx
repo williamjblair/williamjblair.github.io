@@ -1,4 +1,19 @@
 import { useState, type CSSProperties, type ReactNode } from "react";
+import ConstellationsEssay from "./ConstellationsEssay";
+import cvData from "./cv-data.json";
+
+type CvEntry = {
+  title: string;
+  date?: string;
+  subtitle?: string;
+  description?: string;
+  href?: string;
+};
+
+type CvSection = {
+  title: string;
+  entries: CvEntry[];
+};
 
 /*
 THESIS: A personal homepage as the opening folio of a scientific essay, refusing portfolio chrome.
@@ -389,6 +404,101 @@ function ProjectList() {
   );
 }
 
+function GitHubIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.24c-3.23.7-3.91-1.37-3.91-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.41-1.27.74-1.56-2.58-.29-5.29-1.29-5.29-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.48.11-3.05 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.57.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.72 5.39-5.31 5.68.42.36.79 1.07.79 2.16v3.21c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M5.35 7.82H1V22h4.35V7.82ZM3.18 1A2.53 2.53 0 1 0 3.2 6.05 2.53 2.53 0 0 0 3.18 1ZM22.99 13.87c0-4.27-2.28-6.25-5.32-6.25a4.6 4.6 0 0 0-4.17 2.29h-.06V7.82H9.26V22h4.35v-7.02c0-1.85.35-3.65 2.65-3.65 2.27 0 2.3 2.12 2.3 3.77V22H23l-.01-8.13Z" />
+    </svg>
+  );
+}
+
+function EmailIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M3 5.5h18v13H3zM3.7 6.2 12 13l8.3-6.8" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.55" />
+    </svg>
+  );
+}
+
+function ContactRow() {
+  return (
+    <nav className="contact-row" aria-label="Contact and CV">
+      <a href="https://github.com/williamjblair" aria-label="GitHub"><GitHubIcon /></a>
+      <a href="https://www.linkedin.com/in/willblair1" aria-label="LinkedIn"><LinkedInIcon /></a>
+      <a href={`mailto:${cvData.email}`} aria-label="Email"><EmailIcon /></a>
+      <a className="contact-row__cv" href="/cv/">CV</a>
+    </nav>
+  );
+}
+
+function SailHomeLink() {
+  return (
+    <a className="sail-home" href="/" aria-label="Back to home">
+      <img src="/artwork/william-blair-sail.png" alt="" />
+    </a>
+  );
+}
+
+function InteriorShell({ children }: { children: ReactNode }) {
+  return (
+    <div className="interior-shell">
+      <SailHomeLink />
+      {children}
+    </div>
+  );
+}
+
+function CvPage() {
+  return (
+    <InteriorShell>
+      <main className="cv-page">
+        <header className="cv-header">
+          <h1 className="cv-header__title">CV</h1>
+          <p className="cv-header__subtitle">{cvData.subtitle}</p>
+          <nav className="cv-downloads" aria-label="Download CV">
+            <span>Download CV</span>
+            <a href="/downloads/William-Blair-CV.pdf" download>PDF <span aria-hidden="true">↓</span></a>
+            <a href="/downloads/William-Blair-CV.docx" download>DOCX <span aria-hidden="true">↓</span></a>
+          </nav>
+        </header>
+
+        <div className="cv-sections">
+          {(cvData.sections as CvSection[]).map((section) => {
+            const sectionId = `cv-${section.title.toLowerCase().replace(/[^a-z]+/g, "-")}`;
+            return (
+              <section className="cv-section" aria-labelledby={sectionId} key={section.title}>
+                <h2 id={sectionId}>{section.title}</h2>
+                <ul className="cv-entry-list">
+                  {section.entries.map((entry) => (
+                    <li className="cv-entry" key={`${entry.title}-${entry.date ?? ""}`}>
+                      <div className="cv-entry__heading">
+                        <h3>
+                          {entry.href ? <a href={entry.href}>{entry.title}</a> : entry.title}
+                        </h3>
+                        {entry.date ? <span>{entry.date}</span> : null}
+                      </div>
+                      {entry.subtitle ? <p className="cv-entry__subtitle">{entry.subtitle}</p> : null}
+                      {entry.description ? <p className="cv-entry__description">{entry.description}</p> : null}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+        </div>
+      </main>
+    </InteriorShell>
+  );
+}
+
 function Home() {
   return (
     <div className="page-shell">
@@ -397,20 +507,29 @@ function Home() {
         <Intro />
         <EssayList />
         <ProjectList />
+        <ContactRow />
       </main>
       <VelaConstellation />
     </div>
   );
 }
 
-function ConstellationsOfBorrowedLight() {
-  return <main className="essay-blank-slate" aria-label="Constellations of Borrowed Light" />;
-}
-
 export default function App() {
-  if (window.location.pathname === "/constellations-of-borrowed-light/") {
-    return <ConstellationsOfBorrowedLight />;
+  const pathname = window.location.pathname.replace(/\/+$/, "");
+
+  if (pathname === "/cv") {
+    document.title = "CV — William Blair";
+    return <CvPage />;
+  }
+  if (pathname === "/constellations-of-borrowed-light") {
+    document.title = "Constellations of Borrowed Light — William Blair";
+    return (
+      <InteriorShell>
+        <ConstellationsEssay />
+      </InteriorShell>
+    );
   }
 
+  document.title = "William Blair";
   return <Home />;
 }

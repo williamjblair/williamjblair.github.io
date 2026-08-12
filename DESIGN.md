@@ -1,6 +1,6 @@
 ---
 name: William Blair
-description: A quiet scientific folio for a personal introduction, essays, and projects.
+description: A quiet scientific folio for a personal introduction, essays, projects, and an editorial CV.
 colors:
   paper: "#f5f2e9"
   paper-deep: "#ece7da"
@@ -55,6 +55,13 @@ components:
     textColor: "{colors.cartographic-gold}"
     typography: "{typography.essay-title}"
     motion: "67.5deg rotation with a 240ms ease-out"
+  sail-home:
+    asset: "/artwork/william-blair-sail.png"
+    treatment: "transparent 48px target with a 35px publisher's mark"
+  document-action:
+    textColor: "{colors.ink}"
+    accentColor: "{colors.cartographic-gold}"
+    treatment: "inline text link with fine underline interaction"
 ---
 
 # Design System: William Blair
@@ -107,7 +114,7 @@ Content has no containers, radii, cards, or pills. Geometry appears only as fine
 
 ### Essay constellation
 
-The essay titles form one indented cluster beneath the larger “Essays” heading. Each title begins with a small muted-gold star centered against its first line, while continuous sub-pixel curved gold segments run directly from star to star through the bullet gutter. The marks suggest a hand-drawn constellation without creating a rigid timeline; they are decorative and hidden from assistive technology. Essay links remain semantic text links set in the display serif; a fine gold underline grows into view over 200ms on hover and focus, and focus-visible also receives a clear offset outline. “Constellations of Borrowed Light” currently opens to an intentionally empty cream reading surface.
+The essay titles form one indented cluster beneath the larger “Essays” heading. Each title begins with a small muted-gold star centered against its first line, while continuous sub-pixel curved gold segments run directly from star to star through the bullet gutter. The marks suggest a hand-drawn constellation without creating a rigid timeline; they are decorative and hidden from assistive technology. Essay links remain semantic text links set in the display serif; a fine gold underline grows into view over 200ms on hover and focus, and focus-visible also receives a clear offset outline. “Constellations of Borrowed Light” opens into a full-width watercolor folio before settling into a centered long-form reading measure on the same paper surface.
 
 ### Interactive Vela constellation
 
@@ -116,6 +123,14 @@ A large gold Vela diagram replaces the former decorative line chart at the right
 ### Project index
 
 Projects follow Essays as one flat, unnumbered list with the same heading and title scale. Linked titles inherit the essay link's fine gold underline and focus treatment; unlinked titles remain plain text. A small custom gold star beside every title is a semantic disclosure button. Opening a project rotates its star and reveals a restrained description directly below the row, without introducing cards, borders, or background panels. Several projects may remain open at once, and reduced-motion preferences collapse the transition to an effectively instant state change.
+
+### Editorial CV
+
+The CV is a long-form reading document in the same cream, navy, and muted-gold palette. Its compact header keeps PDF and DOCX downloads nearby as plain inline actions. Each section uses a fine gold rule, a quiet left label, and an unboxed entry column; dates stay small and gold while supporting copy uses the soft ink tone. The original William Blair sail mark serves as the persistent home link on this and every interior surface, sitting inside a generous transparent target rather than an app-icon container.
+
+### Quiet signature row
+
+GitHub, LinkedIn, Email, and the text link “CV” form one left-aligned row after the homepage projects and immediately before the ocean artwork. All four share the same muted tone and focus treatment without a heading, container, or button surface.
 
 ## Do's and Don'ts
 
