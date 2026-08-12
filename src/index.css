@@ -467,7 +467,7 @@ h1 {
 
 .essays {
   max-width: 68rem;
-  margin-top: clamp(6rem, 11vw, 10rem);
+  margin-top: clamp(4.75rem, 8vw, 7.5rem);
 }
 
 .essays h2 {
@@ -518,7 +518,7 @@ h1 {
   position: relative;
   width: fit-content;
   max-width: 100%;
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
   line-height: 1.24;
 }
 
@@ -654,11 +654,11 @@ h1 {
   }
 
   .essays {
-    margin-top: 6.25rem;
+    margin-top: 4.75rem;
   }
 
   .essay-list li {
-    font-size: clamp(1.45rem, 6.2vw, 1.85rem);
+    font-size: clamp(1.3rem, 5.4vw, 1.6rem);
   }
 
   .essay-list__cluster {
