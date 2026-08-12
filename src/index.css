@@ -38,31 +38,31 @@ body {
 }
 
 .page-shell {
-  position: relative;
   isolation: isolate;
   min-height: 100vh;
   overflow: hidden;
   background-color: var(--paper);
+}
+
+.home-sky {
+  position: relative;
+  height: clamp(24rem, 34vw, 31rem);
+  overflow: hidden;
+  background-color: var(--paper);
   background-image:
-    linear-gradient(180deg, rgb(4 15 34 / 5%) 0%, transparent 36%, rgb(245 242 233 / 5%) 65%, rgb(46 73 103 / 8%) 100%),
+    linear-gradient(180deg, rgb(4 15 34 / 5%) 0%, transparent 56%, rgb(245 242 233 / 9%) 100%),
     url("/artwork/night-sky-ocean-v2.png");
   background-position: 62% top;
-  background-size: cover;
+  background-size: auto, auto clamp(44rem, 55vw, 58rem);
+  background-repeat: no-repeat;
 }
 
-.page-shell::after {
-  position: absolute;
-  z-index: 0;
-  content: "";
-  pointer-events: none;
-}
-
-.page-shell::after {
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 25%;
-  background: linear-gradient(180deg, transparent, rgb(44 75 105 / 8%) 72%, rgb(29 57 86 / 12%));
+.home-sky__content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 104rem);
+  height: 100%;
+  padding: clamp(8.5rem, 20vh, 10rem) clamp(1.5rem, 6vw, 6rem) 2rem clamp(2.15rem, 8vw, 8rem);
 }
 
 .atmosphere {
@@ -115,14 +115,15 @@ body {
   }
 }
 
-main {
+.home-content {
   position: relative;
   z-index: 1;
   width: min(100%, 104rem);
-  min-height: 100vh;
+  height: auto;
   margin: 0;
-  padding: clamp(8.5rem, 20vh, 13.5rem) clamp(1.5rem, 6vw, 6rem)
-    clamp(6rem, 12vw, 10rem) clamp(2.15rem, 8vw, 8rem);
+  padding: clamp(1.75rem, 3vw, 2.75rem) clamp(1.5rem, 6vw, 6rem)
+    0 clamp(2.15rem, 8vw, 8rem);
+  background: var(--paper);
 }
 
 .vela {
@@ -130,10 +131,23 @@ main {
   z-index: 2;
   top: clamp(0.5rem, 1.7vh, 1.5rem);
   right: clamp(2.5rem, 5vw, 6rem);
-  width: min(30vw, 29rem);
+  width: min(25vw, 24rem);
   aspect-ratio: 1.2;
   color: var(--gold);
   pointer-events: none;
+}
+
+.ocean-footer {
+  position: relative;
+  height: clamp(9.5rem, 15vw, 12.5rem);
+  flex-shrink: 0;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(180deg, rgb(245 242 233 / 8%), rgb(44 75 105 / 6%) 64%, rgb(29 57 86 / 12%)),
+    url("/artwork/night-sky-ocean-v2.png");
+  background-position: 62% bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .vela__chart {
@@ -238,18 +252,14 @@ main {
   pointer-events: none;
 }
 
-.vela__legend::before,
-.vela__identity::before {
+.vela__legend::before {
   position: absolute;
   z-index: -1;
+  inset: -0.5rem -0.75rem -0.45rem;
   content: "";
   pointer-events: none;
-  background: radial-gradient(ellipse, rgb(255 252 239 / 24%) 0%, rgb(255 252 239 / 10%) 48%, transparent 76%);
-  filter: blur(0.35rem);
-}
-
-.vela__legend::before {
-  inset: -0.65rem -0.9rem -0.55rem;
+  background: radial-gradient(ellipse, rgb(17 35 60 / 17%) 0%, rgb(17 35 60 / 7%) 52%, transparent 76%);
+  filter: blur(0.25rem);
 }
 
 .vela__identity {
@@ -265,11 +275,6 @@ main {
   pointer-events: none;
 }
 
-.vela__identity::before {
-  inset: -0.55rem -0.7rem -0.5rem;
-  opacity: 0.52;
-}
-
 .vela__symbols {
   display: flex;
   gap: clamp(0.55rem, 1.3vw, 1rem);
@@ -277,6 +282,9 @@ main {
   font-size: 0.9em;
   letter-spacing: 0.02em;
   opacity: 0.76;
+  text-shadow:
+    0.03rem 0.05rem 0.18rem rgb(17 35 60 / 52%),
+    0 0 0.28rem rgb(17 35 60 / 28%);
 }
 
 .vela__symbols span {
@@ -290,8 +298,8 @@ main {
   color: var(--gold-deep);
   opacity: 1;
   text-shadow:
-    0 0 0.28rem rgb(255 252 239 / 68%),
-    0 0 0.45rem rgb(154 122 62 / 28%);
+    0.03rem 0.05rem 0.2rem rgb(17 35 60 / 66%),
+    0 0 0.34rem rgb(17 35 60 / 38%);
 }
 
 .vela__title,
@@ -299,9 +307,13 @@ main {
 .vela__star-name,
 .vela__star-detail {
   margin: 0;
+}
+
+.vela__star-name,
+.vela__star-detail {
   text-shadow:
-    0 0 0.18rem rgb(255 252 239 / 72%),
-    0.04rem 0.06rem 0.25rem rgb(255 252 239 / 40%);
+    0.03rem 0.06rem 0.2rem rgb(17 35 60 / 58%),
+    0 0 0.3rem rgb(17 35 60 / 30%);
 }
 
 .vela__readout {
@@ -414,7 +426,7 @@ h1 {
 
 .essays {
   max-width: 68rem;
-  margin-top: clamp(1.9rem, 3.4vw, 3.25rem);
+  margin-top: 0;
 }
 
 .essays h2,
@@ -529,7 +541,7 @@ h1 {
 
 .projects {
   max-width: 42rem;
-  margin-top: clamp(2.5rem, 4.5vw, 4rem);
+  margin-top: clamp(1.75rem, 3vw, 2.75rem);
 }
 
 .project-list {
@@ -694,7 +706,7 @@ a.project-title:focus-visible,
   align-items: center;
   gap: 0.8rem;
   margin-top: clamp(3.5rem, 6vw, 5.5rem);
-  padding-bottom: clamp(3.5rem, 7vw, 6rem);
+  padding-bottom: clamp(2.75rem, 5vw, 4.5rem);
   color: var(--ink-soft);
 }
 
@@ -915,30 +927,39 @@ a.project-title:focus-visible,
 }
 
 @media (max-width: 48rem) {
-  .page-shell {
+  .home-sky,
+  .ocean-footer {
     background-position: 82% top;
   }
 
-  .page-shell::after {
-    opacity: 0.72;
+  .home-sky {
+    height: clamp(34rem, 72vh, 38rem);
+  }
+
+  .ocean-footer {
+    height: clamp(9rem, 30vw, 11rem);
+    background-position: 82% bottom;
   }
 
   .night-stars {
     height: min(34rem, 48vh);
   }
 
-  main {
-    min-height: auto;
+  .home-sky__content {
     padding-top: clamp(7.5rem, 19vh, 9.5rem);
     padding-left: clamp(2.1rem, 7.5vw, 4.5rem);
   }
 
+  .home-content {
+    padding-top: 2rem;
+    padding-left: clamp(2.1rem, 7.5vw, 4.5rem);
+  }
+
   .vela {
-    position: relative;
     top: auto;
-    right: auto;
-    width: min(29rem, 82vw);
-    margin: clamp(-3rem, -4vw, -1rem) -3vw 1rem auto;
+    right: -3vw;
+    bottom: 0.75rem;
+    width: min(21rem, 64vw);
   }
 
   .vela__identity {
@@ -955,6 +976,10 @@ a.project-title:focus-visible,
 }
 
 @media (max-width: 30rem) {
+  .home-sky {
+    height: 36rem;
+  }
+
   h1 {
     font-size: 2.75rem;
     line-height: 0.94;
@@ -966,11 +991,11 @@ a.project-title:focus-visible,
   }
 
   .essays {
-    margin-top: 2rem;
+    margin-top: 0;
   }
 
   .projects {
-    margin-top: 2.5rem;
+    margin-top: 1.8rem;
   }
 
   .essay-list li,

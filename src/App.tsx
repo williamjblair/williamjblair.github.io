@@ -499,17 +499,32 @@ function CvPage() {
   );
 }
 
+function HomeSky() {
+  return (
+    <section className="home-sky" aria-label="Introduction">
+      <Atmosphere />
+      <div className="home-sky__content">
+        <Intro />
+      </div>
+      <VelaConstellation />
+    </section>
+  );
+}
+
+function OceanFooter() {
+  return <div className="ocean-footer" aria-hidden="true" />;
+}
+
 function Home() {
   return (
     <div className="page-shell">
-      <Atmosphere />
-      <main>
-        <Intro />
+      <HomeSky />
+      <main className="home-content">
         <EssayList />
         <ProjectList />
         <ContactRow />
       </main>
-      <VelaConstellation />
+      <OceanFooter />
     </div>
   );
 }
