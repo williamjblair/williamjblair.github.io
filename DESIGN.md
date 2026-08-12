@@ -54,16 +54,17 @@ The page behaves like the opening leaf of an archival scientific essay: the writ
 **Key Characteristics:**
 
 - High-contrast old-style serif typography at regular weight
-- Warm paper field with peripheral watercolor atmosphere in layered blue-grey washes
+- Warm paper field with peripheral watercolor atmosphere in layered blue-grey washes and sparse splatter
 - Deep navy ink and rare, muted cartographic gold
 - Asymmetric left-aligned composition with no application chrome
 - Flat, unboxed content and restrained link states
+- A large, calm, interactive Vela constellation held outside the reading measure
 
 ## Colors
 
 The palette resembles aged drawing paper, navy drafting ink, diluted blue-grey pigment, and a single quiet metallic annotation.
 
-**The Quiet Center Rule.** Watercolor and diagram marks stay away from the main reading measure; the cream field behind copy remains calm.
+**The Quiet Center Rule.** Watercolor and constellation marks stay outside the main reading measure; the cream field behind copy remains calm even when a wash enters from above-left.
 
 ## Typography
 
@@ -84,7 +85,7 @@ There are no shadows or raised surfaces. Depth comes only from translucent atmos
 
 ## Shapes
 
-Content has no containers, radii, cards, or pills. Geometry appears only as fine celestial arcs, paths, and dots in the decorative field.
+Content has no containers, radii, cards, or pills. Geometry appears only as fine celestial paths and stellar nodes. Watercolor blooms use irregular overlapping silhouettes rather than repeated circles.
 
 ## Components
 
@@ -92,17 +93,22 @@ Content has no containers, radii, cards, or pills. Geometry appears only as fine
 
 The essay titles form one indented cluster beneath the larger “Essays” heading. Each title begins with a small muted-gold star centered against its first line, while continuous sub-pixel curved gold segments run directly from star to star through the bullet gutter. The marks suggest a hand-drawn constellation without creating a rigid timeline; they are decorative and hidden from assistive technology. Essay links remain semantic text links set in the display serif; a fine gold underline grows into view over 200ms on hover and focus, and focus-visible also receives a clear offset outline. The unpublished essay uses the same typography without anchor behavior.
 
+### Interactive Vela constellation
+
+A large gold Vela diagram replaces the former decorative line chart at the right edge of wide screens and moves below the reading content on narrow screens. Every stellar node is a real button with a 44px target, visible keyboard focus, and no navigation behavior. Nodes carry slow, staggered, low-opacity light pulses; selecting one reveals its star name beside the point and selecting it again dismisses the label. Reduced-motion users receive steady light instead of looping flicker.
+
 ## Do's and Don'ts
 
 ### Do:
 
 - **Do** let typography and whitespace establish the entire hierarchy.
-- **Do** keep decoration peripheral, translucent, and hidden from assistive technology.
+- **Do** keep non-interactive decoration peripheral, translucent, and hidden from assistive technology.
 - **Do** preserve semantic headings, links, list structure, and visible focus.
+- **Do** keep constellation-node interaction optional, quiet, and fully keyboard accessible.
 
 ### Don't:
 
-- **Don't** add navigation, cards, badges, thumbnails, buttons, or portfolio chrome.
+- **Don't** add navigation, cards, badges, thumbnails, conventional buttons, or portfolio chrome; the stellar nodes are the sole exception because their control form is visually intrinsic to the constellation.
 - **Don't** place watercolor directly behind the biography or essay titles.
-- **Don't** distribute washes evenly; keep them sparse, irregular, and peripheral, with only occasional overlapping blooms and pinprick splatter.
+- **Don't** distribute washes evenly; keep them irregular and peripheral, with occasional overlapping blooms and a loose field of pinprick splatter.
 - **Don't** use pure black, bright gold, or saturated blue.

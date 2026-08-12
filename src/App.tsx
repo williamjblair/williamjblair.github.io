@@ -1,8 +1,10 @@
+import { useState, type CSSProperties } from "react";
+
 /*
 THESIS: A personal homepage as the opening folio of a scientific essay, refusing portfolio chrome.
 OWN-WORLD: Bone paper, navy ink, diluted blue-grey pigment, sparse cartographic gold, and fine celestial linework.
 STORY: Meet Will, understand his research work and preoccupations, then choose an essay.
-FIRST VIEWPORT: A vast left-aligned serif greeting and narrow biography occupy the quiet cream field; atmosphere gathers at the upper-right edge and returns as faint peripheral washes.
+FIRST VIEWPORT: A vast left-aligned serif greeting and narrow biography occupy the quiet cream field; an interactive Vela constellation rests beyond the reading measure while blue-grey pigment drifts around the page edges.
 FORM: A single asymmetric editorial scroll, pinned by the supplied brief; no concept seed required.
 */
 
@@ -21,30 +23,93 @@ const essays = [
   },
 ] as const;
 
+const velaStars = [
+  { name: "Phi Velorum", x: 18, y: 28, delay: "-1.8s", duration: "7.4s" },
+  { name: "Mu Velorum", x: 35, y: 17, delay: "-4.6s", duration: "8.2s" },
+  { name: "Suhail", x: 36, y: 50, delay: "-2.9s", duration: "6.8s" },
+  { name: "Regor", x: 58, y: 35, delay: "-5.2s", duration: "7.8s" },
+  { name: "Alsephina", x: 73, y: 52, delay: "-0.9s", duration: "8.6s" },
+  { name: "Markeb", x: 84, y: 78, delay: "-3.7s", duration: "7.1s", labelSide: "left" },
+  { name: "Psi Velorum", x: 51, y: 74, delay: "-6.1s", duration: "8.9s" },
+] as const;
+
+const velaConnections = [
+  [0, 1],
+  [0, 2],
+  [1, 3],
+  [2, 3],
+  [2, 6],
+  [3, 4],
+  [4, 5],
+  [4, 6],
+  [5, 6],
+] as const;
+
 function Atmosphere() {
   return (
     <div className="atmosphere" aria-hidden="true">
+      <span className="atmosphere__wash atmosphere__wash--upper-left" />
       <span className="atmosphere__wash atmosphere__wash--middle" />
       <span className="atmosphere__wash atmosphere__wash--lower" />
+      <span className="atmosphere__splatters" />
+    </div>
+  );
+}
+
+function VelaConstellation() {
+  const [selectedStar, setSelectedStar] = useState<string | null>(null);
+
+  return (
+    <section className="vela" aria-label="Interactive Vela constellation">
       <svg
-        className="atmosphere__chart"
-        viewBox="0 0 820 820"
-        fill="none"
+        className="vela__chart"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
         focusable="false"
       >
-        <path d="M784 82C601 124 458 252 407 427C370 553 388 675 455 789" />
-        <path d="M816 176C654 197 535 294 486 431C449 534 461 645 520 742" />
-        <path d="M733 22C681 188 578 325 438 415C337 481 219 514 91 510" />
-        <path d="M744 162L607 260L674 381L526 473L585 618" />
-        <circle cx="744" cy="162" r="3.5" />
-        <circle cx="607" cy="260" r="2.8" />
-        <circle cx="674" cy="381" r="2.6" />
-        <circle cx="526" cy="473" r="3.2" />
-        <circle cx="585" cy="618" r="2.4" />
-        <circle cx="355" cy="338" r="1.8" />
-        <circle cx="760" cy="520" r="1.6" />
+        {velaConnections.map(([from, to]) => (
+          <line
+            key={`${from}-${to}`}
+            x1={velaStars[from].x}
+            y1={velaStars[from].y}
+            x2={velaStars[to].x}
+            y2={velaStars[to].y}
+          />
+        ))}
       </svg>
-    </div>
+      {velaStars.map((star) => {
+        const isSelected = selectedStar === star.name;
+
+        return (
+          <button
+            className={`vela__star${isSelected ? " is-selected" : ""}`}
+            type="button"
+            key={star.name}
+            aria-label={`${isSelected ? "Hide" : "Reveal"} ${star.name}`}
+            aria-pressed={isSelected}
+            data-label-side={"labelSide" in star ? star.labelSide : "right"}
+            onClick={() => setSelectedStar(isSelected ? null : star.name)}
+            style={
+              {
+                left: `${star.x}%`,
+                top: `${star.y}%`,
+                "--star-delay": star.delay,
+                "--star-duration": star.duration,
+              } as CSSProperties
+            }
+          >
+            <span className="vela__star-core" aria-hidden="true" />
+            {isSelected ? (
+              <span className="vela__star-label">{star.name}</span>
+            ) : null}
+          </button>
+        );
+      })}
+      <span className="vela__caption" aria-hidden="true">
+        Vela
+      </span>
+    </section>
   );
 }
 
@@ -106,6 +171,7 @@ function Home() {
         <Intro />
         <EssayList />
       </main>
+      <VelaConstellation />
     </div>
   );
 }
