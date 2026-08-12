@@ -41,103 +41,42 @@ body {
 }
 
 .page-shell {
+  --home-paper: #fbeed7;
+
   isolation: isolate;
   min-height: 100vh;
   overflow: hidden;
-  background-color: var(--paper);
+  background-color: var(--home-paper);
 }
 
 .home-sky {
-  --home-art-height: clamp(24rem, 34vw, 31rem);
-
   position: relative;
   min-height: 0;
-  background-color: var(--paper);
+  margin-bottom: -1px;
+  background-color: var(--home-paper);
 }
 
-.home-sky::before {
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: -2vw;
-  width: 104vw;
-  height: var(--home-art-height);
-  content: "";
-  pointer-events: none;
-  background-image:
-    linear-gradient(180deg, rgb(4 15 34 / 5%) 0%, transparent 56%, rgb(246 238 223 / 7%) 88%, var(--paper) 100%),
-    url("/artwork/top-watercolor.webp");
-  background-position: 62% top;
-  background-size: cover;
-  background-repeat: no-repeat;
+.home-sky__art,
+.home-ocean__art {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .home-sky__content {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  width: min(100%, 104rem);
-  padding: clamp(10rem, 23vh, 11.5rem) clamp(1.5rem, 6vw, 6rem)
-    clamp(4rem, 7vw, 6rem) clamp(2.15rem, 8vw, 8rem);
-}
-
-.atmosphere {
-  position: absolute;
-  top: 0;
-  right: 0;
+  top: 57%;
   left: 0;
-  z-index: 1;
-  height: var(--home-art-height);
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.night-stars {
-  position: absolute;
-  inset: 0 0 auto;
-  height: min(42rem, 60vh);
-}
-
-.night-stars__star {
-  position: absolute;
-  width: var(--sky-star-size);
-  height: var(--sky-star-size);
-  border-radius: 50%;
-  background: #f8eed2;
-  box-shadow:
-    0 0 0.18rem rgb(248 238 210 / 58%),
-    0.04rem 0.08rem 0.34rem rgb(205 176 110 / 38%);
-  opacity: var(--sky-star-opacity);
-  transform: translate(-50%, -50%);
-  animation: sky-star-flicker var(--sky-star-duration) ease-in-out var(--sky-star-delay) infinite;
-}
-
-@keyframes sky-star-flicker {
-  0%,
-  42%,
-  100% {
-    filter: blur(0.15px);
-    opacity: var(--sky-star-dim);
-    transform: translate(-50%, -50%) scale(0.82);
-  }
-
-  48% {
-    filter: blur(0);
-    opacity: var(--sky-star-opacity);
-    transform: translate(-50%, -50%) scale(1.16);
-  }
-
-  54% {
-    filter: blur(0.1px);
-    opacity: var(--sky-star-dim);
-    transform: translate(-50%, -50%) scale(0.94);
-  }
+  width: min(100%, 104rem);
+  padding: 0 clamp(1.5rem, 6vw, 6rem) 0 clamp(2.15rem, 8vw, 8rem);
 }
 
 .home-content-section {
   position: relative;
   z-index: 1;
   width: 100%;
-  background-color: var(--paper);
+  background-color: var(--home-paper);
   background-image: var(--paper-texture);
   background-size: 32rem 32rem;
 }
@@ -147,7 +86,7 @@ body {
   width: min(100%, 104rem);
   height: auto;
   margin: 0;
-  padding: clamp(0.35rem, 0.75vw, 0.75rem) clamp(1.5rem, 6vw, 6rem)
+  padding: clamp(0.7rem, 1.1vw, 1.1rem) clamp(1.5rem, 6vw, 6rem)
     0 clamp(2.15rem, 8vw, 8rem);
   background: transparent;
 }
@@ -163,17 +102,10 @@ body {
   pointer-events: none;
 }
 
-.ocean-footer {
-  position: relative;
-  height: clamp(9.5rem, 15vw, 12.5rem);
-  flex-shrink: 0;
-  background-color: var(--paper);
-  background-image:
-    linear-gradient(180deg, rgb(246 238 223 / 8%), rgb(44 75 105 / 6%) 64%, rgb(29 57 86 / 12%)),
-    url("/artwork/bottom-ocean.webp");
-  background-position: 62% bottom;
-  background-size: cover;
-  background-repeat: no-repeat;
+.home-ocean {
+  margin-top: -1px;
+  background-color: var(--home-paper);
+  line-height: 0;
 }
 
 .vela__chart {
@@ -974,25 +906,15 @@ body.constellations-route .sail-home::before {
 }
 
 @media (max-width: 48rem) {
-  .home-sky::before {
-    background-position: 82% top;
-  }
-
   .home-sky {
-    --home-art-height: clamp(34rem, 72vh, 38rem);
-  }
-
-  .ocean-footer {
-    height: clamp(9rem, 30vw, 11rem);
-    background-position: 82% bottom;
-  }
-
-  .night-stars {
-    height: min(34rem, 48vh);
+    padding-bottom: clamp(14rem, 58vw, 18rem);
   }
 
   .home-sky__content {
-    padding-top: clamp(8.75rem, 21vh, 10.5rem);
+    position: relative;
+    top: auto;
+    margin-top: clamp(-4.25rem, -11vw, -2.75rem);
+    padding-top: 0;
     padding-left: clamp(2.1rem, 7.5vw, 4.5rem);
   }
 
@@ -1002,9 +924,9 @@ body.constellations-route .sail-home::before {
   }
 
   .vela {
-    top: clamp(18rem, 36vh, 20rem);
+    top: auto;
     right: -3vw;
-    bottom: auto;
+    bottom: 1.5rem;
     width: min(21rem, 64vw);
   }
 
@@ -1023,7 +945,7 @@ body.constellations-route .sail-home::before {
 
 @media (max-width: 30rem) {
   .home-sky {
-    --home-art-height: 32rem;
+    padding-bottom: 14.75rem;
   }
 
   h1 {
@@ -1094,8 +1016,4 @@ body.constellations-route .sail-home::before {
     opacity: 0.38;
   }
 
-  .night-stars__star {
-    animation: none;
-    opacity: var(--sky-star-dim);
-  }
 }

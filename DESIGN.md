@@ -3,6 +3,7 @@ name: William Blair
 description: A quiet scientific folio for a personal introduction, essays, projects, and an editorial CV.
 colors:
   paper: "#f6eedf"
+  homepage-paper: "#fbeed7"
   paper-deep: "#ece7da"
   ink: "#111b30"
   ink-soft: "#3f5068"
@@ -102,9 +103,9 @@ The single-family system feels authored and literary without turning into a bran
 
 One decisively left-anchored reading column sits inside a fluid page gutter; it does not recenter on very wide screens. The headline may extend wider than the biography; the biography remains near 65 characters. The essay section begins after a substantial but responsive vertical pause. Mobile preserves the hierarchy with a minimum 24px gutter, quieter decoration, and naturally wrapping titles.
 
-The homepage is structurally divided into three sibling regions. A fixed-height responsive sky owns the introduction, starlight, and Vela; an auto-height paper content region owns Essays, Projects, disclosures, and the signature row; a fixed-height ocean footer owns the water and sailboat. All three sit on the same full-viewport paper canvas, while readable content is constrained only by inner containers. The sky artwork is a full-bleed, aspect-ratio-preserving layer with slight horizontal overscan and a transparent fade into paper. Expanding content changes only the middle region's document height, pushing the ocean downward without rescaling either decorative crop.
+The homepage is structurally divided into three sibling regions. A full-bleed native-ratio sky PNG owns the introduction and Vela overlay; an auto-height paper content region owns Essays, Projects, disclosures, and the signature row; a full-bleed native-ratio ocean PNG closes the page. The two 1916×821 paintings render as real images at `width: 100%` and `height: auto`, while readable content is constrained only by inner containers. Expanding content changes only the middle region's document height, pushing the ocean downward without changing either painting's dimensions or crop.
 
-The reading canvas is a physical surface rather than a flat fill: a seamless, low-contrast cotton-paper grain overlays the cream substrate across the homepage body, interior pages, and essay reading field. The homepage sky and ocean use separate, purpose-cropped artwork assets, so their fixed-height compositions remain independent as the textured middle grows.
+The reading canvas is a physical surface rather than a flat fill: a seamless, low-contrast cotton-paper grain overlays the cream substrate across the homepage body, interior pages, and essay reading field. The homepage uses `homepage-sky-final.png` and `homepage-ocean-final.png` as separate purpose-built paintings; their shared edge cream establishes the homepage paper token, and their native aspect ratios remain independent as the textured middle grows.
 
 ## Elevation & Depth
 
