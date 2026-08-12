@@ -95,7 +95,7 @@ body {
   position: absolute;
   z-index: 4;
   top: clamp(0.5rem, 1.7vh, 1.5rem);
-  right: clamp(5rem, 10vw, 12rem);
+  right: clamp(11rem, 16vw, 18rem);
   width: min(21vw, 20rem);
   aspect-ratio: 1.2;
   --vela-gold: #b7924b;
@@ -371,7 +371,7 @@ p {
 h1 {
   max-width: 12ch;
   color: var(--ink);
-  font-size: clamp(2.75rem, 5vw, 4.75rem);
+  font-size: clamp(3rem, 5.4vw, 5.25rem);
   font-weight: 400;
   line-height: 0.9;
   letter-spacing: -0.035em;
@@ -382,8 +382,8 @@ h1 {
   max-width: 65ch;
   margin-top: clamp(1.4rem, 2.2vw, 2rem);
   color: var(--ink-soft);
-  font-size: clamp(0.78rem, 0.8vw, 0.82rem);
-  line-height: 1.42;
+  font-size: clamp(0.86rem, 0.9vw, 0.94rem);
+  line-height: 1.46;
 }
 
 .essays {
@@ -934,13 +934,13 @@ body.constellations-route .sail-home::before {
 
 @media (max-width: 30rem) {
   h1 {
-    font-size: 2.75rem;
+    font-size: 3rem;
     line-height: 0.94;
   }
 
   .intro__bio {
-    font-size: 0.78rem;
-    line-height: 1.42;
+    font-size: 0.86rem;
+    line-height: 1.46;
   }
 
   .essays {
