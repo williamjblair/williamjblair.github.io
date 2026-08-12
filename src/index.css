@@ -227,18 +227,7 @@ body {
   font-family: var(--serif);
   font-size: clamp(0.62rem, 0.72vw, 0.74rem);
   font-weight: 400;
-  isolation: isolate;
   pointer-events: none;
-}
-
-.vela__legend::before {
-  position: absolute;
-  z-index: -1;
-  inset: -0.28rem -0.4rem -0.34rem;
-  content: "";
-  pointer-events: none;
-  background: rgb(17 35 60 / 55%);
-  filter: blur(0.42rem);
 }
 
 .vela__identity {
@@ -270,8 +259,8 @@ body {
 .vela__star-name,
 .vela__star-detail {
   text-shadow:
-    0 0 0.14rem rgb(8 24 48 / 92%),
-    0 0.05rem 0.3rem rgb(8 24 48 / 78%);
+    0 0 0.08rem rgb(8 24 48 / 96%),
+    0.04rem 0.07rem 0.18rem rgb(8 24 48 / 88%);
 }
 
 .vela__readout {
