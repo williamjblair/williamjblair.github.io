@@ -71,7 +71,7 @@ The palette resembles aged drawing paper, navy drafting ink, diluted blue-grey p
 **Display Font:** Iowan Old Style, with Baskerville and Times New Roman fallbacks
 **Body Font:** Iowan Old Style, with Baskerville and Times New Roman fallbacks
 
-The single-family system feels authored and literary without turning into a branding exercise. Scale, measure, and line-height create hierarchy; bold weight does not. Section headings are deliberately larger than essay titles so the list reads as content nested beneath “Essays,” not as a row of competing headings.
+The single-family system feels authored and literary without turning into a branding exercise. The role scale is deliberately compact so the complete introduction and essay index can sit within an ordinary desktop viewport with breathing room below. Scale, measure, and line-height create hierarchy; bold weight does not. “Hi, I’m Will.” remains the one large display exception, while section headings stay deliberately larger than essay titles so the list reads as content nested beneath “Essays,” not as a row of competing headings.
 
 **The Regular Weight Rule.** Display and essay titles stay at weight 400. Emphasis comes from scale and placement, never heavy bold.
 
