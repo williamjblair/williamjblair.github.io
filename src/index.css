@@ -8,7 +8,7 @@
   --gold: #9a7a3e;
   --gold-deep: #6f592e;
   --serif: "Iowan Old Style", Baskerville, "Times New Roman", serif;
-  --paper-texture: url("/artwork/paper-grain.png");
+  --paper-texture: url("/artwork/paper-grain.webp");
 
   color: var(--ink);
   background: var(--paper);

@@ -104,6 +104,8 @@ One decisively left-anchored reading column sits inside a fluid page gutter; it 
 
 The homepage is structurally divided into three sibling regions. A fixed-height responsive sky owns the introduction, starlight, and Vela; an auto-height paper content region owns Essays, Projects, disclosures, and the signature row; a fixed-height ocean footer owns the water and sailboat. All three sit on the same full-viewport paper canvas, while readable content is constrained only by inner containers. The sky artwork is a full-bleed, aspect-ratio-preserving layer with slight horizontal overscan and a transparent fade into paper. Expanding content changes only the middle region's document height, pushing the ocean downward without rescaling either decorative crop.
 
+The reading canvas is a physical surface rather than a flat fill: a seamless, low-contrast cotton-paper grain overlays the cream substrate across the homepage body, interior pages, and essay reading field. The homepage sky and ocean use separate, purpose-cropped artwork assets, so their fixed-height compositions remain independent as the textured middle grows.
+
 ## Elevation & Depth
 
 There are no raised surfaces. Depth comes from the watercolor’s passage from night sky to paper to ocean, plus the quiet difference between static painted stars and a few live points of light.
