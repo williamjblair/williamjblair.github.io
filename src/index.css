@@ -1,5 +1,5 @@
 :root {
-  --paper: #f5f2e9;
+  --paper: #f6eedf;
   --paper-deep: #ece7da;
   --ink: #111b30;
   --ink-soft: #3f5068;
@@ -63,7 +63,7 @@ body {
   content: "";
   pointer-events: none;
   background-image:
-    linear-gradient(180deg, rgb(4 15 34 / 5%) 0%, transparent 56%, rgb(245 242 233 / 7%) 88%, var(--paper) 100%),
+    linear-gradient(180deg, rgb(4 15 34 / 5%) 0%, transparent 56%, rgb(246 238 223 / 7%) 88%, var(--paper) 100%),
     url("/artwork/night-sky-ocean-v2.png");
   background-position: 62% top;
   background-size: cover;
@@ -162,7 +162,7 @@ body {
   flex-shrink: 0;
   background-color: var(--paper);
   background-image:
-    linear-gradient(180deg, rgb(245 242 233 / 8%), rgb(44 75 105 / 6%) 64%, rgb(29 57 86 / 12%)),
+    linear-gradient(180deg, rgb(246 238 223 / 8%), rgb(44 75 105 / 6%) 64%, rgb(29 57 86 / 12%)),
     url("/artwork/night-sky-ocean-v2.png");
   background-position: 62% bottom;
   background-size: cover;

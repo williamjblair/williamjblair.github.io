@@ -2,7 +2,7 @@
 name: William Blair
 description: A quiet scientific folio for a personal introduction, essays, projects, and an editorial CV.
 colors:
-  paper: "#f5f2e9"
+  paper: "#f6eedf"
   paper-deep: "#ece7da"
   ink: "#111b30"
   ink-soft: "#3f5068"
