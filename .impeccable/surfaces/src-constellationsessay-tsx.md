@@ -11,7 +11,7 @@ Audience and job: Readers need an uninterrupted, accessible long-form presentati
 
 Primary action: Read from the illustrated opening through the closing “For M.” inscription.
 
-Proof and content: The exact supplied PDF manuscript, its date, the clean sailboat watercolor, the cottage memory watercolor, the transparent Deep Field watercolor, and the closing moonlit constellation watercolor.
+Proof and content: The exact supplied PDF manuscript, its date, the clean sailboat watercolor, the muted cottage memory watercolor, the transparent Deep Field watercolor, and the closing moonlit constellation watercolor.
 
 Chosen direction: Extend the Night-Sailing Folio by typesetting the title into the hero artwork’s open left-hand sky, then continue on the same warm paper into a narrow serif reading measure.
 

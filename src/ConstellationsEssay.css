@@ -92,7 +92,7 @@ body.constellations-route {
 
 .cottage-memory-watercolor {
   width: min(85vw, 56.25rem);
-  margin: clamp(4rem, 7vw, 6rem) 50%;
+  margin: clamp(1.25rem, 2.5vw, 2rem) 50% clamp(4rem, 7vw, 6rem);
   transform: translateX(-50%);
 }
 
@@ -100,6 +100,7 @@ body.constellations-route {
   display: block;
   width: 100%;
   height: auto;
+  filter: saturate(0.74);
 }
 
 .cottage-memory-watercolor + p {
