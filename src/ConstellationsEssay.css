@@ -221,7 +221,7 @@ body.constellations-route {
 
 .deep-field-watercolor {
   width: min(85vw, 56.25rem);
-  margin: clamp(4.5rem, 8vw, 7rem) 50%;
+  margin: clamp(1.25rem, 2.5vw, 2rem) 50%;
   transform: translateX(-50%);
 }
 
@@ -232,7 +232,7 @@ body.constellations-route {
 }
 
 .deep-field-watercolor + p {
-  margin-top: clamp(4.5rem, 8vw, 7rem);
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .borrowed-light-watercolor {
