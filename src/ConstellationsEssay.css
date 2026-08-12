@@ -90,6 +90,22 @@ body.constellations-route {
   font-style: italic;
 }
 
+.cottage-memory-watercolor {
+  width: min(85vw, 56.25rem);
+  margin: clamp(4rem, 7vw, 6rem) 50%;
+  transform: translateX(-50%);
+}
+
+.cottage-memory-watercolor img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cottage-memory-watercolor + p {
+  margin-top: clamp(4rem, 7vw, 6rem);
+}
+
 .constellations-copy blockquote {
   width: min(100%, 40rem);
   margin: clamp(2.5rem, 5vw, 4rem) 0 clamp(2.5rem, 5vw, 4rem) clamp(0rem, 3vw, 2rem);
@@ -206,6 +222,10 @@ body.constellations-route {
   .deep-field-watercolor {
     width: min(92vw, 56.25rem);
   }
+
+  .cottage-memory-watercolor {
+    width: min(92vw, 56.25rem);
+  }
 }
 
 @media (max-width: 30rem) {
@@ -219,6 +239,10 @@ body.constellations-route {
   }
 
   .deep-field-watercolor {
+    width: 96vw;
+  }
+
+  .cottage-memory-watercolor {
     width: 96vw;
   }
 }

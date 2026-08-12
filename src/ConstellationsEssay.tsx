@@ -52,6 +52,21 @@ function DeepFieldWatercolor() {
   );
 }
 
+function CottageMemoryWatercolor() {
+  return (
+    <figure className="cottage-memory-watercolor">
+      <img
+        src="/artwork/constellations/chi-chi-cottage-memory.png"
+        alt="A young child runs with a small dog along a lakeside cottage path."
+        width="1536"
+        height="1024"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  );
+}
+
 export default function ConstellationsEssay() {
   useEffect(() => {
     const previousTitle = document.title;
@@ -95,6 +110,8 @@ export default function ConstellationsEssay() {
         <p className="constellations-copy__recollection">
           The smell was wonderful, and I felt my eyes slowly close as my senses began to fade. My final thought was not about the surgery, the risks, or my health. It was about my grandmother’s dog, Chi-Chi. I was very close to her, and I wanted to hold on to something happy. I pictured us at the cottage, running together along our secret path and spending the day side by side. That was the last thing I remember before falling unconscious.
         </p>
+
+        <CottageMemoryWatercolor />
 
         <p>
           Six hours later, I woke and slowly began to regain my senses. First, I moved my fingers and hands. Then I became aware of the voices around me and the steady beeping of the machines. Soon after, I heard my mom speaking with Dr. Drake. He told her that it could take several hours for me to regain full consciousness and that she should not panic if I woke up and was unable to speak, move, or hear properly. He was trying to prepare her for the possibility that something might seem wrong at first. I overheard all of this. I opened my eyes and, although I cannot remember my exact words, I said something like, “Are you talking about me?” My mom and Dr. Drake turned toward me and smiled. Dr. Drake said he had never seen anyone wake up—and begin speaking—so quickly.
