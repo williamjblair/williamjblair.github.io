@@ -177,7 +177,7 @@ function VelaConstellation() {
             className={`vela__star${isSelected ? " is-selected" : ""}`}
             type="button"
             key={star.name}
-            aria-label={`${star.catalogue}, ${star.name}, magnitude ${star.magnitude}`}
+            aria-label={`${star.name}, magnitude ${star.magnitude}`}
             aria-pressed={isSelected}
             onClick={() => setSelectedStar(index)}
             onPointerEnter={() => setHoveredStar(index)}
@@ -200,22 +200,11 @@ function VelaConstellation() {
       })}
       <div className="vela__identity">
         <p className="vela__title">Vela · The Sails</p>
-        <p className="vela__instruction">Hover, focus,<br />or select a star.</p>
+        <p className="vela__instruction">Hover, focus, or select a star.</p>
       </div>
       <div className="vela__legend">
-        <div className="vela__symbols" aria-hidden="true">
-          {velaStars.map((star, index) => (
-            <span className={displayedStarIndex === index ? "is-active" : ""} key={star.symbol}>
-              {star.symbol}
-            </span>
-          ))}
-        </div>
         <div className="vela__readout" aria-live="polite" key={displayedStar.name}>
-          <p className="vela__star-name">
-            <span>{displayedStar.catalogue}</span>
-            <span aria-hidden="true"> · </span>
-            {displayedStar.name}
-          </p>
+          <p className="vela__star-name">{displayedStar.name}</p>
           <p className="vela__star-detail">Magnitude {displayedStar.magnitude.toFixed(2)}</p>
         </div>
       </div>
