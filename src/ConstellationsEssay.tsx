@@ -67,6 +67,21 @@ function CottageMemoryWatercolor() {
   );
 }
 
+function VictorySwimWatercolor() {
+  return (
+    <figure className="victory-swim-watercolor">
+      <img
+        src="/artwork/constellations/victory-swim-watercolor.png"
+        alt="A young swimmer races freestyle through blue water in a watercolor illustration."
+        width="1254"
+        height="1254"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  );
+}
+
 function BorrowedLightWatercolor() {
   return (
     <figure className="borrowed-light-watercolor">
@@ -161,6 +176,8 @@ export default function ConstellationsEssay() {
         <p>
           The feeling was incredible. The victory meant more to me than the title itself. It proved that I could commit myself to something difficult and succeed. From that moment on, I was fully invested in swimming. That day was a turning point, one of the defining milestones of my journey. I vividly remember Vlad calling me over just before the final race. He gave me a powerful motivational talk, reminding me of all the hours I had trained and everything I had done to reach that moment. He made me feel proud of what I had already accomplished. Then he told me, with complete confidence, that we were going to win.
         </p>
+
+        <VictorySwimWatercolor />
 
         <p>
           And we did. I swam that race for Vlad, but also for myself to overcome the limits I had placed on who I believed I could be.

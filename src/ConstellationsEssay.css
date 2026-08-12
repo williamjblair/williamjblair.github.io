@@ -107,6 +107,18 @@ body.constellations-route {
   margin-top: clamp(4rem, 7vw, 6rem);
 }
 
+.victory-swim-watercolor {
+  width: min(72vw, 42rem);
+  margin: clamp(3.5rem, 6vw, 5rem) 50% clamp(1.25rem, 2.5vw, 2rem);
+  transform: translateX(-50%);
+}
+
+.victory-swim-watercolor img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .constellations-copy blockquote {
   width: min(100%, 40rem);
   margin: clamp(2.5rem, 5vw, 4rem) 0 clamp(2.5rem, 5vw, 4rem) clamp(0rem, 3vw, 2rem);
@@ -240,6 +252,10 @@ body.constellations-route {
     width: min(92vw, 56.25rem);
   }
 
+  .victory-swim-watercolor {
+    width: min(84vw, 42rem);
+  }
+
   .borrowed-light-watercolor {
     width: min(92vw, 56.25rem);
   }
@@ -261,6 +277,10 @@ body.constellations-route {
 
   .cottage-memory-watercolor {
     width: 96vw;
+  }
+
+  .victory-swim-watercolor {
+    width: 90vw;
   }
 
   .borrowed-light-watercolor {
