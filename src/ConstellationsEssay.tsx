@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import "./ConstellationsEssay.css";
 
 /*
-THESIS: The watercolor illustration becomes the opening leaf of the essay, refusing a detached title-and-image stack.
+THESIS: A single transparent watercolor hero becomes the opening leaf of the essay and dissolves directly into the paper.
 OWN-WORLD: Warm paper, navy Iowan Old Style, muted cartographic gold, and unframed watercolor works.
 STORY: The reader moves from a child beneath a constellation into Will’s exact account of illness, recovery, human connection, and borrowed light.
-FIRST VIEWPORT: The sailboat artwork spans the page while the HTML title and date rest in its open left-hand sky, clear of the boat and celestial geometry.
+FIRST VIEWPORT: The final supplied hero spans the page with its title, date, sailboat, constellation, lake, and lower watercolor dispersion intact.
 FORM: A continuous illustrated folio pinned by the supplied composition and manuscript; no concept seed required.
 */
 
@@ -17,22 +17,17 @@ function EssayHero() {
     <header className="constellations-hero">
       <figure className="constellations-hero__art">
         <img
-          src="/artwork/constellations/constellations-hero.jpg"
-          alt="A child sails beneath a blue watercolor sky traced with gold constellation lines."
-          width="1182"
-          height="665"
+          src="/artwork/constellations/constellations-hero-final.png"
+          alt="Watercolor illustration of a child sailing beneath a constellation over a mountain lake."
+          width="1536"
+          height="1024"
           fetchPriority="high"
         />
       </figure>
-      <div className="constellations-hero__heading">
-        <h1 className="constellations-hero__title">
-          <span>Constellations of</span>{" "}
-          <span>Borrowed Light</span>
-        </h1>
-        <time className="constellations-hero__date" dateTime="2022-10-02">
-          2022-10-02
-        </time>
-      </div>
+      <h1 className="constellations-sr-only">Constellations of Borrowed Light</h1>
+      <time className="constellations-sr-only" dateTime="2022-10-02">
+        2022-10-02
+      </time>
     </header>
   );
 }
