@@ -249,7 +249,7 @@ function EssayList() {
               <span className="essay-list__star" aria-hidden="true">
                 <span className="essay-list__star-glyph">✦</span>
               </span>
-              <a href={essay.href}>{essay.title}</a>
+              <a href={essay.href} target="_blank" rel="noopener noreferrer">{essay.title}</a>
             </li>
           ))}
         </ul>
@@ -289,7 +289,7 @@ function ProjectItem({ project, index }: { project: Project; index: number }) {
     <li className={`project-item${isOpen ? " is-open" : ""}`}>
       <div className="project-item__row">
         {project.href ? (
-          <a className="project-title" href={project.href}>{project.title}</a>
+          <a className="project-title" href={project.href} target="_blank" rel="noopener noreferrer">{project.title}</a>
         ) : (
           <span className="project-title project-title--plain">{project.title}</span>
         )}
@@ -311,7 +311,7 @@ function ProjectItem({ project, index }: { project: Project; index: number }) {
           {project.links?.length ? (
             <div className="project-item__links">
               {project.links.map((link) => (
-                <a href={link.href} key={link.href}>{link.label}</a>
+                <a href={link.href} target="_blank" rel="noopener noreferrer" key={link.href}>{link.label}</a>
               ))}
             </div>
           ) : null}
@@ -361,10 +361,10 @@ function EmailIcon() {
 function ContactRow() {
   return (
     <nav className="contact-row" aria-label="Contact and CV">
-      <a href="https://github.com/williamjblair" aria-label="GitHub"><GitHubIcon /></a>
-      <a href="https://www.linkedin.com/in/willblair1" aria-label="LinkedIn"><LinkedInIcon /></a>
-      <a href={`mailto:${cvData.email}`} aria-label="Email"><EmailIcon /></a>
-      <a className="contact-row__cv" href="/cv/">CV</a>
+      <a href="https://github.com/williamjblair" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitHubIcon /></a>
+      <a href="https://www.linkedin.com/in/willblair1" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
+      <a href={`mailto:${cvData.email}`} target="_blank" rel="noopener noreferrer" aria-label="Email"><EmailIcon /></a>
+      <a className="contact-row__cv" href="/cv/" target="_blank" rel="noopener noreferrer">CV</a>
     </nav>
   );
 }
