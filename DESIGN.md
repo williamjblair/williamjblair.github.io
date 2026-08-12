@@ -17,11 +17,16 @@ typography:
     fontWeight: 400
     lineHeight: 0.9
     letterSpacing: "-0.035em"
-  heading:
+  section-heading:
     fontFamily: "Iowan Old Style, Baskerville, Times New Roman, serif"
     fontSize: "clamp(2rem, 3.4vw, 3.25rem)"
     fontWeight: 400
     lineHeight: 1
+  essay-title:
+    fontFamily: "Iowan Old Style, Baskerville, Times New Roman, serif"
+    fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)"
+    fontWeight: 400
+    lineHeight: 1.24
   body:
     fontFamily: "Iowan Old Style, Baskerville, Times New Roman, serif"
     fontSize: "clamp(1.125rem, 1.45vw, 1.375rem)"
@@ -34,7 +39,7 @@ spacing:
 components:
   essay-link:
     textColor: "{colors.ink}"
-    typography: "{typography.heading}"
+    typography: "{typography.essay-title}"
     padding: "0.2em 0"
 ---
 
@@ -65,7 +70,7 @@ The palette resembles aged drawing paper, navy drafting ink, diluted blue-grey p
 **Display Font:** Iowan Old Style, with Baskerville and Times New Roman fallbacks
 **Body Font:** Iowan Old Style, with Baskerville and Times New Roman fallbacks
 
-The single-family system feels authored and literary without turning into a branding exercise. Scale, measure, and line-height create hierarchy; bold weight does not.
+The single-family system feels authored and literary without turning into a branding exercise. Scale, measure, and line-height create hierarchy; bold weight does not. Section headings are deliberately larger than essay titles so the list reads as content nested beneath “Essays,” not as a row of competing headings.
 
 **The Regular Weight Rule.** Display and essay titles stay at weight 400. Emphasis comes from scale and placement, never heavy bold.
 
