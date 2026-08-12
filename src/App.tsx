@@ -186,8 +186,11 @@ function Atmosphere() {
 }
 
 function VelaConstellation() {
-  const [selectedStar, setSelectedStar] = useState(0);
-  const activeStar = velaStars[selectedStar];
+  const [selectedStar, setSelectedStar] = useState<number | null>(null);
+  const [hoveredStar, setHoveredStar] = useState<number | null>(null);
+  const [focusedStar, setFocusedStar] = useState<number | null>(null);
+  const displayedStarIndex = hoveredStar ?? focusedStar ?? selectedStar ?? 0;
+  const displayedStar = velaStars[displayedStarIndex];
 
   return (
     <section className="vela" aria-label="Interactive Vela constellation">
@@ -200,7 +203,7 @@ function VelaConstellation() {
       >
         {velaConnections.map(([from, to]) => (
           <line
-            className={from === selectedStar || to === selectedStar ? "is-active" : undefined}
+            className={selectedStar !== null && (from === selectedStar || to === selectedStar) ? "is-active" : undefined}
             key={`${from}-${to}`}
             x1={velaStars[from].x}
             y1={velaStars[from].y}
@@ -221,8 +224,10 @@ function VelaConstellation() {
             aria-label={`${star.catalogue}, ${star.name}, magnitude ${star.magnitude}`}
             aria-pressed={isSelected}
             onClick={() => setSelectedStar(index)}
-            onMouseEnter={() => setSelectedStar(index)}
-            onFocus={() => setSelectedStar(index)}
+            onPointerEnter={() => setHoveredStar(index)}
+            onPointerLeave={() => setHoveredStar((current) => current === index ? null : current)}
+            onFocus={() => setFocusedStar(index)}
+            onBlur={() => setFocusedStar((current) => current === index ? null : current)}
             style={
               {
                 left: `${star.x}%`,
@@ -237,24 +242,26 @@ function VelaConstellation() {
           </button>
         );
       })}
+      <div className="vela__identity">
+        <p className="vela__title">Vela · The Sails</p>
+        <p className="vela__instruction">Hover, focus,<br />or select a star.</p>
+      </div>
       <div className="vela__legend">
         <div className="vela__symbols" aria-hidden="true">
           {velaStars.map((star, index) => (
-            <span className={selectedStar === index ? "is-selected" : ""} key={star.symbol}>
+            <span className={displayedStarIndex === index ? "is-active" : ""} key={star.symbol}>
               {star.symbol}
             </span>
           ))}
         </div>
-        <div className="vela__readout" aria-live="polite" key={activeStar.name}>
+        <div className="vela__readout" aria-live="polite" key={displayedStar.name}>
           <p className="vela__star-name">
-            <span>{activeStar.catalogue}</span>
+            <span>{displayedStar.catalogue}</span>
             <span aria-hidden="true"> · </span>
-            {activeStar.name}
+            {displayedStar.name}
           </p>
-          <p className="vela__star-detail">Magnitude {activeStar.magnitude.toFixed(2)}</p>
+          <p className="vela__star-detail">Magnitude {displayedStar.magnitude.toFixed(2)}</p>
         </div>
-        <p className="vela__title">Vela · The Sails</p>
-        <p className="vela__instruction">Hover, focus, or select a star.</p>
       </div>
     </section>
   );
