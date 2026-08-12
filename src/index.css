@@ -48,9 +48,10 @@ body {
 }
 
 .home-sky {
+  --home-art-height: clamp(24rem, 34vw, 31rem);
+
   position: relative;
-  height: clamp(24rem, 34vw, 31rem);
-  overflow: hidden;
+  min-height: 0;
   background-color: var(--paper);
 }
 
@@ -58,9 +59,9 @@ body {
   position: absolute;
   z-index: 0;
   top: 0;
-  bottom: -1px;
   left: -2vw;
   width: 104vw;
+  height: var(--home-art-height);
   content: "";
   pointer-events: none;
   background-image:
@@ -75,14 +76,17 @@ body {
   position: relative;
   z-index: 2;
   width: min(100%, 104rem);
-  height: 100%;
-  padding: clamp(10rem, 23vh, 11.5rem) clamp(1.5rem, 6vw, 6rem) 2rem clamp(2.15rem, 8vw, 8rem);
+  padding: clamp(10rem, 23vh, 11.5rem) clamp(1.5rem, 6vw, 6rem)
+    clamp(4rem, 7vw, 6rem) clamp(2.15rem, 8vw, 8rem);
 }
 
 .atmosphere {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 1;
+  height: var(--home-art-height);
   overflow: hidden;
   pointer-events: none;
 }
@@ -975,7 +979,7 @@ body.constellations-route .sail-home::before {
   }
 
   .home-sky {
-    height: clamp(34rem, 72vh, 38rem);
+    --home-art-height: clamp(34rem, 72vh, 38rem);
   }
 
   .ocean-footer {
@@ -998,9 +1002,9 @@ body.constellations-route .sail-home::before {
   }
 
   .vela {
-    top: auto;
+    top: clamp(18rem, 36vh, 20rem);
     right: -3vw;
-    bottom: 0.75rem;
+    bottom: auto;
     width: min(21rem, 64vw);
   }
 
@@ -1019,7 +1023,7 @@ body.constellations-route .sail-home::before {
 
 @media (max-width: 30rem) {
   .home-sky {
-    height: 32rem;
+    --home-art-height: 32rem;
   }
 
   h1 {
