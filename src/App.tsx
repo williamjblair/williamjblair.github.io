@@ -13,11 +13,11 @@ const essays = [
   },
   {
     title: "Constellations of Borrowed Light",
-    href: "https://www.vela.space/constellations",
+    href: null,
   },
   {
     title: "Endless Frontiers",
-    href: null,
+    href: "https://www.vela.space/constellations",
   },
 ] as const;
 

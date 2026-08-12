@@ -26,7 +26,7 @@ The homepage is a quiet, vertically scrolling reading surface. Visitors arrive f
 
 - React and Vite in the existing repository, deployed as a static Vercel-compatible build.
 - Two external essay links are live.
-- “Endless Frontiers” is listed as forthcoming and must not navigate until its project route exists.
+- “Constellations of Borrowed Light” is listed without a destination and must remain non-interactive until its URL exists.
 - No navigation, cards, calls to action, portfolio grids, or application-style chrome.
 
 ## Brand Commitments

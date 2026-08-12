@@ -9,7 +9,7 @@ Scope: Single-route personal homepage. Visitor mode: Read.
 
 Audience and job: Readers and potential collaborators need to understand who Will is and choose an essay without portfolio or marketing detours.
 
-Primary action: Follow one of the two published essay links. “Endless Frontiers” remains visibly listed but non-interactive until its route exists.
+Primary action: Follow one of the two published essay links. “Constellations of Borrowed Light” remains visibly listed but non-interactive until its destination exists.
 
 Proof and content: The supplied first-person biography, three essay titles, and two verified external URLs are the complete factual content for this surface.
 
@@ -19,4 +19,4 @@ Memorable moment: The oversized “Hi, I’m Will.” occupies a quiet paper fie
 
 Constraints: No navigation, cards, controls, metadata, thumbnails, or invented claims. Preserve accessibility, reduced motion, responsive composition, and Vite static deployment.
 
-Unresolved: The eventual internal destination and publication state for “Endless Frontiers.”
+Unresolved: The eventual destination and publication state for “Constellations of Borrowed Light.”
