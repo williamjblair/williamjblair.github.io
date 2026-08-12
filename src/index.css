@@ -108,8 +108,9 @@ body {
 
 .home-ocean {
   position: relative;
-  height: clamp(8rem, 14vw, 13rem);
-  margin-top: clamp(0.75rem, 1vw, 1rem);
+  width: 100%;
+  height: min(15.5vw, 21rem);
+  margin-top: clamp(1.25rem, 1.5vw, 2rem);
   overflow: hidden;
   background-color: var(--home-paper);
   line-height: 0;

@@ -457,17 +457,17 @@ function HomeSky() {
 
 function HomeOcean() {
   return (
-    <div className="home-ocean" aria-hidden="true">
+    <footer className="home-ocean" aria-hidden="true">
       <img
         className="home-ocean__art"
-        src="/artwork/homepage-ocean-final.png"
+        src="/artwork/homepage-ocean-final.jpeg"
         alt=""
-        width="1916"
-        height="821"
+        width="2172"
+        height="424"
         loading="lazy"
         decoding="async"
       />
-    </div>
+    </footer>
   );
 }
 
