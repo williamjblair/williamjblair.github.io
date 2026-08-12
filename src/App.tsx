@@ -12,12 +12,12 @@ const essays = [
     href: "https://williamjblair.github.io/articles/science-has-no-dependency-graph/",
   },
   {
-    title: "Constellations of Borrowed Light",
-    href: null,
-  },
-  {
     title: "Endless Frontiers",
     href: "https://www.vela.space/constellations",
+  },
+  {
+    title: "Constellations of Borrowed Light",
+    href: null,
   },
 ] as const;
 
