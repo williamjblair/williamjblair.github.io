@@ -158,6 +158,16 @@ main {
   stroke-linecap: round;
   stroke: #b7924b;
   stroke-width: 1.05;
+  transition:
+    stroke 220ms ease,
+    stroke-width 220ms ease,
+    opacity 220ms ease;
+}
+
+.vela__chart line.is-active {
+  stroke: var(--gold);
+  stroke-width: 1.45;
+  opacity: 1;
 }
 
 .vela__star {
@@ -258,8 +268,34 @@ main {
 }
 
 .vela__title,
-.vela__instruction {
+.vela__instruction,
+.vela__star-name,
+.vela__star-detail {
   margin: 0;
+}
+
+.vela__readout {
+  min-height: 2.65rem;
+  margin-bottom: 0.72rem;
+  animation: vela-label-in 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.vela__star-name {
+  color: var(--gold-deep);
+  font-size: 1.08em;
+  line-height: 1.25;
+  letter-spacing: 0.045em;
+}
+
+.vela__star-name span:first-child {
+  text-transform: uppercase;
+}
+
+.vela__star-detail {
+  margin-top: 0.28rem;
+  font-size: 0.9em;
+  line-height: 1.35;
+  opacity: 0.72;
 }
 
 .vela__title {

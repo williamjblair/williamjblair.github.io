@@ -111,7 +111,7 @@ The essay titles form one indented cluster beneath the larger “Essays” headi
 
 ### Interactive Vela constellation
 
-A large gold Vela diagram replaces the former decorative line chart at the right edge of wide screens and moves below the reading content on narrow screens. Every stellar node is a real button with a 44px target, visible keyboard focus, and no navigation behavior. Nodes carry slow, staggered, low-opacity light pulses; selecting one reveals its star name beside the point and selecting it again dismisses the label. Reduced-motion users receive steady light instead of looping flicker.
+A large gold Vela diagram replaces the former decorative line chart at the right edge of wide screens and moves below the reading content on narrow screens. Every stellar node is a real button with a 44px target, visible keyboard focus, and no navigation behavior. Nodes carry slow, staggered, low-opacity light pulses; selecting one updates a compact catalogue, common-name, and magnitude readout beneath the chart while subtly brightening its adjoining paths. Reduced-motion users receive steady light instead of looping flicker.
 
 ### Project index
 
