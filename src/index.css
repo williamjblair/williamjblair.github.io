@@ -79,7 +79,7 @@ body {
   z-index: 1;
   width: min(100%, 104rem);
   margin: 0;
-  padding: clamp(15rem, 24vw, 27rem) clamp(1.5rem, 6vw, 6rem) 0
+  padding: clamp(13.5rem, 21.5vw, 24.5rem) clamp(1.5rem, 6vw, 6rem) 0
     clamp(2.15rem, 8vw, 8rem);
   background: transparent;
 }
@@ -422,7 +422,7 @@ h1 {
 
 .essays {
   max-width: 68rem;
-  margin-top: clamp(5rem, 6.5vw, 6.75rem);
+  margin-top: clamp(3.25rem, 4.5vw, 4.5rem);
 }
 
 .essays h2,
@@ -537,7 +537,7 @@ h1 {
 
 .projects {
   max-width: 42rem;
-  margin-top: clamp(1.75rem, 3vw, 2.75rem);
+  margin-top: clamp(1.35rem, 2vw, 1.9rem);
 }
 
 .project-list {
@@ -949,7 +949,7 @@ body.constellations-route .sail-home::before {
   }
 
   .home-content {
-    padding-top: clamp(9.25rem, 24vw, 13rem);
+    padding-top: clamp(8.25rem, 21.5vw, 11.75rem);
     padding-left: clamp(2.1rem, 7.5vw, 4.5rem);
   }
 
@@ -984,11 +984,11 @@ body.constellations-route .sail-home::before {
   }
 
   .essays {
-    margin-top: 5rem;
+    margin-top: 3.25rem;
   }
 
   .projects {
-    margin-top: 1.8rem;
+    margin-top: 1.4rem;
   }
 
   .essay-list li,
