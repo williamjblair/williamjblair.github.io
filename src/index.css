@@ -8,6 +8,7 @@
   --gold: #9a7a3e;
   --gold-deep: #6f592e;
   --serif: "Iowan Old Style", Baskerville, "Times New Roman", serif;
+  --paper-texture: url("/artwork/paper-grain.png");
 
   color: var(--ink);
   background: var(--paper);
@@ -64,7 +65,7 @@ body {
   pointer-events: none;
   background-image:
     linear-gradient(180deg, rgb(4 15 34 / 5%) 0%, transparent 56%, rgb(246 238 223 / 7%) 88%, var(--paper) 100%),
-    url("/artwork/night-sky-ocean-v2.png");
+    url("/artwork/top-watercolor.webp");
   background-position: 62% top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -132,7 +133,9 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  background: var(--paper);
+  background-color: var(--paper);
+  background-image: var(--paper-texture);
+  background-size: 32rem 32rem;
 }
 
 .home-content {
@@ -142,7 +145,7 @@ body {
   margin: 0;
   padding: clamp(1.75rem, 3vw, 2.75rem) clamp(1.5rem, 6vw, 6rem)
     0 clamp(2.15rem, 8vw, 8rem);
-  background: var(--paper);
+  background: transparent;
 }
 
 .vela {
@@ -163,7 +166,7 @@ body {
   background-color: var(--paper);
   background-image:
     linear-gradient(180deg, rgb(246 238 223 / 8%), rgb(44 75 105 / 6%) 64%, rgb(29 57 86 / 12%)),
-    url("/artwork/night-sky-ocean-v2.png");
+    url("/artwork/bottom-ocean.webp");
   background-position: 62% bottom;
   background-size: cover;
   background-repeat: no-repeat;
@@ -768,17 +771,19 @@ a.project-title:focus-visible,
   min-height: 100svh;
   background:
     radial-gradient(ellipse at 96% 0%, rgb(134 153 173 / 13%), transparent 34rem),
+    var(--paper-texture),
     var(--paper);
+  background-size: auto, 32rem 32rem, auto;
 }
 
 .sail-home {
   position: absolute;
-  z-index: 3;
+  z-index: 10;
   top: clamp(1.5rem, 4vw, 3.5rem);
   left: clamp(2.15rem, 8vw, 8rem);
   display: grid;
-  width: 3rem;
-  height: 3rem;
+  width: 3.75rem;
+  height: 3.75rem;
   place-items: center;
   color: var(--ink);
   opacity: 0.78;
@@ -787,8 +792,27 @@ a.project-title:focus-visible,
 
 .sail-home img {
   display: block;
-  width: 2.2rem;
+  width: 2.85rem;
   height: auto;
+}
+
+body.constellations-route .sail-home img {
+  position: relative;
+  z-index: 1;
+  filter:
+    drop-shadow(0 0 0.22rem rgb(255 255 255 / 100%))
+    drop-shadow(0 0 0.65rem rgb(255 255 255 / 92%))
+    drop-shadow(0 0.16rem 0.8rem rgb(255 255 255 / 72%));
+}
+
+body.constellations-route .sail-home::before {
+  position: absolute;
+  width: 4.25rem;
+  height: 4.25rem;
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(circle, rgb(255 255 255 / 90%) 0, rgb(255 255 255 / 48%) 38%, transparent 72%);
+  filter: blur(0.18rem);
 }
 
 .sail-home:hover {
