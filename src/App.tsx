@@ -442,7 +442,7 @@ function CvPage() {
 
 function HomeSky() {
   return (
-    <section className="home-sky" aria-label="Introduction">
+    <div className="home-sky" aria-hidden="true">
       <img
         className="home-sky__art"
         src="/artwork/homepage-sky-final.png"
@@ -450,13 +450,8 @@ function HomeSky() {
         width="1916"
         height="821"
         fetchPriority="high"
-        aria-hidden="true"
       />
-      <div className="home-sky__content">
-        <Intro />
-      </div>
-      <VelaConstellation />
-    </section>
+    </div>
   );
 }
 
@@ -479,9 +474,11 @@ function HomeOcean() {
 function Home() {
   return (
     <div className="page-shell">
-      <HomeSky />
-      <section className="home-content-section">
+      <section className="home-top">
+        <HomeSky />
+        <VelaConstellation />
         <main className="home-content">
+          <Intro />
           <EssayList />
           <ProjectList />
           <ContactRow />

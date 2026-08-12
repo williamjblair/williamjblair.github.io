@@ -43,51 +43,44 @@ body {
 .page-shell {
   --home-paper: #fbeed7;
 
+  position: relative;
   isolation: isolate;
   min-height: 100vh;
   overflow: hidden;
-  background-color: var(--home-paper);
-}
-
-.home-sky {
-  position: relative;
-  min-height: 0;
-  margin-bottom: -1px;
-  background-color: var(--home-paper);
-}
-
-.home-sky__art,
-.home-ocean__art {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.home-sky__content {
-  position: absolute;
-  z-index: 2;
-  top: 57%;
-  left: 0;
-  width: min(100%, 104rem);
-  padding: 0 clamp(1.5rem, 6vw, 6rem) 0 clamp(2.15rem, 8vw, 8rem);
-}
-
-.home-content-section {
-  position: relative;
-  z-index: 1;
-  width: 100%;
   background-color: var(--home-paper);
   background-image: var(--paper-texture);
   background-size: 32rem 32rem;
 }
 
+.home-top {
+  position: relative;
+}
+
+.home-sky {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: clamp(28rem, 42.85vw, 51.3rem);
+  overflow: hidden;
+  background-color: var(--home-paper);
+  pointer-events: none;
+}
+
+.home-sky__art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .home-content {
   position: relative;
+  z-index: 1;
   width: min(100%, 104rem);
-  height: auto;
   margin: 0;
-  padding: clamp(0.7rem, 1.1vw, 1.1rem) clamp(1.5rem, 6vw, 6rem)
-    0 clamp(2.15rem, 8vw, 8rem);
+  padding: clamp(15rem, 24vw, 27rem) clamp(1.5rem, 6vw, 6rem) 0
+    clamp(2.15rem, 8vw, 8rem);
   background: transparent;
 }
 
@@ -98,14 +91,29 @@ body {
   right: clamp(2.5rem, 5vw, 6rem);
   width: min(25vw, 24rem);
   aspect-ratio: 1.2;
-  color: var(--gold);
+  --vela-gold: #b7924b;
+  --vela-gold-strong: #d9c996;
+  color: var(--vela-gold);
   pointer-events: none;
 }
 
 .home-ocean {
-  margin-top: -1px;
+  position: relative;
+  height: clamp(8rem, 14vw, 13rem);
+  margin-top: clamp(3.75rem, 6vw, 5.75rem);
+  overflow: hidden;
   background-color: var(--home-paper);
   line-height: 0;
+}
+
+.home-ocean__art {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .vela__chart {
@@ -200,24 +208,35 @@ body {
 
 .vela__legend {
   position: absolute;
+  z-index: 2;
   top: 86%;
   left: 12%;
-  width: min(76%, 28rem);
-  color: #725824;
+  width: min(82%, 19rem);
+  min-height: 5.25rem;
+  color: var(--ink);
   font-family: var(--serif);
   font-size: clamp(0.62rem, 0.72vw, 0.74rem);
   font-weight: 400;
+  isolation: isolate;
   pointer-events: none;
 }
 
 .vela__legend::before {
   position: absolute;
   z-index: -1;
-  inset: -0.5rem -0.75rem -0.45rem;
+  inset: -0.95rem -1.35rem -0.85rem;
   content: "";
   pointer-events: none;
-  background: radial-gradient(ellipse, rgb(17 35 60 / 17%) 0%, rgb(17 35 60 / 7%) 52%, transparent 76%);
-  filter: blur(0.25rem);
+  background:
+    radial-gradient(
+      ellipse 82% 72% at 42% 50%,
+      rgb(17 27 48 / 25%) 0%,
+      rgb(17 27 48 / 14%) 48%,
+      transparent 78%
+    ),
+    radial-gradient(ellipse 58% 88% at 74% 46%, rgb(36 58 85 / 18%) 0%, transparent 76%);
+  filter: blur(0.7rem);
+  transform: rotate(-0.8deg);
 }
 
 .vela__identity {
@@ -226,23 +245,41 @@ body {
   left: -2%;
   z-index: 2;
   width: 39%;
-  color: #725824;
+  min-height: 3.5rem;
+  color: var(--vela-gold);
   font-family: var(--serif);
   font-size: clamp(0.62rem, 0.72vw, 0.74rem);
   font-weight: 400;
+  isolation: isolate;
   pointer-events: none;
+}
+
+.vela__identity::before {
+  position: absolute;
+  z-index: -1;
+  inset: -0.7rem -1.15rem -0.8rem -0.9rem;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 80% 68% at 38% 45%,
+      rgb(248 238 210 / 23%) 0%,
+      rgb(248 238 210 / 13%) 48%,
+      transparent 78%
+    ),
+    radial-gradient(ellipse 58% 84% at 72% 56%, rgb(244 232 198 / 14%) 0%, transparent 76%);
+  filter: blur(0.65rem);
+  transform: rotate(1deg);
 }
 
 .vela__symbols {
   display: flex;
   gap: clamp(0.55rem, 1.3vw, 1rem);
   margin-bottom: 0.8rem;
+  color: var(--ink);
   font-size: 0.9em;
   letter-spacing: 0.02em;
-  opacity: 0.76;
-  text-shadow:
-    0.03rem 0.05rem 0.18rem rgb(17 35 60 / 52%),
-    0 0 0.28rem rgb(17 35 60 / 28%);
+  opacity: 0.82;
 }
 
 .vela__symbols span {
@@ -253,11 +290,9 @@ body {
 }
 
 .vela__symbols .is-active {
-  color: var(--gold-deep);
+  color: var(--vela-gold);
   opacity: 1;
-  text-shadow:
-    0.03rem 0.05rem 0.2rem rgb(17 35 60 / 66%),
-    0 0 0.34rem rgb(17 35 60 / 38%);
+  text-shadow: 0 0.04rem 0.12rem rgb(17 27 48 / 24%);
 }
 
 .vela__title,
@@ -269,9 +304,7 @@ body {
 
 .vela__star-name,
 .vela__star-detail {
-  text-shadow:
-    0.03rem 0.06rem 0.2rem rgb(17 35 60 / 58%),
-    0 0 0.3rem rgb(17 35 60 / 30%);
+  text-shadow: none;
 }
 
 .vela__readout {
@@ -281,10 +314,12 @@ body {
 }
 
 .vela__star-name {
-  color: var(--gold-deep);
+  color: var(--vela-gold-strong);
   font-size: 1.08em;
   line-height: 1.25;
   letter-spacing: 0.045em;
+  text-shadow: 0 0.04rem 0.12rem rgb(17 27 48 / 24%);
+  white-space: nowrap;
 }
 
 .vela__star-name span:first-child {
@@ -293,16 +328,19 @@ body {
 
 .vela__star-detail {
   margin-top: 0.28rem;
+  color: var(--ink);
   font-size: 0.9em;
   line-height: 1.35;
-  opacity: 0.72;
+  opacity: 0.84;
 }
 
 .vela__title {
   margin-bottom: 0.45rem;
+  color: var(--vela-gold-strong);
   font-size: 1.06em;
   line-height: 1.3;
   letter-spacing: 0.16em;
+  text-shadow: 0 0.04rem 0.12rem rgb(17 27 48 / 22%);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -312,7 +350,7 @@ body {
   font-size: 0.92em;
   font-style: italic;
   line-height: 1.42;
-  opacity: 0.62;
+  opacity: 0.86;
 }
 
 @keyframes vela-flicker {
@@ -384,7 +422,7 @@ h1 {
 
 .essays {
   max-width: 68rem;
-  margin-top: 0;
+  margin-top: clamp(5rem, 6.5vw, 6.75rem);
 }
 
 .essays h2,
@@ -664,7 +702,7 @@ a.project-title:focus-visible,
   align-items: center;
   gap: 0.8rem;
   margin-top: clamp(3.5rem, 6vw, 5.5rem);
-  padding-bottom: clamp(2.75rem, 5vw, 4.5rem);
+  padding-bottom: 0;
   color: var(--ink-soft);
 }
 
@@ -907,26 +945,17 @@ body.constellations-route .sail-home::before {
 
 @media (max-width: 48rem) {
   .home-sky {
-    padding-bottom: clamp(14rem, 58vw, 18rem);
-  }
-
-  .home-sky__content {
-    position: relative;
-    top: auto;
-    margin-top: clamp(-4.25rem, -11vw, -2.75rem);
-    padding-top: 0;
-    padding-left: clamp(2.1rem, 7.5vw, 4.5rem);
+    height: clamp(16rem, 42.85vw, 28rem);
   }
 
   .home-content {
-    padding-top: 0.5rem;
+    padding-top: clamp(9.25rem, 24vw, 13rem);
     padding-left: clamp(2.1rem, 7.5vw, 4.5rem);
   }
 
   .vela {
-    top: auto;
+    top: clamp(0.75rem, 2vw, 1.5rem);
     right: -3vw;
-    bottom: 1.5rem;
     width: min(21rem, 64vw);
   }
 
@@ -944,10 +973,6 @@ body.constellations-route .sail-home::before {
 }
 
 @media (max-width: 30rem) {
-  .home-sky {
-    padding-bottom: 14.75rem;
-  }
-
   h1 {
     font-size: 2.75rem;
     line-height: 0.94;
@@ -959,7 +984,7 @@ body.constellations-route .sail-home::before {
   }
 
   .essays {
-    margin-top: 0;
+    margin-top: 5rem;
   }
 
   .projects {

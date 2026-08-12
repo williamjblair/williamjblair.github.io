@@ -103,7 +103,7 @@ The single-family system feels authored and literary without turning into a bran
 
 One decisively left-anchored reading column sits inside a fluid page gutter; it does not recenter on very wide screens. The headline may extend wider than the biography; the biography remains near 65 characters. The essay section begins after a substantial but responsive vertical pause. Mobile preserves the hierarchy with a minimum 24px gutter, quieter decoration, and naturally wrapping titles.
 
-The homepage is structurally divided into three sibling regions. A full-bleed native-ratio sky PNG owns the introduction and Vela overlay; an auto-height paper content region owns Essays, Projects, disclosures, and the signature row; a full-bleed native-ratio ocean PNG closes the page. The two 1916×821 paintings render as real images at `width: 100%` and `height: auto`, while readable content is constrained only by inner containers. Expanding content changes only the middle region's document height, pushing the ocean downward without changing either painting's dimensions or crop.
+The homepage is structured as a layered top composition followed by an independent ocean close. A full-bleed sky PNG is absolutely positioned behind the introduction and Vela overlay, while the introduction, Essays, Projects, disclosures, and signature row remain together in normal document flow on the paper surface. The 1916×821 sky and ocean paintings render at their native width relationship; expanding content lengthens the paper field and pushes the independently positioned ocean close downward without stretching either painting.
 
 The reading canvas is a physical surface rather than a flat fill: a seamless, low-contrast cotton-paper grain overlays the cream substrate across the homepage body, interior pages, and essay reading field. The homepage uses `homepage-sky-final.png` and `homepage-ocean-final.png` as separate purpose-built paintings; their shared edge cream establishes the homepage paper token, and their native aspect ratios remain independent as the textured middle grows.
 
@@ -123,7 +123,7 @@ The essay titles form one indented cluster beneath the larger “Essays” headi
 
 ### Interactive Vela constellation
 
-A large gold Vela diagram replaces the former decorative line chart at the right edge of wide screens and moves below the reading content on narrow screens. Every stellar node is a real button with a 44px target, visible keyboard focus, and no navigation behavior. Nodes carry slow, staggered, low-opacity light pulses; selecting one updates a compact catalogue, common-name, and magnitude readout beneath the chart while subtly brightening its adjoining paths. Reduced-motion users receive steady light instead of looping flicker.
+A large gold Vela diagram replaces the former decorative line chart at the right edge of wide screens and moves below the reading content on narrow screens. Every stellar node is a real button with a 44px target, visible keyboard focus, and no navigation behavior. Nodes carry slow, staggered, low-opacity light pulses; selecting one updates a compact catalogue, common-name, and magnitude readout beneath the chart while subtly brightening its adjoining paths. The identity copy sits in a softly feathered ivory luminance bloom over the dark sky, while the fixed-size readout sits in an equally diffuse navy pigment wash over the pale watercolor; neither field may acquire a visible edge or read as a panel. Reduced-motion users receive steady light instead of looping flicker.
 
 ### Project index
 
