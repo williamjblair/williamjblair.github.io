@@ -330,8 +330,8 @@ h1 {
   max-width: 65ch;
   margin-top: clamp(1.4rem, 2.2vw, 2rem);
   color: var(--ink-soft);
-  font-size: clamp(1rem, 1.15vw, 1.125rem);
-  line-height: 1.65;
+  font-size: clamp(0.94rem, 1vw, 1rem);
+  line-height: 1.52;
 }
 
 .essays {
@@ -494,8 +494,8 @@ h1 {
   }
 
   .intro__bio {
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: 0.94rem;
+    line-height: 1.52;
   }
 
   .essays {
