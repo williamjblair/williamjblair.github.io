@@ -62,7 +62,7 @@ The palette resembles aged drawing paper, navy drafting ink, diluted blue-grey p
 
 ## Typography
 
-**Display Font:** Iowan Old Style, with Baskerville and Times New Roman fallbacks  
+**Display Font:** Iowan Old Style, with Baskerville and Times New Roman fallbacks
 **Body Font:** Iowan Old Style, with Baskerville and Times New Roman fallbacks
 
 The single-family system feels authored and literary without turning into a branding exercise. Scale, measure, and line-height create hierarchy; bold weight does not.
