@@ -106,7 +106,6 @@ function Atmosphere() {
 
 function VelaConstellation() {
   const [selectedStar, setSelectedStar] = useState(0);
-  const activeStar = velaStars[selectedStar];
 
   return (
     <section className="vela" aria-label="Interactive Vela constellation">
@@ -138,7 +137,6 @@ function VelaConstellation() {
             key={star.name}
             aria-label={`${star.catalogue}, ${star.name}, magnitude ${star.magnitude}`}
             aria-pressed={isSelected}
-            aria-describedby="vela-detail"
             onClick={() => setSelectedStar(index)}
             onMouseEnter={() => setSelectedStar(index)}
             onFocus={() => setSelectedStar(index)}
@@ -165,9 +163,6 @@ function VelaConstellation() {
           ))}
         </div>
         <p className="vela__title">Vela · The Sails</p>
-        <p className="vela__detail" id="vela-detail" aria-live="polite">
-          {activeStar.catalogue} · {activeStar.name} · magnitude {activeStar.magnitude}
-        </p>
         <p className="vela__instruction">Hover, focus, or select a star.</p>
       </div>
     </section>
