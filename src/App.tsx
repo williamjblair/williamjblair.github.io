@@ -1,5 +1,6 @@
 import { useState, type CSSProperties, type ReactNode } from "react";
 import ConstellationsEssay from "./ConstellationsEssay";
+import DependencyGraphEssay from "./DependencyGraphEssay";
 import cvData from "./cv-data.json";
 
 type CvEntry = {
@@ -26,7 +27,7 @@ FORM: A single asymmetric editorial scroll, pinned by the supplied brief; no con
 const essays = [
   {
     title: "Science Has No Dependency Graph",
-    href: "https://williamjblair.github.io/articles/science-has-no-dependency-graph/",
+    href: "/science-has-no-dependency-graph/",
   },
   {
     title: "Endless Frontiers",
@@ -249,7 +250,11 @@ function EssayList() {
               <span className="essay-list__star" aria-hidden="true">
                 <span className="essay-list__star-glyph">✦</span>
               </span>
-              <a href={essay.href} target="_blank" rel="noopener noreferrer">{essay.title}</a>
+              {essay.href.startsWith("/") ? (
+                <a href={essay.href}>{essay.title}</a>
+              ) : (
+                <a href={essay.href} target="_blank" rel="noopener noreferrer">{essay.title}</a>
+              )}
             </li>
           ))}
         </ul>
@@ -484,6 +489,17 @@ export default function App() {
   if (pathname === "/cv") {
     document.title = "CV — William Blair";
     return <CvPage />;
+  }
+  if (
+    pathname === "/science-has-no-dependency-graph" ||
+    pathname === "/articles/science-has-no-dependency-graph"
+  ) {
+    document.title = "Science Has No Dependency Graph — William Blair";
+    return (
+      <InteriorShell>
+        <DependencyGraphEssay />
+      </InteriorShell>
+    );
   }
   if (pathname === "/constellations-of-borrowed-light") {
     document.title = "Constellations of Borrowed Light — William Blair";
