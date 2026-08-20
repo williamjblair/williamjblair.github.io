@@ -1,6 +1,5 @@
 import { useState, type CSSProperties, type ReactNode } from "react";
 import ConstellationsEssay from "./ConstellationsEssay";
-import DependencyGraphEssay from "./DependencyGraphEssay";
 import cvData from "./cv-data.json";
 
 type CvEntry = {
@@ -25,10 +24,6 @@ FORM: A single asymmetric editorial scroll, pinned by the supplied brief; no con
 */
 
 const essays = [
-  {
-    title: "Science Has No Dependency Graph",
-    href: "/science-has-no-dependency-graph/",
-  },
   {
     title: "Endless Frontiers",
     href: "https://www.vela.space/constellations",
@@ -489,17 +484,6 @@ export default function App() {
   if (pathname === "/cv") {
     document.title = "CV — William Blair";
     return <CvPage />;
-  }
-  if (
-    pathname === "/science-has-no-dependency-graph" ||
-    pathname === "/articles/science-has-no-dependency-graph"
-  ) {
-    document.title = "Science Has No Dependency Graph — William Blair";
-    return (
-      <InteriorShell>
-        <DependencyGraphEssay />
-      </InteriorShell>
-    );
   }
   if (pathname === "/constellations-of-borrowed-light") {
     document.title = "Constellations of Borrowed Light — William Blair";
