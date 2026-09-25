@@ -1,156 +1,158 @@
 ---
 name: William Blair
-description: A quiet scientific folio for a personal introduction, essays, projects, and an editorial CV.
+description: A night-sailing folio for a personal introduction, essays, projects, and an editorial CV.
 colors:
-  paper: "#f6eedf"
-  homepage-paper: "#f6eddc"
-  paper-deep: "#ece7da"
-  ink: "#111b30"
-  ink-soft: "#3f5068"
+  night-zenith: "#04050a"
+  night: "#0a0b10"
+  starlight: "#f3ecdc"
+  starlight-soft: "rgb(228 224 214 / 80%)"
+  paper: "#f2eee6"
+  paper-deep: "#e9e4da"
+  essay-canvas: "#eeeae2"
+  ink: "#0e1629"
+  ink-soft: "#4a5569"
   wash: "#8699ad"
   wash-deep: "#243a55"
-  cartographic-gold: "#9a7a3e"
-  cartographic-gold-deep: "#6f592e"
-  starlight: "#f8eed2"
-  starlight-gold: "#b7924b"
-  starlight-soft: "#f4e8c6"
-  starlight-muted: "#d9c996"
-  cartographic-gold-shadow: "#725824"
+  brass: "#a3813f"
+  brass-deep: "#6e5829"
+  vela-gold: "#b7924b"
+  vela-gold-lit: "#d9b86c"
 typography:
   display:
-    fontFamily: "Iowan Old Style, Baskerville, Times New Roman, serif"
-    fontSize: "clamp(4rem, 9vw, 8rem)"
+    fontFamily: "Iowan Old Style, Source Serif 4, Baskerville, serif"
+    fontSize: "clamp(3.25rem, 6vw, 6rem)"
     fontWeight: 400
     lineHeight: 0.9
     letterSpacing: "-0.035em"
   section-heading:
-    fontFamily: "Iowan Old Style, Baskerville, Times New Roman, serif"
-    fontSize: "clamp(2rem, 3.4vw, 3.25rem)"
+    fontFamily: "Iowan Old Style, Source Serif 4, Baskerville, serif"
+    fontSize: "clamp(1.4rem, 1rem + 0.85vw, 1.85rem)"
     fontWeight: 400
     lineHeight: 1
-  essay-title:
-    fontFamily: "Iowan Old Style, Baskerville, Times New Roman, serif"
-    fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)"
+  list-title:
+    fontFamily: "Iowan Old Style, Source Serif 4, Baskerville, serif"
+    fontSize: "clamp(1.0625rem, 0.8rem + 0.35vw, 1.25rem)"
     fontWeight: 400
-    lineHeight: 1.24
+    lineHeight: 1.3
   body:
-    fontFamily: "Iowan Old Style, Baskerville, Times New Roman, serif"
-    fontSize: "clamp(1.125rem, 1.45vw, 1.375rem)"
+    fontFamily: "Iowan Old Style, Source Serif 4, Baskerville, serif"
+    fontSize: "clamp(1.0625rem, 0.72rem + 0.55vw, 1.3rem)"
     fontWeight: 400
-    lineHeight: 1.7
-  code:
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
-    fontSize: "0.88em"
+    lineHeight: 1.55
+  catalogue:
+    fontFamily: "Geist Mono, ui-monospace, monospace"
+    fontSize: "0.72rem"
     fontWeight: 400
-    lineHeight: 1.48
+    letterSpacing: "0.04em to 0.18em, uppercase for labels"
+motion:
+  ease-ink: "cubic-bezier(0.22, 1, 0.36, 1)"
+  durations: "240ms quick, 600ms settle, 1400ms bloom"
 spacing:
   gutter: "clamp(1.5rem, 6vw, 6rem)"
-  intro-gap: "clamp(1.75rem, 3vw, 2.5rem)"
-  section-gap: "clamp(6rem, 11vw, 10rem)"
+  reading-inset: "clamp(3rem, 10vw, 10rem)"
 components:
-  essay-link:
-    textColor: "{colors.ink}"
-    typography: "{typography.essay-title}"
-    padding: "0.2em 0"
-  project-disclosure:
-    textColor: "{colors.cartographic-gold}"
-    typography: "{typography.essay-title}"
-    motion: "67.5deg rotation with a 240ms ease-out"
+  brush-link:
+    treatment: "tapered gold brush stroke that draws left to right over 380ms on hover and focus"
+  star-list:
+    treatment: "gold star per row in a shared gutter, joined by a hairline gold seam"
   sail-home:
-    asset: "/artwork/william-blair-sail.png"
-    treatment: "transparent 48px target with a 35px publisher's mark"
-  document-action:
-    textColor: "{colors.ink}"
-    accentColor: "{colors.cartographic-gold}"
-    treatment: "inline text link with fine underline interaction"
+    asset: "/artwork/william-blair-sail-120.{avif,webp}"
+    treatment: "transparent 60px target with a 46px mark; shared view-transition name"
 ---
 
 # Design System: William Blair
 
 ## Overview
 
-**Creative North Star: “The Night-Sailing Folio”**
+**Creative North Star: "The Night-Sailing Folio"**
 
-The page behaves like the opening leaf of an archival scientific essay set beneath a painted night sky. Deep navy watercolor gathers along the top edge, dissolves irregularly into a clear cream reading field, and returns as a pale ocean wash at the bottom. A small sailboat sits right-of-center on the waterline. The interface is not a portfolio shell; it is a composed reading surface whose authority comes from typography, restraint, and real negative space.
+The homepage opens at night. The first screen is open sky in near-black indigo, with live stars and the Vela constellation, and the greeting set in starlight. Scrolling is a descent: the painted watercolor sky rises out of the dark, its clouds dissolve into clean paper where the essays and projects are read, and the page ends at sea, where a small boat has drifted into place. The interior pages stay on paper. Authority comes from typography, restraint, and real negative space, not from interface chrome.
 
-**Key Characteristics:**
+Two references hold it together: Kawase Hasui's luminous, graded blues, and Cajal's fine ink line on white. The night is Kawase; the paper, the gold hairlines and the constellation diagrams are Cajal.
 
-- High-contrast old-style serif typography at regular weight
-- Deep midnight watercolor sky fading through blue-grey blooms into warm paper
-- A pale ocean wash at the bottom with a small right-of-center sailboat
-- Sparse live starlight concentrated above the reading field and diminishing before the essays
-- Deep navy ink and rare, muted cartographic gold
-- Asymmetric left-aligned composition with no application chrome
-- Flat, unboxed content and restrained link states
-- A large, calm, interactive Vela constellation held outside the reading measure
+**Key characteristics**
+
+- An immersive night first view that gives way to paper, never a dark theme applied to everything
+- High-contrast old-style serif at regular weight, with a mono reserved for catalogue data
+- Washi-white paper, near-black indigo ink, and one accent: a muted brass gold
+- Motion that is slow, optional and physical: pigment spreading, stars adjusting, a boat on water
+- Asymmetric, left-anchored composition with no navigation, cards or badges
 
 ## Colors
 
-The palette resembles aged drawing paper, navy drafting ink, diluted blue-grey pigment, and a single quiet metallic annotation.
+Night runs from `night-zenith` at the top of the page to `night` where the painting begins; faint indigo nebulae breathe over it on a 26-second cycle. Starlight (`#f3ecdc`) carries the greeting; the biography uses a softened starlight so the name leads.
 
-**The Quiet Center Rule.** The watercolor opens into a broad, low-contrast cream field behind the copy. The sky is darkest above, the stars diminish before the essays, and the ocean remains at the bottom rather than competing with the reading measure.
+Paper is `#f2eee6`, warm but not yellowed. The ocean painting was painted on yellower paper and is scaled onto the site paper at build time (`repaper()` in `scripts/build-art.py`) so no seam shows. Ink is `#0e1629`. Brass gold is the only accent on paper; Vela and the traces in the sky use a lighter gold that reads against night.
+
+**The one accent rule.** Gold marks connection: constellation lines, the seams between list stars, link strokes, the reading-progress figure. It never fills an area.
 
 ## Typography
 
-**Display Font:** Iowan Old Style, with Baskerville and Times New Roman fallbacks
-**Body Font:** Iowan Old Style, with Baskerville and Times New Roman fallbacks
+**Serif:** Iowan Old Style where installed (Apple devices), otherwise the self-hosted Source Serif 4, pinned to weight 400 with its optical-size axis. At opsz 20 its width and x-height are within one percent of Iowan, so line breaks hold across platforms.
 
-The single-family system feels authored and literary without turning into a branding exercise. The role scale is deliberately compact so the complete introduction and essay index can sit within an ordinary desktop viewport with breathing room below. Scale, measure, and line-height create hierarchy; bold weight does not. “Hi, I’m Will.” remains the one large display exception, while section headings stay deliberately larger than essay titles so the list reads as content nested beneath “Essays,” not as a row of competing headings.
+**Mono:** Geist Mono, used only for catalogue data: star designations and magnitudes, dates, the "Download CV" label, the CV link. Small, tracked, often uppercase. It is the modern counterweight to the serif and should never set prose.
 
-**The Regular Weight Rule.** Display and essay titles stay at weight 400. Emphasis comes from scale and placement, never heavy bold.
+**The regular weight rule.** Nothing is bold. Hierarchy comes from scale, placement and colour.
 
 ## Layout
 
-One decisively left-anchored reading column sits inside a fluid page gutter; it does not recenter on very wide screens. The headline may extend wider than the biography; the biography remains near 65 characters. The essay section begins after a substantial but responsive vertical pause. Mobile preserves the hierarchy with a minimum 24px gutter, quieter decoration, and naturally wrapping titles.
+One left-anchored column inside a fluid gutter. The homepage is a single tall sky column (`.home-sky`): an open night block of `--night-height` (70svh desktop, 78svh mobile), then the 3:2 painting, which the night feathers over across `--sky-overlap`. The introduction sits in the open night. Everything after it begins at `--sky-clear` (72%) of the painting's height, where it has turned to paper, so essays never sit on watercolor. On mobile the painting is cropped wider (215vw) so the navy band stays tall enough for Vela's readout.
 
-The homepage is structured as a layered top composition followed by an independent ocean close. The hierarchy is explicit: real HTML and the interactive constellation sit above a transparent watercolor sky, and both float above the single paper surface owned by the homepage shell. The sky remains decorative and does not establish content position. On desktop, the sky and ocean paintings keep their aspect ratios and a 1536px minimum authored width, expanding proportionally only when needed to remain full bleed. The footer image reserves its complete natural height so the sailboat is never cropped. Expanding content lengthens the paper field and pushes the independently positioned ocean close downward without distorting the ocean painting.
+The whole sky drifts 7vh slower than the page over the first screen, which is what makes scrolling read as a descent.
 
-The reading canvas is a physical surface rather than a flat fill: a seamless, low-contrast cotton-paper grain overlays the cream substrate across the homepage body, interior pages, and essay reading field. The homepage wrapper alone owns the paper surface. It uses `homepage-sky-watercolor.png` as a transparent decorative top layer and preserves `homepage-ocean-final.jpeg` as the independent boat-and-ocean close; intermediate wrappers remain transparent so the grain reads as one continuous sheet.
+## Motion
 
-## Elevation & Depth
+Every effect has a still equivalent under `prefers-reduced-motion`: no arrival, steady stars, no drift, a still boat, instant disclosures, and no page transitions.
 
-There are no raised surfaces. Depth comes from the watercolor’s passage from night sky to paper to ocean, plus the quiet difference between static painted stars and a few live points of light.
-
-## Shapes
-
-Content has no containers, radii, cards, or pills. Geometry appears only as fine celestial paths and stellar nodes. Watercolor blooms use irregular overlapping silhouettes; the boat remains painterly and small enough to read as atmosphere rather than illustration content.
+- **Arrival** (once per session): the watercolor develops downward out of the dark through a noise-displaced mask, the stars come out one at a time over about three seconds, the greeting rises 6px, and then Vela draws itself star to star.
+- **Starfield** (`src/sky/StarField.tsx`): Canvas 2D. Stars live in the open night and wherever the painting is dark navy, sampled from a precomputed density mask. They twinkle slowly (6 to 14 seconds) and run at 30fps unless something is moving. The loop pauses offscreen and in background tabs. There is one shooting star per visit at most.
+- **Connect the dots:** with a mouse, passing from star to star leaves hairline gold segments that fade over about three seconds. At most three links per star, and resting breaks the trace.
+- **Sailing scroll:** the boat is a separate layer cut from the ocean master. It drifts across the water with page scroll and arrives where it was painted at the bottom. It bobs on a 7-second cycle, and its reflection ripples through an SVG displacement filter.
+- **Essay figures** bloom open from the centre as they enter view, tied to scroll position. The Deep Field image drifts in scale, and the closing painting's gold nodes glint.
+- **Page transitions:** cross-document View Transitions. The sail mark keeps its place, and the "Constellations of Borrowed Light" link morphs into the essay's title.
 
 ## Components
 
-### Essay constellation
+### Vela
 
-The essay titles form one indented cluster beneath the larger “Essays” heading. Each title begins with a small muted-gold star centered against its first line, while continuous sub-pixel curved gold segments run directly from star to star through the bullet gutter. The marks suggest a hand-drawn constellation without creating a rigid timeline; they are decorative and hidden from assistive technology. Essay links remain semantic text links set in the display serif; a fine gold underline grows into view over 200ms on hover and focus, and focus-visible also receives a clear offset outline. “Constellations of Borrowed Light” opens into a full-width watercolor folio before settling into a centered long-form reading measure on the same paper surface.
+A gold Vela diagram in the night, with every star a real button (44px target, visible focus). Hover, focus or selection shows the star's name, its catalogue designation and magnitude in mono, and when its light left it: "This light left it around 1480." Distances come from SIMBAD parallaxes and are rounded to what each measurement supports; the sources are cited in `src/content.tsx`. When a star is active, its two segments brighten and the rest of the sky dims slightly.
 
-### Interactive Vela constellation
+### Star lists
 
-A large gold Vela diagram replaces the former decorative line chart at the right edge of wide screens and moves below the reading content on narrow screens. Every stellar node is a real button with a 44px target, visible keyboard focus, and no navigation behavior. Nodes carry slow, staggered, low-opacity light pulses; selecting one updates a compact catalogue, common-name, and magnitude readout beneath the chart while subtly brightening its adjoining paths. The identity copy sits in a softly feathered ivory luminance bloom over the dark sky, while the fixed-size readout sits in an equally diffuse navy pigment wash over the pale watercolor; neither field may acquire a visible edge or read as a panel. Reduced-motion users receive steady light instead of looping flicker.
+Essays and Projects share one gutter of gold stars joined by a hairline seam. Essay stars are filled glyphs. Project stars are outline stars and act as disclosure buttons: opening one rotates it 67.5° and draws a short gold branch off the seam into the description, like a kintsugi repair. Several may stay open at once.
 
-### Project index
+### Links
 
-Projects follow Essays as one flat, unnumbered list with the same heading and title scale. Linked titles inherit the essay link's fine gold underline and focus treatment; unlinked titles remain plain text. A small custom gold star beside every title is a semantic disclosure button. Opening a project rotates its star and reveals a restrained description directly below the row, without introducing cards, borders, or background panels. Several projects may remain open at once, and reduced-motion preferences collapse the transition to an effectively instant state change.
+Text links carry no underline at rest. On hover and focus a tapered brass brush stroke draws beneath them, heavier where the brush lands; focus also gets a clear outline.
+
+### Reading constellation
+
+On wide screens the essay has a small constellation in the left margin, one star for each turning point in the text (`data-chapter`). Stars light as their passage reaches the reader, the line to the next star draws as they read toward it, and the end of the page completes the figure. It is decorative and never a control.
 
 ### Editorial CV
 
-The CV is a long-form reading document in the same cream, navy, and muted-gold palette. Its compact header keeps PDF and DOCX downloads nearby as plain inline actions. Each section uses a fine gold rule, a quiet left label, and an unboxed entry column; dates stay small and gold while supporting copy uses the soft ink tone. The original William Blair sail mark serves as the persistent home link on this and every interior surface, sitting inside a generous transparent target rather than an app-icon container.
+Paper, ink and brass. Gold section rules draw in from the left as they enter view. Dates are set in mono tabular figures.
 
 ### Quiet signature row
 
-GitHub, LinkedIn, Email, and the text link “CV” form one left-aligned row after the homepage projects and immediately before the ocean artwork. All four share the same muted tone and focus treatment without a heading, container, or button surface.
+GitHub, LinkedIn, Email and "CV" sit in one left-aligned row just above the ocean's horizon.
+
+## Assets
+
+Masters live in `art-source/` and are never served. `python3 scripts/build-art.py` produces AVIF and WebP at each width, the boat and reflection layers, the density masks, and the social card (`public/og.jpg`).
 
 ## Do's and Don'ts
 
-### Do:
+### Do
 
-- **Do** let typography and whitespace establish the entire hierarchy.
-- **Do** keep non-interactive decoration peripheral, translucent, and hidden from assistive technology.
-- **Do** preserve semantic headings, links, list structure, and visible focus.
-- **Do** keep constellation-node interaction optional, quiet, and fully keyboard accessible.
-- **Do** concentrate flickering stars in the navy sky and let them thin out before the essay region.
+- Let the night hold only the greeting and Vela; give the reading to paper.
+- Keep decoration hidden from assistive technology and optional to notice.
+- Keep gold for lines and points.
+- Test every new motion with reduced motion on, and make sure the still version is complete.
 
-### Don't:
+### Don't
 
-- **Don't** add navigation, cards, badges, thumbnails, conventional buttons, or portfolio chrome; the stellar nodes are the sole exception because their control form is visually intrinsic to the constellation.
-- **Don't** place watercolor directly behind the biography or essay titles.
-- **Don't** distribute washes evenly; keep them irregular and peripheral, with occasional overlapping blooms and a loose field of pinprick splatter.
-- **Don't** place live stars over the ocean or crowd the cream essay field.
-- **Don't** use pure black, bright gold, or saturated blue.
+- Add navigation, cards, badges, thumbnails, pills or conventional buttons. Vela's stars and the project stars are the only controls that look like anything other than text.
+- Put body copy over watercolor texture or clouds.
+- Use bold, pure black on paper, bright gold, or saturated blue.
+- Run animation loops offscreen or in background tabs.

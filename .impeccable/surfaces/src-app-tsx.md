@@ -11,11 +11,11 @@ Audience and job: Readers and potential collaborators need to understand who Wil
 
 Primary action: Follow a published essay link or read “Constellations of Borrowed Light” on its complete local essay route.
 
-Proof and content: The supplied first-person biography, three essay titles, two verified external URLs, the transparent 1536×1024 sky PNG, and the preserved ocean-and-sailboat footer artwork are the complete factual and visual content for this surface.
+Proof and content: The supplied first-person biography, three essay titles, two verified external URLs, the 1536×1024 sky painting, and the ocean-and-sailboat painting (boat split into its own layer) are the complete factual and visual content for this surface.
 
-Chosen direction: The Night-Sailing Folio — a transparent full-bleed watercolor sky floats decoratively above one continuous grainy cream paper reading surface, while the independent ocean and sailboat painting closes the page. The introduction and interactive Vela overlay sit over the top composition; Essays, Projects, disclosures, and signature links remain in normal paper flow.
+Chosen direction: The Night-Sailing Folio, night first. The first screen is open indigo night with live stars, Vela and the greeting in starlight; scrolling descends through the watercolor sky onto washi paper for Essays and Projects, and the page closes at sea.
 
-Memorable moment: Sparse starlight flickers through the painted navy sky, thinning out before the essays, while Vela’s faint gold nodes reveal individual star names and a small sailboat rests in the ocean wash below.
+Memorable moment: Choosing a Vela star tells you when its light left it. Moving through the sky connects stars with gold hairlines that fade, and the boat drifts into its painted place as you reach the end.
 
 Constraints: No navigation, cards, controls, metadata, thumbnails, or invented claims. Preserve accessibility, reduced motion, responsive composition, and Vite static deployment.
 
