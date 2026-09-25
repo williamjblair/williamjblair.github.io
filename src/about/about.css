@@ -1,0 +1,501 @@
+/* ─── About: how I got here ────────────────────────────────────── */
+
+.about {
+  --about-left: clamp(1.5rem, 8vw, 9rem);
+  --about-right: clamp(1.25rem, 6vw, 6rem);
+  --kicker-gold: #d9b86c;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  color: var(--starlight);
+}
+
+/* The sky is fixed behind the page: night, live stars, and a dawn that rises as the reader nears the future. */
+.about-sky {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.about-sky__night {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--night-zenith) 0%, #07080f 58%, #0b0d17 100%);
+}
+
+.about-sky__night::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    radial-gradient(ellipse 40% 50% at 78% 30%, rgb(44 62 112 / 22%), transparent 72%),
+    radial-gradient(ellipse 34% 40% at 12% 78%, rgb(34 48 94 / 16%), transparent 70%);
+  animation: nebula-breathe 26s ease-in-out infinite alternate;
+}
+
+.about-sky__stars {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.about-sky__dawn {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse 130% 55% at 50% 120%, rgb(236 172 120 / 52%), rgb(160 110 146 / 34%) 34%, rgb(58 70 124 / 26%) 60%, transparent 82%),
+    linear-gradient(to bottom, transparent 20%, rgb(30 42 84 / 50%));
+}
+
+@supports (animation-timeline: scroll()) {
+  .about-sky__dawn {
+    animation: about-dawn linear both;
+    animation-timeline: scroll(root);
+    animation-range: 50% 100%;
+  }
+
+  .about-sky__stars {
+    animation: about-stars-fade linear both;
+    animation-timeline: scroll(root);
+    animation-range: 60% 100%;
+  }
+}
+
+@keyframes about-dawn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes about-stars-fade {
+  to {
+    opacity: 0.5;
+  }
+}
+
+/* The sail mark, redrawn in starlight. */
+.about .sail-home img {
+  filter: invert(0.92) sepia(0.2) brightness(1.02);
+}
+
+/* ─── Title ────────────────────────────────────────────────────── */
+
+.about-hero {
+  padding: clamp(8.5rem, 22vh, 13rem) var(--about-right) clamp(2rem, 6vh, 4rem) var(--about-left);
+}
+
+.about-hero__masthead {
+  color: var(--starlight-soft);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.about-hero h1 {
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  color: var(--starlight);
+  font-size: clamp(3.2rem, 1.5rem + 5vw, 6.75rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+/* ─── The chart beside the words ───────────────────────────────── */
+
+.about-body {
+  display: grid;
+  grid-template-columns: minmax(13rem, 19rem) minmax(0, 41rem);
+  gap: clamp(3rem, 8vw, 9rem);
+  padding: 0 var(--about-right) 0 var(--about-left);
+}
+
+.about-chart {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  align-self: start;
+  padding-block: 14svh 10svh;
+}
+
+.life-chart {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.life-chart__lines {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+
+.life-chart__lines path {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.life-chart__guide {
+  stroke: rgb(217 184 108 / 16%);
+  stroke-width: 0.75;
+  stroke-dasharray: 1.5 5;
+}
+
+.life-chart__edge {
+  stroke: #c9a45c;
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.85;
+  transition: stroke-dashoffset 900ms var(--ease-ink);
+}
+
+.life-chart__edge.is-drawn {
+  stroke-dashoffset: 0;
+}
+
+/* The spine: from a patient in Toronto to the protocol. */
+.is-arc .life-chart__edge {
+  stroke: #e8c982;
+  stroke-width: 1.35;
+  filter: drop-shadow(0 0 0.2rem rgb(232 201 130 / 55%));
+  transition-duration: 1800ms;
+}
+
+.is-arc .life-chart__guide {
+  stroke: rgb(232 201 130 / 22%);
+}
+
+.life-chart__star {
+  position: absolute;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  place-items: center;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.life-chart__star:focus-visible {
+  outline: 1px solid var(--kicker-gold);
+  outline-offset: -0.35rem;
+}
+
+.life-chart__core {
+  width: 0.42rem;
+  height: 0.42rem;
+  border: 1px solid rgb(217 184 108 / 50%);
+  border-radius: 50%;
+  background: var(--night-zenith);
+  transition:
+    background-color 700ms var(--ease-ink),
+    border-color 700ms var(--ease-ink),
+    box-shadow 700ms var(--ease-ink),
+    transform 500ms var(--ease-ink);
+}
+
+.life-chart__star.is-lit .life-chart__core {
+  border-color: #e8c982;
+  background: #f3e3b5;
+  box-shadow: 0 0 0.6rem rgb(232 201 130 / 65%);
+}
+
+.life-chart__star.is-current .life-chart__core {
+  transform: scale(1.45);
+  box-shadow:
+    0 0 0.8rem rgb(232 201 130 / 80%),
+    0 0 2rem rgb(232 201 130 / 25%);
+  animation: life-pulse 3.6s ease-in-out infinite;
+}
+
+.life-chart__star:hover .life-chart__core,
+.life-chart__star:focus-visible .life-chart__core,
+.life-chart__star.is-highlighted .life-chart__core {
+  border-color: #f3e3b5;
+  transform: scale(1.3);
+}
+
+/* The frontier is an open star until the reader arrives; then it is the morning star. */
+.life-chart__star.is-open .life-chart__core {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-style: dashed;
+  background: transparent;
+}
+
+.life-chart__star.is-open.is-lit .life-chart__core {
+  border-style: solid;
+  border-color: #fff4d6;
+  background: #fff4d6;
+  box-shadow:
+    0 0 1rem rgb(255 236 190 / 85%),
+    0 0 3rem rgb(255 214 160 / 35%);
+}
+
+@keyframes life-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.72;
+  }
+}
+
+.life-chart__label {
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 0.35rem);
+  color: rgb(228 224 214 / 38%);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  transition: color 600ms var(--ease-ink);
+}
+
+.life-chart__year {
+  margin-left: 0.6em;
+  opacity: 0.65;
+}
+
+.life-chart__star.is-lit .life-chart__label {
+  color: rgb(228 224 214 / 78%);
+}
+
+.life-chart__star.is-current .life-chart__label,
+.life-chart__star:hover .life-chart__label,
+.life-chart__star:focus-visible .life-chart__label,
+.life-chart__star.is-highlighted .life-chart__label {
+  color: var(--kicker-gold);
+}
+
+/* ─── Chapters ─────────────────────────────────────────────────── */
+
+.about-chapters {
+  padding-bottom: 8svh;
+}
+
+.chapter {
+  min-height: 50svh;
+  padding-block: 8svh;
+  opacity: 0.42;
+  scroll-margin-top: 12svh;
+  transition: opacity 900ms var(--ease-ink);
+}
+
+.chapter:first-child {
+  padding-top: 4svh;
+}
+
+.chapter.is-reached {
+  opacity: 1;
+}
+
+.chapter__kicker {
+  color: var(--kicker-gold);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.chapter__text {
+  margin-top: 1.4rem;
+  color: rgb(236 231 220 / 88%);
+  font-size: clamp(1.2rem, 0.92rem + 0.62vw, 1.55rem);
+  line-height: 1.55;
+  letter-spacing: -0.008em;
+  text-wrap: pretty;
+  hanging-punctuation: first last;
+}
+
+.chapter__notes {
+  display: grid;
+  gap: 1.15rem;
+  margin: 2.25rem 0 0;
+  padding: 0 0 0 1.1rem;
+  border-left: 1px solid rgb(217 184 108 / 28%);
+  list-style: none;
+}
+
+.chapter__notes li {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.chapter__note-title {
+  color: var(--starlight);
+  font-size: 1rem;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.chapter__note-meta {
+  color: rgb(228 224 214 / 60%);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.chapter__notes--proof {
+  margin-top: 1.6rem;
+}
+
+.chapter__notes--proof .chapter__note-title {
+  font-size: clamp(1.3rem, 0.95rem + 0.8vw, 1.75rem);
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.chapter__link {
+  display: inline-block;
+  margin-top: 1.9rem;
+  color: var(--starlight-soft);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* A starlight hairline that draws beneath links on the night. */
+.night-link {
+  padding-bottom: 0.2em;
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(var(--kicker-gold), var(--kicker-gold));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition:
+    color 200ms ease,
+    background-size 420ms var(--ease-ink);
+}
+
+.night-link:hover,
+.night-link:focus-visible {
+  color: var(--starlight);
+  background-size: 100% 1px;
+}
+
+.night-link:focus-visible {
+  outline: 1px solid var(--kicker-gold);
+  outline-offset: 0.3rem;
+}
+
+/* ─── The frontier ─────────────────────────────────────────────── */
+
+.chapter--frontier {
+  min-height: 70svh;
+}
+
+.frontier__statement {
+  margin-top: 1.4rem;
+  color: var(--starlight);
+  font-size: clamp(2.1rem, 1.1rem + 2.8vw, 3.9rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.frontier__lines {
+  display: grid;
+  gap: 0.6rem;
+  margin: 2.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.frontier__lines li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: rgb(236 231 220 / 82%);
+  font-size: clamp(1.1rem, 0.9rem + 0.4vw, 1.3rem);
+  line-height: 1.45;
+}
+
+.frontier__lines li::before {
+  position: absolute;
+  top: 0.05em;
+  left: 0;
+  color: var(--kicker-gold);
+  content: "✦";
+  font-size: 0.55em;
+  line-height: 2.6;
+}
+
+.frontier__closing {
+  max-width: 34em;
+  margin-top: 3rem;
+  font-size: clamp(1.1rem, 0.9rem + 0.4vw, 1.3rem);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.frontier__closing a {
+  color: rgb(243 227 181 / 92%);
+}
+
+.about-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+  padding: 4rem 0 2rem;
+  color: var(--starlight-soft);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ─── Narrow screens: the chart becomes a rail ─────────────────── */
+
+@media (max-width: 60rem) {
+  .about-body {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: clamp(1rem, 4vw, 2rem);
+    padding-left: clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  .about-hero {
+    padding-left: clamp(1.5rem, 7vw, 3rem);
+  }
+
+  .life-chart__label {
+    display: none;
+  }
+
+  .life-chart__star {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .chapter {
+    min-height: auto;
+    padding-block: 7svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .life-chart__star.is-current .life-chart__core,
+  .about-sky__night::after {
+    animation: none;
+  }
+}

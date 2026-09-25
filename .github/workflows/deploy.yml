@@ -28,10 +28,13 @@ jobs:
       # GitHub Pages has no SPA rewrites (vercel.json's rewrite rule doesn't apply here):
       # serve index.html for client-side routes via real paths + a 404 fallback.
       - run: |
-          for route in cv constellations-of-borrowed-light; do
+          for route in about constellations-of-borrowed-light; do
             mkdir -p "dist/$route"
             cp dist/index.html "dist/$route/index.html"
           done
+          # The CV became the About page.
+          mkdir -p dist/cv
+          printf '<!doctype html><meta charset="utf-8"><title>William Blair</title><meta http-equiv="refresh" content="0; url=/about/"><link rel="canonical" href="/about/"><script>location.replace("/about/")</script>\n' > dist/cv/index.html
           cp dist/index.html dist/404.html
       - uses: actions/upload-pages-artifact@v3
         with:

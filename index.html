@@ -20,8 +20,23 @@
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <title>William Blair</title>
     <script>
-      // The homepage opens at night: paint the dark before React so there is no flash of paper.
-      if (location.pathname.replace(/\/+$/, "") === "") document.documentElement.classList.add("is-home");
+      (function () {
+        var path = location.pathname.replace(/\/+$/, "");
+        // The CV became the About page. Leave before anything renders, and skip the page transition
+        // this document would otherwise start, so the redirect does not abort it mid-flight.
+        if (path === "/cv") {
+          addEventListener("pagereveal", function (event) {
+            if (event.viewTransition) {
+              event.viewTransition.ready.catch(function () {});
+              event.viewTransition.skipTransition();
+            }
+          });
+          location.replace("/about/");
+          return;
+        }
+        // The homepage and About open at night: paint the dark before React so there is no flash of paper.
+        if (path === "" || path === "/about") document.documentElement.classList.add("is-home");
+      })();
     </script>
   </head>
   <body>

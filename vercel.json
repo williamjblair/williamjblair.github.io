@@ -3,17 +3,46 @@
     {
       "source": "/downloads/William-Blair-CV.docx",
       "headers": [
-        { "key": "Content-Type", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document" },
-        { "key": "Content-Disposition", "value": "attachment; filename=\"William-Blair-CV.docx\"" }
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"William-Blair-CV.docx\""
+        }
       ]
     },
     {
       "source": "/downloads/William-Blair-CV.pdf",
       "headers": [
-        { "key": "Content-Type", "value": "application/pdf" },
-        { "key": "Content-Disposition", "value": "attachment; filename=\"William-Blair-CV.pdf\"" }
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"William-Blair-CV.pdf\""
+        }
       ]
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/cv",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/cv/",
+      "destination": "/about/",
+      "permanent": true
+    }
+  ]
 }

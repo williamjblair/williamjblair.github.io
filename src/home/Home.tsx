@@ -37,7 +37,7 @@ function Hero({ onVelaFocus }: { onVelaFocus: (focused: boolean) => void }) {
             <a href="https://github.com/williamjblair" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://www.linkedin.com/in/willblair1" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href={`mailto:${cvData.email}`}>Email</a>
-            <a href="/cv/">CV</a>
+            <a href="/about/">About</a>
           </nav>
         </div>
         <VelaConstellation onFocusChange={onVelaFocus} />

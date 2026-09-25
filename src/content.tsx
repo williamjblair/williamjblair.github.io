@@ -3,11 +3,6 @@ import cvData from "./cv-data.json";
 
 export const essays = [
   {
-    title: "Endless Frontiers",
-    href: "https://www.vela.space/constellations",
-    meta: "vela.space",
-  },
-  {
     title: "Constellations of Borrowed Light",
     href: "/constellations-of-borrowed-light/",
     meta: "Essay · 2022",
