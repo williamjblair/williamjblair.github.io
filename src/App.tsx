@@ -1,6 +1,7 @@
 import ConstellationsEssay from "./ConstellationsEssay";
 import Home from "./home/Home";
 import CvPage from "./shell/CvPage";
+import NotFound from "./shell/NotFound";
 import { InteriorShell } from "./shell/Shell";
 
 export default function App() {
@@ -19,6 +20,11 @@ export default function App() {
     );
   }
 
-  document.title = "William Blair";
-  return <Home />;
+  if (pathname === "") {
+    document.title = "William Blair";
+    return <Home />;
+  }
+
+  document.title = "Not found — William Blair";
+  return <NotFound />;
 }

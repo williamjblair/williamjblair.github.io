@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 920 720">
+  <style>
+    .ink { fill: #0e1629; stroke: #0e1629; }
+    .sea { stroke: #a3813f; }
+    @media (prefers-color-scheme: dark) {
+      .ink { fill: #f3ecdc; stroke: #f3ecdc; }
+      .sea { stroke: #d9b86c; }
+    }
+  </style>
+  <path class="ink" stroke="none" d="M80 650 C300 646 560 610 800 82 C742 286 638 506 520 650 Z"/>
+  <path class="ink" stroke="none" d="M520 650 C628 590 724 392 800 82 C770 322 734 516 690 650 Z"/>
+  <path class="ink" fill="none" stroke-linecap="round" stroke-width="28" d="M818 116 L818 650"/>
+  <path class="sea" fill="none" stroke-linecap="round" stroke-width="30" d="M65 657 C320 651 585 623 915 670"/>
+</svg>
