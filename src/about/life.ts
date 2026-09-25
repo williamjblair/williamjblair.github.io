@@ -67,7 +67,6 @@ export const chapters: ReadonlyArray<Chapter> = [
     kicker: "Toronto · SickKids",
     stars: ["toronto", "sickkids"],
     text: "I grew up in Toronto. I spent part of my childhood as a patient, and what stayed with me was narrow and specific: what was wrong with me had been knowable for months before anyone put it together. The knowledge existed. It was not anywhere it could be used.",
-    link: { label: "Constellations of Borrowed Light", href: "/constellations-of-borrowed-light/" },
   },
   {
     key: "hopkins",

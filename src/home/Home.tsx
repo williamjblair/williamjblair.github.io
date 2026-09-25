@@ -77,7 +77,6 @@ function Writing() {
                 className="brush-link writing-list__title"
                 href={essay.href}
                 {...(local ? {} : { target: "_blank", rel: "noopener noreferrer" })}
-                style={"transitionName" in essay ? { viewTransitionName: essay.transitionName } : undefined}
               >
                 {essay.title}
               </a>

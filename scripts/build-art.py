@@ -211,25 +211,6 @@ def icons() -> None:
     tile(256, 0.03, 0.18).save(public / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48), (256, 256)])
 
 
-def essay_card() -> None:
-    """Share image for Constellations of Borrowed Light: its hero watercolor, with the title."""
-    width, height = 1200, 630
-    hero = Image.open(SRC / "constellations/constellations-hero-no-text.png").convert("RGBA")
-    paper = Image.new("RGBA", hero.size, (238, 234, 226, 255))
-    paper.alpha_composite(hero)
-    scale = width / paper.width
-    paper = paper.resize((width, round(paper.height * scale)), Image.LANCZOS)
-    top = round(paper.height * 0.06)
-    card = paper.crop((0, top, width, top + height))
-    draw = ImageDraw.Draw(card)
-    ink = (14, 22, 41, 255)
-    title = serif(66, 60)
-    draw.text((64, 170), "Constellations of", font=title, fill=ink)
-    draw.text((64, 236), "Borrowed Light", font=title, fill=ink)
-    draw.text((68, 326), "William Blair", font=serif(26, 20), fill=(74, 85, 105, 255))
-    card.convert("RGB").save(ROOT / "public" / "og-constellations.jpg", quality=86, optimize=True, progressive=True)
-
-
 def main() -> None:
     for master, (stem, widths) in PICTURES.items():
         image = Image.open(SRC / master)
@@ -255,8 +236,7 @@ def main() -> None:
     print("encoded sail mark")
 
     social_card()
-    essay_card()
-    print("wrote social cards")
+    print("wrote social card")
 
     icons()
     print("wrote icons")

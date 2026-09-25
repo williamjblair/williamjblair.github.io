@@ -37,16 +37,20 @@ const routes = [
     image: HOME_IMAGE,
   },
   {
+    path: "/how-a-correction-travels/",
+    title: "How a correction travels — William Blair",
+    description:
+      "When a scientific result is corrected, the correction usually stays where it was made. A sketch of how Vela lets it travel to the work that depends on it.",
+    image: HOME_IMAGE,
+    type: "article",
+  },
+  {
+    // A personal essay: reachable by its address for people Will sends it to, but not listed or indexed.
     path: "/constellations-of-borrowed-light/",
     title: "Constellations of Borrowed Light — William Blair",
-    // The essay's opening line, verbatim.
-    description: "When I was six years old, I was such a happy kid.",
-    image: {
-      src: "/og-constellations.jpg",
-      alt: "Watercolour of a child sailing beneath a constellation over a mountain lake.",
-    },
-    type: "article",
-    published: "2022-10-02",
+    description: "An essay by William Blair.",
+    image: HOME_IMAGE,
+    unlisted: true,
   },
 ];
 
@@ -85,6 +89,9 @@ function page(template, route) {
     extra.push(`<meta property="article:published_time" content="${route.published}" />`);
     extra.push(`<meta property="article:author" content="William Blair" />`);
   }
+  if (route.unlisted) {
+    extra.push(`<meta name="robots" content="noindex" />`);
+  }
   if (route.jsonLd) {
     extra.push(`<script type="application/ld+json">${JSON.stringify(route.jsonLd)}</script>`);
   }
@@ -118,8 +125,9 @@ await write(
 await write(
   "sitemap.xml",
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
+    .filter((route) => !route.unlisted)
     .map((route) => `  <url><loc>${SITE}${route.path}</loc></url>`)
     .join("\n")}\n</urlset>\n`,
 );
 
-console.log(`postbuild: wrote ${routes.length} pages, 404, /cv redirect and sitemap for ${SITE}`);
+console.log(`postbuild: wrote ${routes.length} pages (${routes.filter((route) => route.unlisted).length} unlisted), 404, /cv redirect and sitemap for ${SITE}`);

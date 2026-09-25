@@ -113,7 +113,7 @@ Every effect has a still equivalent under `prefers-reduced-motion`: no arrival, 
 - **Connect the dots:** with a mouse, passing from star to star leaves hairline gold segments that fade over about three seconds. At most three links per star, and resting breaks the trace.
 - **Sailing scroll:** the boat is a separate layer cut from the ocean master. It drifts across the water with page scroll and arrives where it was painted at the bottom. It bobs on a 7-second cycle, and its reflection ripples through an SVG displacement filter.
 - **Essay figures** bloom open from the centre as they enter view, tied to scroll position. The Deep Field image drifts in scale, and the closing painting's gold nodes glint.
-- **Page transitions:** cross-document View Transitions. The sail mark keeps its place, and the "Constellations of Borrowed Light" link morphs into the essay's title.
+- **Page transitions:** cross-document View Transitions. The sail mark keeps its place between interior pages.
 
 ## Components
 
@@ -131,7 +131,11 @@ Text links carry no underline at rest. On hover and focus a tapered brass brush 
 
 ### Reading constellation
 
-On wide screens the essay has a small constellation in the left margin, one star for each turning point in the text (`data-chapter`). Stars light as their passage reaches the reader, the line to the next star draws as they read toward it, and the end of the page completes the figure. It is decorative and never a control.
+"Constellations of Borrowed Light" is personal, so it is unlisted: reachable by its address for people Will sends it to, but not linked from the site, left out of the sitemap, and marked noindex. On wide screens it has a small constellation in the left margin, one star for each turning point in the text (`data-chapter`). Stars light as their passage reaches the reader, the line to the next star draws as they read toward it, and the end of the page completes the figure. It is decorative and never a control.
+
+### How a correction travels
+
+The piece in the Writing slot: a short page on paper around one interactive figure, drawn like an ink plate. Nine placeholder findings (and the page says they are placeholders). The reader corrects one and compares two views. **As citations**, the corrected paper turns gold and nothing downstream changes; background citations are dotted, because a citation cannot say whether it was foundation or background. **As findings**, the correction travels in kintsugi gold, one hop at a time, to everything that depends on it, and each finding it reaches takes a gold ring. The two paragraphs around it restate Vela in the wording of its README and Will's About page.
 
 ### How I got here (/about)
 

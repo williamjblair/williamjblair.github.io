@@ -3,10 +3,9 @@ import cvData from "./cv-data.json";
 
 export const essays = [
   {
-    title: "Constellations of Borrowed Light",
-    href: "/constellations-of-borrowed-light/",
-    meta: "Essay · 2022",
-    transitionName: "essay-constellations",
+    title: "How a correction travels",
+    href: "/how-a-correction-travels/",
+    meta: "Sketch · 2026",
   },
 ] as const;
 

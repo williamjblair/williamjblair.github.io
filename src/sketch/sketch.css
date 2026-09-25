@@ -1,0 +1,305 @@
+/* ─── A sketch: how a correction travels ───────────────────────── */
+
+.sketch {
+  --hop-time: 520ms;
+  --gold-bright: #c89b45;
+
+  width: min(calc(100% - 3rem), 46rem);
+  margin: 0 auto;
+  padding: clamp(8rem, 18vh, 11rem) 0 clamp(6rem, 12vh, 9rem);
+  color: var(--ink);
+}
+
+.sketch__kicker {
+  color: var(--gold-deep);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sketch h1 {
+  margin-top: 1rem;
+  font-size: clamp(2.6rem, 1.5rem + 3.6vw, 4.6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.sketch__body {
+  margin-top: clamp(2.5rem, 5vh, 3.5rem);
+}
+
+.sketch__body > p {
+  font-size: clamp(1.075rem, 1.25vw, 1.22rem);
+  line-height: 1.76;
+  letter-spacing: -0.006em;
+  text-wrap: pretty;
+  hanging-punctuation: first last;
+}
+
+.sketch__body > p + p {
+  margin-top: 1.4em;
+}
+
+.sketch__instruction {
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.7rem !important;
+  letter-spacing: 0.12em;
+  line-height: 1.5 !important;
+  text-transform: uppercase;
+}
+
+.sketch__note {
+  color: var(--ink-soft);
+  font-size: 0.95rem !important;
+  font-style: italic;
+}
+
+.sketch__note a {
+  color: var(--ink);
+  font-style: normal;
+  padding-bottom: 0.1em;
+  background-image: var(--brush);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 0.3em;
+  text-decoration: none;
+  transition: background-size 380ms var(--ease-ink);
+}
+
+.sketch__note a:hover,
+.sketch__note a:focus-visible {
+  background-size: 100% 0.3em;
+}
+
+.sketch__note a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 0.2rem;
+}
+
+/* ─── The figure ───────────────────────────────────────────────── */
+
+.correction-figure {
+  width: min(88vw, 54rem);
+  margin: 2rem 0 2.75rem 50%;
+  transform: translateX(-50%);
+}
+
+.correction-figure__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgb(163 129 63 / 28%);
+}
+
+.correction-figure__views {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.correction-figure__controls button {
+  padding: 0.3rem 0;
+  border: 0;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: none;
+  background-image: linear-gradient(var(--gold), var(--gold));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background-size 380ms var(--ease-ink);
+}
+
+.correction-figure__controls button:hover,
+.correction-figure__controls button.is-active {
+  color: var(--ink);
+  background-size: 100% 1px;
+}
+
+.correction-figure__controls button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 0.25rem;
+}
+
+.correction-figure__reset:disabled {
+  opacity: 0.35;
+  cursor: default;
+  background-size: 0% 1px !important;
+}
+
+.correction-graph {
+  position: relative;
+  width: 100%;
+  margin-top: 1.75rem;
+  aspect-ratio: 800 / 360;
+}
+
+.correction-graph svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.correction-edge,
+.correction-edge__gold {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.correction-edge {
+  stroke: rgb(14 22 41 / 58%);
+  stroke-width: 1.2;
+}
+
+.correction-graph--citations .correction-edge {
+  stroke: rgb(14 22 41 / 34%);
+}
+
+.correction-edge.is-background {
+  stroke-dasharray: 2 6;
+}
+
+/* The correction, travelling one hop at a time. */
+.correction-edge__gold {
+  stroke: var(--gold-bright);
+  stroke-width: 3;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 3px rgb(200 155 69 / 45%));
+  animation: correction-travel var(--hop-time) var(--ease-ink) forwards;
+  animation-delay: calc(var(--hop) * var(--hop-time) + 200ms);
+}
+
+@keyframes correction-travel {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.correction-node {
+  position: absolute;
+  display: grid;
+  width: clamp(1.9rem, 4.4vw, 2.6rem);
+  height: clamp(1.9rem, 4.4vw, 2.6rem);
+  padding: 0;
+  border: 1.2px solid rgb(14 22 41 / 72%);
+  border-radius: 50%;
+  place-items: center;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(0.85rem, 0.7rem + 0.5vw, 1.05rem);
+  font-style: italic;
+  background: var(--paper);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms var(--ease-ink);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.correction-node:hover {
+  border-color: var(--gold-deep);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.correction-node:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 0.2rem;
+}
+
+.correction-node.is-corrected {
+  border-color: var(--gold-bright);
+  color: #fffaf0;
+  background: var(--gold-bright);
+  box-shadow: 0 0 0 0.3rem rgb(200 155 69 / 18%);
+}
+
+/* Reached findings take a gold ring as the correction arrives. */
+.correction-node.is-reached {
+  animation: correction-arrive 420ms var(--ease-ink) forwards;
+  animation-delay: calc(var(--hop) * var(--hop-time) + 200ms);
+}
+
+@keyframes correction-arrive {
+  to {
+    border-color: var(--gold-bright);
+    color: var(--gold-deep);
+    box-shadow:
+      0 0 0 0.22rem var(--paper),
+      0 0 0 0.3rem rgb(200 155 69 / 70%);
+  }
+}
+
+.correction-figure__status {
+  min-height: 3.2em;
+  margin-top: 1.5rem;
+  color: var(--ink);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.correction-figure__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.6rem;
+  margin-top: 0.75rem;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.correction-figure__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.legend-line {
+  display: inline-block;
+  width: 1.6rem;
+  height: 0;
+  border-top: 1.2px solid rgb(14 22 41 / 58%);
+}
+
+.legend-line.is-background {
+  border-top-style: dotted;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 1.2px solid var(--gold-bright);
+  border-radius: 50%;
+}
+
+.legend-dot.is-corrected {
+  background: var(--gold-bright);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .correction-edge__gold,
+  .correction-node.is-reached {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
+  }
+}

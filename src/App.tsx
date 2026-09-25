@@ -3,6 +3,7 @@ import ConstellationsEssay from "./ConstellationsEssay";
 import Home from "./home/Home";
 import AboutPage from "./about/AboutPage";
 import NotFound from "./shell/NotFound";
+import CorrectionSketch from "./sketch/CorrectionSketch";
 import { InteriorShell } from "./shell/Shell";
 
 type Route = { title: string; page: ReactNode; redirect?: string };
@@ -20,6 +21,15 @@ function resolve(pathname: string): Route {
         page: (
           <InteriorShell>
             <ConstellationsEssay />
+          </InteriorShell>
+        ),
+      };
+    case "/how-a-correction-travels":
+      return {
+        title: "How a correction travels — William Blair",
+        page: (
+          <InteriorShell>
+            <CorrectionSketch />
           </InteriorShell>
         ),
       };

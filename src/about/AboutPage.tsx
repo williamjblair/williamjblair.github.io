@@ -73,11 +73,7 @@ function Frontier() {
           <li key={line}>{line}</li>
         ))}
       </ul>
-      <p className="frontier__closing">
-        <a className="night-link" href="/constellations-of-borrowed-light/">
-          {frontier.closing}
-        </a>
-      </p>
+      <p className="frontier__closing">{frontier.closing}</p>
     </div>
   );
 }
