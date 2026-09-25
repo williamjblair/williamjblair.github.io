@@ -9,6 +9,10 @@
     />
     <link rel="icon" href="/favicon.ico" />
     <title>William Blair</title>
+    <script>
+      // The homepage opens at night: paint the dark before React so there is no flash of paper.
+      if (location.pathname.replace(/\/+$/, "") === "") document.documentElement.classList.add("is-home");
+    </script>
   </head>
   <body>
     <div id="root"></div>

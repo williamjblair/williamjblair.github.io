@@ -1,19 +1,80 @@
+/*
+Source Serif 4 (SIL OFL, public/fonts/OFL-source-serif-4.txt) stands in wherever Iowan Old Style is not installed.
+Pinned to weight 400 with the optical-size axis kept; at opsz 20 its width and x-height sit within
+one percent of Iowan, so the layout does not move between Apple and everything else.
+*/
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/source-serif-4-latin-roman.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/source-serif-4-latin-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Geist Mono (SIL OFL) for catalogue data: star designations, dates, small labels. */
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/source-serif-4-greek-roman.woff2") format("woff2");
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+
 :root {
-  --paper: #f6eedf;
-  --paper-deep: #ece7da;
-  --ink: #111b30;
-  --ink-soft: #3f5068;
+  /* Washi rather than parchment: warm, but clean. */
+  --paper: #f2eee6;
+  --paper-deep: #e9e4da;
+  --ink: #0e1629;
+  --ink-soft: #4a5569;
   --wash: #8699ad;
   --wash-deep: #243a55;
-  --gold: #9a7a3e;
-  --gold-deep: #6f592e;
-  --serif: "Iowan Old Style", Baskerville, "Times New Roman", serif;
+  --gold: #a3813f;
+  --gold-deep: #6e5829;
+  --night-zenith: #04050a;
+  --night: #0a0b10;
+  --starlight: #f3ecdc;
+  --starlight-soft: rgb(228 224 214 / 80%);
+  --serif: "Iowan Old Style", "Source Serif 4", Baskerville, "Times New Roman", serif;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --paper-texture: url("/artwork/paper-grain.webp");
+
+  --ease-ink: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-quick: 240ms;
+  --dur-settle: 600ms;
+  --dur-bloom: 1400ms;
+
+  /* A tapered gold brush stroke, heavier where the brush lands, used for link underlines. */
+  --brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5.1C46 3.7 126 3.3 199 4.2C131 5.4 60 6.6 2 6.2Z' fill='%239a7a3e'/%3E%3C/svg%3E");
+
+  /* Pigment front for the sky's arrival: an opaque top whose lower edge is displaced by noise. */
+  --bleed-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 500' preserveAspectRatio='none'%3E%3Cfilter id='f' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.028 0.045' numOctaves='3' seed='11'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='80' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0.4' stop-color='%23000'/%3E%3Cstop offset='0.58' stop-color='%23000' stop-opacity='0'/%3E%3C/linearGradient%3E%3Crect x='-40' y='-40' width='380' height='580' fill='url(%23g)' filter='url(%23f)'/%3E%3C/svg%3E");
 
   color: var(--ink);
   background: var(--paper);
   font-family: var(--serif);
   font-synthesis: none;
+  font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -40,8 +101,30 @@ body {
   background: var(--paper);
 }
 
+/* The homepage opens at night; set before first paint by index.html so there is no flash of paper. */
+html.is-home,
+html.is-home body,
+html.is-home #root {
+  background: var(--night-zenith);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+/* ─── Homepage surface ─────────────────────────────────────────── */
+
 .page-shell {
-  --home-paper: #f6eddc;
+  --home-paper: var(--paper);
+  --sky-width: max(100vw, 96rem);
+  --sky-height: calc(var(--sky-width) * 2 / 3);
+  --night-height: 70svh;
+  /* How far the painting's top edge dissolves into the open night. */
+  --sky-overlap: 15rem;
+  /* Fraction of the painting after which it is plain paper. */
+  --sky-clear: 0.72;
 
   position: relative;
   z-index: 0;
@@ -55,30 +138,118 @@ body {
 
 .home-top {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
+/*
+The sky is one tall column: open night, then the painting dissolving out of it, then paper.
+It drifts a little slower than the page, so scrolling reads as a descent.
+*/
 .home-sky {
   position: absolute;
   z-index: 1;
   top: 0;
   right: 0;
   left: 0;
-  height: clamp(28rem, 42.85vw, 51.3rem);
   overflow: hidden;
   pointer-events: none;
 }
 
+@supports (animation-timeline: scroll()) {
+  .home-sky {
+    animation: sky-descend linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 100vh;
+  }
+}
+
+@keyframes sky-descend {
+  to {
+    transform: translateY(7vh);
+  }
+}
+
+/*
+The night lies over the painting's top edge and feathers away across --sky-overlap, so its lower
+edge is soft whether or not the painting beneath has arrived yet.
+*/
+.home-sky__night {
+  --feather: linear-gradient(
+    to bottom,
+    #000 calc(100% - var(--sky-overlap)),
+    rgb(0 0 0 / 78%) calc(100% - var(--sky-overlap) * 0.7),
+    rgb(0 0 0 / 38%) calc(100% - var(--sky-overlap) * 0.4),
+    rgb(0 0 0 / 10%) calc(100% - var(--sky-overlap) * 0.15),
+    rgb(0 0 0 / 0%) 100%
+  );
+
+  position: relative;
+  z-index: 1;
+  height: var(--night-height);
+  background: linear-gradient(to bottom, var(--night-zenith) 0%, #07080d 55%, var(--night) 100%);
+  -webkit-mask-image: var(--feather);
+  mask-image: var(--feather);
+  transition: filter var(--dur-settle) var(--ease-ink);
+}
+
+/* Faint indigo nebulae, breathing very slowly. */
+.home-sky__night::after {
+  position: absolute;
+  inset: 0 0 -8rem;
+  content: "";
+  background:
+    radial-gradient(ellipse 42% 55% at 74% 34%, rgb(44 62 112 / 26%), transparent 72%),
+    radial-gradient(ellipse 36% 42% at 18% 62%, rgb(34 48 94 / 18%), transparent 70%),
+    radial-gradient(ellipse 60% 30% at 48% 8%, rgb(58 66 110 / 10%), transparent 70%);
+  animation: nebula-breathe 26s ease-in-out infinite alternate;
+}
+
+@keyframes nebula-breathe {
+  from {
+    opacity: 0.7;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.home-sky__stage {
+  position: relative;
+  left: 50%;
+  width: var(--sky-width);
+  margin-top: calc(-1 * var(--sky-overlap));
+  aspect-ratio: 1536 / 1024;
+  transform: translateX(-50%);
+}
+
 .home-sky__art {
   position: absolute;
-  top: -2rem;
-  left: 50%;
+  inset: 0;
   display: block;
   width: 100%;
-  max-width: none;
-  height: auto;
+  height: 100%;
   filter: saturate(0.58) contrast(0.96) brightness(1.01);
-  transform: translateX(-50%);
+  transition: filter var(--dur-settle) var(--ease-ink);
+}
+
+.home-sky.is-dimmed .home-sky__art {
+  filter: saturate(0.54) contrast(0.97) brightness(0.88);
+}
+
+.home-sky.is-dimmed .home-sky__night {
+  filter: brightness(0.85);
+}
+
+/* Covers the open night and the painting's dark band. */
+.star-field {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: calc(var(--night-height) - var(--sky-overlap) + var(--sky-height) * 0.62);
 }
 
 .home-content {
@@ -86,52 +257,89 @@ body {
   z-index: 3;
   width: min(100%, 104rem);
   margin: 0;
-  padding: clamp(13rem, 21vw, 23.5rem) clamp(1.5rem, 6vw, 6rem) 0
-    clamp(3rem, 10vw, 10rem);
+  padding: 0 clamp(1.5rem, 6vw, 6rem) 0 clamp(3rem, 10vw, 10rem);
   background: transparent;
 }
 
+/* The introduction lives in the night; everything after it begins where the painting turns to paper. */
+.home-hero {
+  display: flex;
+  min-height: calc(var(--night-height) - var(--sky-overlap) + var(--sky-height) * var(--sky-clear));
+  flex-direction: column;
+  padding-top: calc(var(--night-height) * 0.34);
+}
+
+/* ─── Arrival: ink bleeds onto wet paper, then the page settles ─── */
+
+.is-arriving .home-sky__stage {
+  -webkit-mask-image: var(--bleed-mask);
+  mask-image: var(--bleed-mask);
+  -webkit-mask-size: 100% 250%;
+  mask-size: 100% 250%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: sky-bleed 1900ms var(--ease-ink) both;
+}
+
+.is-arriving .arrive {
+  animation: rise-in 1000ms var(--ease-ink) both;
+  animation-delay: calc(650ms + var(--arrive-order, 0) * 120ms);
+}
+
+@keyframes sky-bleed {
+  from {
+    -webkit-mask-position: 0 100%;
+    mask-position: 0 100%;
+    opacity: 0.35;
+  }
+
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+    opacity: 1;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ─── Vela ─────────────────────────────────────────────────────── */
+
 .vela {
+  --vela-gold: #b7924b;
+
   position: absolute;
   z-index: 4;
   top: clamp(0.5rem, 1.7vh, 1.5rem);
   right: clamp(11rem, 16vw, 18rem);
   width: min(21vw, 20rem);
   aspect-ratio: 1.2;
-  --vela-gold: #b7924b;
-  --vela-gold-strong: #d9c996;
   color: var(--vela-gold);
   pointer-events: none;
 }
 
-.home-ocean {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  margin-top: clamp(1.25rem, 1.5vw, 2rem);
-  overflow: hidden;
-  line-height: 0;
-}
-
-.home-ocean__art {
-  position: relative;
-  left: 50%;
-  display: block;
-  width: 100%;
-  height: auto;
-  transform: translateX(-50%);
-}
-
-@media (min-width: 48.01rem) {
-  .home-sky__art {
-    top: -4rem;
-    width: max(100%, 96rem);
-  }
-
-  .home-ocean__art {
-    width: max(100%, 96rem);
-    max-width: none;
-  }
+.vela__field {
+  position: absolute;
+  inset: 0;
 }
 
 .vela__chart {
@@ -145,21 +353,40 @@ body {
 }
 
 .vela__chart line {
-  vector-effect: non-scaling-stroke;
-  stroke: currentColor;
-  stroke-linecap: round;
   stroke: #b7924b;
+  stroke-linecap: round;
   stroke-width: 1.05;
   transition:
-    stroke 220ms ease,
-    stroke-width 220ms ease,
-    opacity 220ms ease;
+    stroke var(--dur-quick) ease,
+    stroke-width var(--dur-quick) ease;
 }
 
 .vela__chart line.is-active {
-  stroke: var(--gold);
-  stroke-width: 1.45;
-  opacity: 1;
+  stroke: #d9b86c;
+  stroke-width: 1.5;
+}
+
+.is-arriving .vela__chart line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-line 300ms ease-out forwards;
+  animation-delay: calc(1500ms + var(--segment) * 170ms);
+}
+
+.is-arriving .vela__star {
+  animation: fade-in 600ms ease-out both;
+  animation-delay: calc(1400ms + var(--star-order) * 170ms);
+}
+
+.is-arriving .vela__identity,
+.is-arriving .vela__legend {
+  animation: fade-in 900ms ease-out 2900ms both;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .vela__star {
@@ -204,104 +431,68 @@ body {
     0.04rem 0.08rem 0.58rem rgb(124 91 37 / 32%);
   transform: translate(-50%, -50%);
   transition:
-    background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    background-color var(--dur-quick) var(--ease-ink),
+    box-shadow var(--dur-quick) var(--ease-ink),
+    transform var(--dur-quick) var(--ease-ink);
 }
 
 .vela__star:hover .vela__star-core,
 .vela__star:focus-visible .vela__star-core,
 .vela__star.is-selected .vela__star-core {
-  background: #d9c996;
+  background: #fbf3dc;
   box-shadow:
-    0 0 0 0.18rem rgb(154 122 62 / 13%),
-    0.08rem 0.12rem 0.7rem rgb(154 122 62 / 42%);
-  transform: translate(-50%, -50%) scale(1.18);
+    0 0 0 0.18rem rgb(217 184 108 / 22%),
+    0 0 0.9rem rgb(240 214 150 / 70%);
+  transform: translate(-50%, -50%) scale(1.28);
 }
 
 .vela__star:focus-visible {
-  outline: 1px solid var(--gold);
+  outline: 1px solid #d9b86c;
   outline-offset: -0.28rem;
 }
 
+.vela__identity,
 .vela__legend {
   position: absolute;
   z-index: 2;
-  top: 84%;
-  left: 12%;
-  width: min(82%, 19rem);
-  min-height: 3rem;
-  color: #f8eed2;
+  color: var(--starlight);
   font-family: var(--serif);
-  font-size: clamp(0.62rem, 0.72vw, 0.74rem);
+  font-size: clamp(0.74rem, 0.55rem + 0.3vw, 0.88rem);
   font-weight: 400;
   pointer-events: none;
 }
 
 .vela__identity {
-  position: absolute;
-  top: 7.5%;
-  left: -2%;
-  z-index: 2;
+  top: 3%;
+  left: -38%;
   width: max-content;
   max-width: 53%;
-  color: #f8eed2;
-  font-family: var(--serif);
-  font-size: clamp(0.62rem, 0.72vw, 0.74rem);
-  font-weight: 400;
-  isolation: isolate;
-  pointer-events: none;
 }
 
-.vela__identity::before {
-  display: none;
+.vela__legend {
+  top: 84%;
+  left: 8%;
+  width: min(100%, 20rem);
+  min-height: 4.6rem;
 }
 
 .vela__title,
 .vela__instruction,
 .vela__star-name,
-.vela__star-detail {
+.vela__star-detail,
+.vela__star-light {
   margin: 0;
-}
-
-.vela__star-name,
-.vela__star-detail {
   text-shadow:
     0 0 0.08rem rgb(8 24 48 / 96%),
-    0.04rem 0.07rem 0.18rem rgb(8 24 48 / 88%);
-}
-
-.vela__readout {
-  width: 100%;
-  min-height: 3rem;
-  animation: vela-label-in 160ms ease-out both;
-}
-
-.vela__star-name {
-  color: #f8eed2;
-  font-size: 1.08em;
-  line-height: 1.25;
-  letter-spacing: 0.045em;
-  white-space: nowrap;
-}
-
-.vela__star-detail {
-  margin-top: 0.28rem;
-  color: #f4e8c6;
-  font-size: 0.9em;
-  line-height: 1.35;
-  opacity: 0.84;
+    0.04rem 0.07rem 0.22rem rgb(8 24 48 / 88%);
 }
 
 .vela__title {
   margin-bottom: 0.45rem;
-  color: #f8eed2;
-  font-size: 1.06em;
+  font-family: var(--mono);
+  font-size: 0.86em;
   line-height: 1.3;
-  letter-spacing: 0.16em;
-  text-shadow:
-    0 0 0.08rem rgb(17 35 60 / 88%),
-    0.05rem 0.08rem 0.22rem rgb(17 35 60 / 72%);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -311,12 +502,38 @@ body {
   font-size: 0.92em;
   font-style: italic;
   line-height: 1.42;
-  color: #f8eed2;
   opacity: 0.92;
-  text-shadow:
-    0 0 0.08rem rgb(17 35 60 / 88%),
-    0.05rem 0.08rem 0.22rem rgb(17 35 60 / 72%);
   white-space: nowrap;
+}
+
+.vela__readout {
+  width: 100%;
+  animation: vela-label-in 220ms ease-out both;
+}
+
+.vela__star-name {
+  font-size: 1.14em;
+  line-height: 1.25;
+  letter-spacing: 0.045em;
+  white-space: nowrap;
+}
+
+.vela__star-detail {
+  margin-top: 0.3rem;
+  color: #e9e1cc;
+  font-family: var(--mono);
+  font-size: 0.78em;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+}
+
+.vela__star-light {
+  margin-top: 0.3rem;
+  color: #f1dfae;
+  font-size: 0.94em;
+  font-style: italic;
+  line-height: 1.35;
 }
 
 @keyframes vela-flicker {
@@ -357,21 +574,17 @@ body {
   }
 }
 
+/* ─── Introduction ─────────────────────────────────────────────── */
+
 .intro {
   position: relative;
   max-width: 75rem;
 }
 
-h1,
-h2,
-p {
-  margin: 0;
-}
-
-h1 {
+.intro h1 {
   max-width: 12ch;
-  color: var(--ink);
-  font-size: clamp(3rem, 5.4vw, 5.25rem);
+  color: var(--starlight);
+  font-size: clamp(3.25rem, 6vw, 6rem);
   font-weight: 400;
   line-height: 0.9;
   letter-spacing: -0.035em;
@@ -379,117 +592,66 @@ h1 {
 }
 
 .intro__bio {
-  max-width: 65ch;
+  max-width: 36em;
   margin-top: clamp(1.4rem, 2.2vw, 2rem);
-  color: var(--ink-soft);
-  font-size: clamp(0.86rem, 0.9vw, 0.94rem);
-  line-height: 1.46;
+  color: var(--starlight-soft);
+  text-shadow: 0 0 1.2rem rgb(4 5 10 / 85%);
+  font-size: clamp(1.0625rem, 0.72rem + 0.55vw, 1.3rem);
+  line-height: 1.55;
+  text-wrap: pretty;
 }
+
+/* ─── Essays and projects: one gutter of gold stars ────────────── */
 
 .essays {
   max-width: 68rem;
-  margin-top: clamp(3.25rem, 4.5vw, 4.5rem);
+}
+
+.projects {
+  max-width: 44rem;
+  margin-top: clamp(2.25rem, 3.2vw, 3.25rem);
 }
 
 .essays h2,
 .projects h2 {
   color: var(--ink);
-  font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+  font-size: clamp(1.4rem, 1rem + 0.85vw, 1.85rem);
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.025em;
 }
 
-.essay-list__cluster {
-  position: relative;
-  margin: clamp(0.75rem, 1vw, 0.95rem) 0 0 clamp(0.15rem, 0.4vw, 0.4rem);
-  padding-left: 1.35rem;
-}
-
-.essay-list__thread {
-  position: absolute;
-  top: 0.62em;
-  left: -1.35rem;
-  width: 1rem;
-  height: calc(100% + var(--essay-gap));
-  overflow: visible;
-  color: var(--gold);
-  opacity: 0.52;
-  pointer-events: none;
-}
-
-.essay-list__thread path {
-  vector-effect: non-scaling-stroke;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-width: 0.7;
-}
-
-.essay-list {
-  --essay-gap: clamp(0.3rem, 0.65vw, 0.55rem);
+.star-list {
+  --star-gutter: 1.65rem;
+  --list-gap: clamp(0.5rem, 0.7vw, 0.6rem);
+  --seam-inset: 0.3rem;
 
   display: grid;
-  gap: var(--essay-gap);
-  margin: 0;
-  padding: 0;
+  gap: var(--list-gap);
+  margin: clamp(0.9rem, 1.2vw, 1.1rem) 0 0 0.2rem;
+  padding: 0 0 0 var(--star-gutter);
   list-style: none;
 }
 
-.essay-list li {
+.project-list {
+  --seam-inset: 0.55rem;
+}
+
+.star-list > li {
   position: relative;
-  width: fit-content;
   max-width: 100%;
-  font-size: clamp(0.9rem, 0.95vw, 0.95rem);
-  line-height: 1.24;
+  font-size: clamp(1.0625rem, 0.8rem + 0.35vw, 1.25rem);
+  line-height: 1.3;
 }
 
-.essay-list a,
-.essay-list__title {
-  position: relative;
-  display: inline;
-  color: var(--ink);
-  font-weight: 400;
-  letter-spacing: -0.022em;
-  text-decoration: none;
-  text-wrap: pretty;
-}
-
-.essay-list a {
-  padding-block: 0.12em;
-  background-image: linear-gradient(var(--gold), var(--gold));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0 1px;
-  transition:
-    color 200ms ease,
-    background-size 200ms ease;
-}
-
-.essay-list a:hover {
-  color: var(--gold-deep);
-  background-size: 100% 1px;
-}
-
-.essay-list a:focus-visible {
-  color: var(--gold-deep);
-  background-size: 100% 1px;
-  outline: 2px solid var(--gold);
-  outline-offset: 0.22em;
-}
-
-.essay-list__title {
-  color: var(--ink);
-}
-
-.essay-list__star {
+.star-list__star {
   position: absolute;
   top: 0;
-  left: -1.35rem;
+  left: calc(-1 * var(--star-gutter));
   z-index: 1;
   display: grid;
-  width: 1rem;
-  height: 1.24em;
+  width: 1.1rem;
+  height: 1.3em;
   place-items: center;
   color: var(--gold);
   font-family: var(--serif);
@@ -501,94 +663,89 @@ h1 {
   font-size: 0.52em;
 }
 
-.projects {
-  max-width: 42rem;
-  margin-top: clamp(1.35rem, 2vw, 1.9rem);
+/* Kintsugi: a hairline of gold from each star to the next, stretching as rows open. */
+.seam {
+  position: absolute;
+  top: calc(0.65em + var(--seam-inset));
+  left: calc(-1 * var(--star-gutter));
+  width: 1.1rem;
+  height: calc(100% + var(--list-gap) - 2 * var(--seam-inset));
+  overflow: visible;
+  color: var(--gold);
+  opacity: 0.5;
+  pointer-events: none;
 }
 
-.project-list {
-  display: grid;
-  gap: clamp(0.5rem, 0.75vw, 0.68rem);
-  margin: clamp(0.75rem, 1vw, 0.95rem) 0 0;
-  padding: 0;
-  list-style: none;
+.seam path {
+  vector-effect: non-scaling-stroke;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 0.75;
 }
 
-.project-item {
-  min-width: 0;
-}
+/* ─── Links: a gold brush stroke that lands and draws across ───── */
 
-.project-item__row {
-  display: flex;
-  width: fit-content;
-  max-width: 100%;
-  align-items: flex-start;
-  gap: 0.34rem;
-}
-
-.project-title {
+.brush-link {
   position: relative;
-  display: inline;
-  min-width: 0;
   color: var(--ink);
-  font-size: clamp(0.9rem, 0.95vw, 0.95rem);
   font-weight: 400;
-  line-height: 1.24;
-  letter-spacing: -0.022em;
+  letter-spacing: -0.018em;
   text-decoration: none;
   text-wrap: pretty;
-}
-
-a.project-title,
-.project-item__links a {
-  padding-block: 0.12em;
-  background-image: linear-gradient(var(--gold), var(--gold));
+  padding-bottom: 0.12em;
+  background-image: var(--brush);
   background-repeat: no-repeat;
   background-position: 0 100%;
-  background-size: 0 1px;
+  background-size: 0% 0.32em;
   transition:
     color 200ms ease,
-    background-size 200ms ease;
+    background-size 380ms var(--ease-ink);
 }
 
-a.project-title:hover,
-.project-item__links a:hover {
+.brush-link:hover,
+.brush-link:focus-visible {
   color: var(--gold-deep);
-  background-size: 100% 1px;
+  background-size: 100% 0.32em;
 }
 
-a.project-title:focus-visible,
-.project-item__links a:focus-visible {
-  color: var(--gold-deep);
-  background-size: 100% 1px;
+.brush-link:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 0.22em;
 }
 
+/* ─── Projects ─────────────────────────────────────────────────── */
+
+.project-title {
+  color: var(--ink);
+  letter-spacing: -0.018em;
+}
+
 .project-disclosure {
-  display: grid;
-  flex: 0 0 1.35rem;
-  width: 1.35rem;
-  height: 1.35rem;
-  margin: -0.05rem 0 0;
-  padding: 0.2rem;
-  place-items: center;
+  width: 1.1rem;
+  padding: 0;
   border: 0;
   background: transparent;
-  color: var(--gold);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 
+/* A generous invisible target around the small star. */
+.project-disclosure::before {
+  position: absolute;
+  inset: -0.35rem -0.6rem;
+  content: "";
+}
+
 .project-disclosure svg {
-  width: 100%;
-  height: 100%;
+  width: 1.05rem;
+  height: 1.05rem;
   overflow: visible;
-  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 320ms var(--ease-ink);
 }
 
 .project-disclosure path {
-  fill: none;
+  fill: rgb(246 237 220 / 90%);
   stroke: currentColor;
   stroke-linejoin: round;
   stroke-width: 0.9;
@@ -604,14 +761,65 @@ a.project-title:focus-visible,
   color: var(--gold-deep);
 }
 
+.project-disclosure:hover svg {
+  transform: rotate(22.5deg);
+}
+
 .project-disclosure:focus-visible {
   border-radius: 50%;
   outline: 2px solid var(--gold);
-  outline-offset: 0.08rem;
+  outline-offset: 0.1rem;
 }
 
-.project-disclosure.is-open svg {
+.project-item.is-open .project-disclosure svg {
   transform: rotate(67.5deg);
+}
+
+.project-item__branch {
+  position: absolute;
+  top: 1.05em;
+  left: calc(-1 * var(--star-gutter) + 0.12rem);
+  width: 1.25rem;
+  height: 2.1rem;
+  overflow: visible;
+  color: var(--gold);
+  pointer-events: none;
+}
+
+.project-item__branch path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 0.85;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.8;
+  vector-effect: non-scaling-stroke;
+  transition: stroke-dashoffset 260ms ease-in;
+}
+
+.project-item__branch circle {
+  fill: currentColor;
+  opacity: 0;
+  transform: scale(0.4);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.project-item.is-open .project-item__branch path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 480ms var(--ease-ink) 60ms;
+}
+
+.project-item.is-open .project-item__branch circle {
+  opacity: 0.9;
+  transform: scale(1);
+  transition:
+    opacity 220ms ease 420ms,
+    transform 320ms var(--ease-ink) 420ms;
 }
 
 .project-item__disclosure {
@@ -620,13 +828,16 @@ a.project-title:focus-visible,
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
-    grid-template-rows 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 180ms ease;
+    grid-template-rows 360ms var(--ease-ink),
+    opacity 220ms ease;
 }
 
 .project-item.is-open .project-item__disclosure {
   grid-template-rows: 1fr;
   opacity: 1;
+  transition:
+    grid-template-rows 420ms var(--ease-ink),
+    opacity 320ms ease 120ms;
 }
 
 .project-item__disclosure-inner {
@@ -636,55 +847,57 @@ a.project-title:focus-visible,
 
 .project-item__description {
   margin: 0;
-  padding-top: 0.38rem;
+  padding-top: 0.45rem;
   color: var(--ink-soft);
-  font-size: clamp(0.76rem, 0.78vw, 0.8rem);
-  line-height: 1.48;
+  font-size: clamp(0.94rem, 0.8rem + 0.2vw, 1.04rem);
+  line-height: 1.55;
   text-wrap: pretty;
 }
 
 .project-item__description code {
   color: var(--ink);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.88em;
+  font-size: 0.86em;
 }
 
 .project-item__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
-  padding: 0.38rem 0 0.18rem;
+  gap: 0.9rem;
+  padding: 0.45rem 0 0.3rem;
 }
 
 .project-item__links a {
-  color: var(--ink);
-  font-size: clamp(0.72rem, 0.74vw, 0.76rem);
+  font-size: clamp(0.88rem, 0.78rem + 0.15vw, 0.95rem);
   line-height: 1.35;
-  text-decoration: none;
 }
+
+/* ─── Signature row ────────────────────────────────────────────── */
 
 .contact-row {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  margin-top: clamp(2rem, 3.5vw, 3.25rem);
-  padding-bottom: 0;
+  gap: 0.9rem;
+  margin-top: clamp(2.5rem, 4vw, 3.75rem);
   color: var(--ink-soft);
 }
 
 .contact-row a {
   display: grid;
-  width: 1.55rem;
-  height: 1.55rem;
+  width: 1.75rem;
+  height: 1.75rem;
   place-items: center;
   color: inherit;
   text-decoration: none;
-  transition: color 180ms ease, opacity 180ms ease;
+  transition:
+    color 180ms ease,
+    transform var(--dur-quick) var(--ease-ink);
 }
 
 .contact-row a:hover,
 .contact-row a:focus-visible {
   color: var(--gold-deep);
+  transform: translateY(-1px);
 }
 
 .contact-row a:focus-visible {
@@ -693,17 +906,125 @@ a.project-title:focus-visible,
 }
 
 .contact-row svg {
-  width: 0.9rem;
-  height: 0.9rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .contact-row .contact-row__cv {
   width: auto;
-  margin-left: 0.08rem;
-  font-size: 0.75rem;
+  margin-left: 0.1rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
   line-height: 1;
-  letter-spacing: 0.045em;
+  letter-spacing: 0.12em;
 }
+
+/* ─── The ocean close, where the boat has drifted into place ───── */
+
+.home-ocean {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--sky-width) * -0.05);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.home-ocean__stage {
+  --ocean-width: max(100vw, 96rem);
+
+  position: relative;
+  left: 50%;
+  width: var(--ocean-width);
+  aspect-ratio: 2172 / 424;
+  transform: translateX(-50%);
+}
+
+/* The painting's own paper is lighter than the page; feather it away above the horizon. */
+.home-ocean__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 40%) 38%, #000 50%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 40%) 38%, #000 50%);
+}
+
+/* Boat and reflection sit where the painter put them: 1552, 64 in the 2172 × 424 master. */
+.boat {
+  position: absolute;
+  top: 15.094%;
+  left: 71.455%;
+  width: 5.157%;
+  animation: boat-drift linear both;
+  animation-timeline: scroll(root);
+}
+
+.boat img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.boat__bob {
+  transform-origin: 50% 100%;
+  animation: boat-bob 7.2s ease-in-out infinite;
+}
+
+.boat__reflection {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  transform-origin: 50% 0;
+  filter: url("#reflection-ripple");
+  animation: reflection-bob 7.2s ease-in-out infinite;
+}
+
+.boat__filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+@keyframes boat-drift {
+  from {
+    transform: translateX(-261%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes boat-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.5deg);
+  }
+
+  50% {
+    transform: translateY(1.5px) rotate(0.6deg);
+  }
+}
+
+@keyframes reflection-bob {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1) skewX(0.5deg);
+  }
+
+  50% {
+    transform: translateY(-1px) scaleY(0.97) skewX(-0.6deg);
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .boat {
+    animation: none;
+    transform: translateX(calc((1 - var(--boat-progress, 1)) * -261%));
+  }
+}
+
+/* ─── Interior pages ───────────────────────────────────────────── */
 
 .interior-shell {
   position: relative;
@@ -727,7 +1048,10 @@ a.project-title:focus-visible,
   place-items: center;
   color: var(--ink);
   opacity: 0.78;
-  transition: opacity 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  view-transition-name: sail;
+  transition:
+    opacity 180ms ease,
+    transform var(--dur-quick) var(--ease-ink);
 }
 
 .sail-home img {
@@ -757,7 +1081,7 @@ body.constellations-route .sail-home::before {
 
 .sail-home:hover {
   opacity: 1;
-  transform: translateY(-0.08rem);
+  transform: translateY(-0.1rem) rotate(-2deg);
 }
 
 .sail-home:focus-visible {
@@ -765,6 +1089,8 @@ body.constellations-route .sail-home::before {
   outline: 2px solid var(--gold);
   outline-offset: 0.08rem;
 }
+
+/* ─── CV ───────────────────────────────────────────────────────── */
 
 .cv-page {
   width: min(100%, 78rem);
@@ -788,7 +1114,7 @@ body.constellations-route .sail-home::before {
 .cv-header__subtitle {
   margin-top: 0.85rem;
   color: var(--ink-soft);
-  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-size: clamp(0.98rem, 1.15vw, 1.1rem);
   line-height: 1.45;
 }
 
@@ -799,24 +1125,30 @@ body.constellations-route .sail-home::before {
   gap: 0.85rem;
   margin-top: 1.6rem;
   color: var(--ink-soft);
-  font-size: clamp(0.72rem, 0.76vw, 0.78rem);
+  font-size: clamp(0.8rem, 0.82vw, 0.86rem);
 }
 
 .cv-downloads > span {
   margin-right: 0.2rem;
-  font-style: italic;
+  font-family: var(--mono);
+  font-size: 0.88em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   opacity: 0.72;
 }
 
 .cv-downloads a,
 .cv-entry a {
   color: var(--ink);
-  background-image: linear-gradient(var(--gold), var(--gold));
+  padding-bottom: 0.1em;
+  background-image: var(--brush);
   background-repeat: no-repeat;
   background-position: 0 100%;
-  background-size: 0 1px;
+  background-size: 0% 0.3em;
   text-decoration: none;
-  transition: color 180ms ease, background-size 180ms ease;
+  transition:
+    color 180ms ease,
+    background-size 380ms var(--ease-ink);
 }
 
 .cv-downloads a:hover,
@@ -824,7 +1156,7 @@ body.constellations-route .sail-home::before {
 .cv-entry a:hover,
 .cv-entry a:focus-visible {
   color: var(--gold-deep);
-  background-size: 100% 1px;
+  background-size: 100% 0.3em;
 }
 
 .cv-downloads a:focus-visible,
@@ -840,18 +1172,48 @@ body.constellations-route .sail-home::before {
 }
 
 .cv-section {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(7.5rem, 0.8fr) minmax(0, 3.2fr);
   gap: clamp(1.5rem, 5vw, 4.5rem);
   padding-top: 1rem;
-  border-top: 1px solid rgb(154 122 62 / 26%);
+}
+
+/* The section rule draws in from the left as it scrolls into view. */
+.cv-section::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: rgb(154 122 62 / 30%);
+  transform-origin: left center;
+}
+
+@supports (animation-timeline: view()) {
+  .cv-section::before {
+    animation: rule-draw linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .cv-section > h2 {
   position: static;
   max-width: none;
   color: var(--ink);
-  font-size: clamp(0.88rem, 1vw, 1rem);
+  font-size: clamp(0.98rem, 1.05vw, 1.08rem);
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -878,8 +1240,9 @@ body.constellations-route .sail-home::before {
 
 .cv-entry__heading h3 {
   max-width: 52ch;
+  margin: 0;
   color: var(--ink);
-  font-size: clamp(0.92rem, 1.05vw, 1.04rem);
+  font-size: clamp(1.02rem, 1.1vw, 1.14rem);
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.018em;
@@ -889,42 +1252,167 @@ body.constellations-route .sail-home::before {
 .cv-entry__heading > span {
   flex: 0 0 auto;
   color: var(--gold-deep);
-  font-size: 0.69rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
   line-height: 1.3;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.04em;
 }
 
 .cv-entry__subtitle {
   margin-top: 0.28rem;
   color: var(--ink-soft);
-  font-size: clamp(0.74rem, 0.78vw, 0.8rem);
+  font-size: clamp(0.84rem, 0.86vw, 0.9rem);
   line-height: 1.45;
 }
 
 .cv-entry__description {
   margin-top: 0.5rem;
   color: var(--ink-soft);
-  font-size: clamp(0.78rem, 0.82vw, 0.84rem);
-  line-height: 1.55;
+  font-size: clamp(0.9rem, 0.92vw, 0.96rem);
+  line-height: 1.6;
   text-wrap: pretty;
 }
 
+/* ─── Not found ────────────────────────────────────────────────── */
+
+.not-found {
+  padding: clamp(9rem, 22vh, 14rem) clamp(2rem, 8vw, 8rem) 0;
+}
+
+.not-found h1 {
+  color: var(--ink);
+  font-size: clamp(2.2rem, 4.5vw, 3.75rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.not-found p {
+  margin-top: 1.4rem;
+  font-size: 1.1rem;
+}
+
+.not-found__sea {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.not-found__sea img {
+  position: relative;
+  left: 50%;
+  width: max(100vw, 96rem);
+  height: auto;
+  transform: translateX(-50%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 40%) 38%, #000 50%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 40%) 38%, #000 50%);
+}
+
+/* ─── Moving between pages ─────────────────────────────────────── */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: page-out 260ms ease-in both;
+}
+
+::view-transition-new(root) {
+  animation: page-in 520ms var(--ease-ink) both;
+}
+
+::view-transition-group(*) {
+  animation-duration: 520ms;
+  animation-timing-function: var(--ease-ink);
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+/* ─── Narrow screens ───────────────────────────────────────────── */
+
 @media (max-width: 48rem) {
-  .home-sky {
-    height: clamp(16rem, 42.85vw, 28rem);
+  .page-shell {
+    --sky-width: 215vw;
+    --night-height: 78svh;
+    --sky-overlap: 9rem;
   }
 
   .home-content {
-    padding-top: clamp(8.5rem, 22vw, 11.75rem);
-    padding-left: clamp(2.5rem, 10vw, 5rem);
+    padding-left: clamp(1.75rem, 8vw, 5rem);
   }
 
+  .home-hero {
+    padding-top: calc(var(--night-height) * 0.4);
+  }
+
+  /* Vela returns as a band across the top of the sky: words on the left, stars on the right. */
   .vela {
-    display: none;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: auto;
+    height: calc(var(--night-height) * 0.36);
+    aspect-ratio: auto;
   }
 
-  .intro__bio {
-    max-width: 39rem;
+  .vela__field {
+    inset: 0.9rem 0.9rem auto auto;
+    width: 50vw;
+    aspect-ratio: 1.2;
+  }
+
+  .vela__identity {
+    top: 1.35rem;
+    left: clamp(1.75rem, 8vw, 5rem);
+    max-width: 42vw;
+  }
+
+  .vela__identity,
+  .vela__legend {
+    font-size: 0.74rem;
+  }
+
+  .vela__legend {
+    top: 4.1rem;
+    left: clamp(1.75rem, 8vw, 5rem);
+    width: 40vw;
+  }
+
+  .vela__title {
+    letter-spacing: 0.12em;
+  }
+
+  .vela__star-light {
+    max-width: 16em;
+  }
+
+  .vela__star {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .home-ocean__stage {
+    --ocean-width: 160vw;
+  }
+
+  .home-ocean {
+    margin-top: 1.5rem;
   }
 
   .cv-page {
@@ -933,37 +1421,9 @@ body.constellations-route .sail-home::before {
 }
 
 @media (max-width: 30rem) {
-  h1 {
-    font-size: 3rem;
+  .intro h1 {
+    font-size: 3.25rem;
     line-height: 0.94;
-  }
-
-  .intro__bio {
-    font-size: 0.86rem;
-    line-height: 1.46;
-  }
-
-  .essays {
-    margin-top: 3.25rem;
-  }
-
-  .projects {
-    margin-top: 1.4rem;
-  }
-
-  .essay-list li,
-  .project-title {
-    font-size: clamp(0.9rem, 3.25vw, 0.95rem);
-  }
-
-  .essay-list__cluster {
-    margin-left: 0.1rem;
-    padding-left: 1.35rem;
-  }
-
-  .essay-list__star,
-  .essay-list__thread {
-    left: -1.35rem;
   }
 
   .sail-home {
@@ -987,6 +1447,8 @@ body.constellations-route .sail-home::before {
   }
 }
 
+/* ─── Reduced motion: steady light, a still boat, no page travel ── */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1001,4 +1463,24 @@ body.constellations-route .sail-home::before {
     opacity: 0.38;
   }
 
+  .home-sky,
+  .home-sky__night::after,
+  .boat,
+  .boat__bob,
+  .boat__reflection {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .boat__reflection {
+    filter: none;
+  }
+
+  .cv-section::before {
+    animation: none !important;
+  }
+
+  @view-transition {
+    navigation: none;
+  }
 }
