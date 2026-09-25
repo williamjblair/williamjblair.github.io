@@ -148,7 +148,9 @@ GitHub, LinkedIn, Email and About sit directly under the biography as mono capit
 
 ## Assets
 
-Masters live in `art-source/` and are never served. `python3 scripts/build-art.py` produces AVIF and WebP at each width, the boat and reflection layers, the density masks, and the social card (`public/og.jpg`).
+Masters live in `art-source/` and are never served. `python3 scripts/build-art.py` produces AVIF and WebP at each width, the boat and reflection layers, the density masks, the share cards (`public/og.jpg`, `public/og-constellations.jpg`), and the icons: the sail in starlight on a night tile for `favicon.ico`, the Apple touch icon and the manifest icons. `public/favicon.svg` is drawn by hand and switches between ink and starlight with the browser's colour scheme.
+
+`npm run build` ends with `scripts/postbuild.mjs`, which writes each route's HTML with its own title, description, canonical URL and share card, plus the 404 page, the `/cv` redirect and the sitemap. `SITE_URL` sets the absolute origin (default `https://williamjblair.github.io`).
 
 ## Do's and Don'ts
 

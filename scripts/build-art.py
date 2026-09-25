@@ -170,6 +170,66 @@ def social_card() -> None:
     card.convert("RGB").save(ROOT / "public" / "og.jpg", quality=86, optimize=True, progressive=True)
 
 
+def icons() -> None:
+    """Favicon, Apple touch icon and manifest icons: the sail in starlight on the night.
+
+    The SVG favicon (public/favicon.svg) adapts to light and dark browser chrome on its own;
+    these raster fallbacks sit on a night tile so they read on any background.
+    """
+    night = (4, 5, 10, 255)
+    sail = Image.open(SRC / "william-blair-sail.png").convert("RGBA")
+    # Navy ink becomes starlight; the brass waterline becomes the lighter night gold.
+    pixels = sail.load()
+    for y in range(sail.height):
+        for x in range(sail.width):
+            r, g, b, a = pixels[x, y]
+            if a == 0:
+                continue
+            warm = r - b
+            pixels[x, y] = (217, 184, 108, a) if warm > 20 else (243, 236, 220, a)
+    sail = sail.crop(sail.getbbox())
+
+    def tile(size: int, inset: float, radius: float) -> Image.Image:
+        scale = 4
+        big = size * scale
+        canvas = Image.new("RGBA", (big, big), (0, 0, 0, 0))
+        mask = Image.new("L", (big, big), 0)
+        ImageDraw.Draw(mask).rounded_rectangle([0, 0, big - 1, big - 1], radius=round(big * radius), fill=255)
+        canvas.paste(Image.new("RGBA", (big, big), night), (0, 0), mask)
+        room = round(big * (1 - 2 * inset))
+        fit = room / max(sail.width, sail.height)
+        mark = sail.resize((round(sail.width * fit), round(sail.height * fit)), Image.LANCZOS)
+        canvas.alpha_composite(mark, ((big - mark.width) // 2, (big - mark.height) // 2 + round(big * 0.02)))
+        return canvas.resize((size, size), Image.LANCZOS)
+
+    public = ROOT / "public"
+    tile(180, 0.1, 0).convert("RGB").save(public / "apple-touch-icon.png", optimize=True)
+    tile(192, 0.1, 0.22).save(public / "icon-192.png", optimize=True)
+    tile(512, 0.1, 0.22).save(public / "icon-512.png", optimize=True)
+    # Maskable icons are cropped to a circle by some launchers, so keep the mark inside the safe zone.
+    tile(512, 0.2, 0).save(public / "icon-maskable-512.png", optimize=True)
+    tile(256, 0.03, 0.18).save(public / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48), (256, 256)])
+
+
+def essay_card() -> None:
+    """Share image for Constellations of Borrowed Light: its hero watercolor, with the title."""
+    width, height = 1200, 630
+    hero = Image.open(SRC / "constellations/constellations-hero-no-text.png").convert("RGBA")
+    paper = Image.new("RGBA", hero.size, (238, 234, 226, 255))
+    paper.alpha_composite(hero)
+    scale = width / paper.width
+    paper = paper.resize((width, round(paper.height * scale)), Image.LANCZOS)
+    top = round(paper.height * 0.06)
+    card = paper.crop((0, top, width, top + height))
+    draw = ImageDraw.Draw(card)
+    ink = (14, 22, 41, 255)
+    title = serif(66, 60)
+    draw.text((64, 170), "Constellations of", font=title, fill=ink)
+    draw.text((64, 236), "Borrowed Light", font=title, fill=ink)
+    draw.text((68, 326), "William Blair", font=serif(26, 20), fill=(74, 85, 105, 255))
+    card.convert("RGB").save(ROOT / "public" / "og-constellations.jpg", quality=86, optimize=True, progressive=True)
+
+
 def main() -> None:
     for master, (stem, widths) in PICTURES.items():
         image = Image.open(SRC / master)
@@ -195,7 +255,11 @@ def main() -> None:
     print("encoded sail mark")
 
     social_card()
-    print("wrote social card")
+    essay_card()
+    print("wrote social cards")
+
+    icons()
+    print("wrote icons")
 
 
 if __name__ == "__main__":
