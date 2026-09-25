@@ -96,9 +96,13 @@ Paper is `#f2eee6`, warm but not yellowed. The ocean painting was painted on yel
 
 ## Layout
 
-One left-anchored column inside a fluid gutter. The homepage is a single tall sky column (`.home-sky`): an open night block of `--night-height` (70svh desktop, 78svh mobile), then the 3:2 painting, which the night feathers over across `--sky-overlap`. The introduction sits in the open night. Everything after it begins at `--sky-clear` (72%) of the painting's height, where it has turned to paper, so essays never sit on watercolor. On mobile the painting is cropped wider (215vw) so the navy band stays tall enough for Vela's readout.
+The homepage is two movements, about two screens in all.
 
-The whole sky drifts 7vh slower than the page over the first screen, which is what makes scrolling read as a descent.
+**The first screen** is exactly one viewport of night (`--hero-height`, at least 46rem). A mono running head carries the full name; the greeting, biography and links sit on the left, and Vela on the right, sized by the night's height as well as its width. The 3:2 painting is placed so it turns to paper (`--sky-clear`, 72% of its height) just below the fold, and the open night lies over its upper half, so only the cloud crests show at the bottom of the screen. On mobile, Vela becomes a band across the top (words left, stars right) and the painting is cropped wider (215vw).
+
+**The folio index** begins where the painting turns to paper. Writing leads, set large. Below it, a catalogue grid of four groups (Now, Papers, Proofs & tools, Earlier) in four columns on wide screens, two on tablets, one on phones. Papers are drawn from the CV data so the two never disagree. Every entry carries one line of plain fact in the mono: role and years, venue and year, or medium. Nothing in that line is invented.
+
+The whole sky drifts 6vh slower than the page over the first screen, which is what makes scrolling read as a descent. The page then closes at sea.
 
 ## Motion
 
@@ -119,7 +123,7 @@ A gold Vela diagram in the night, with every star a real button (44px target, vi
 
 ### Star lists
 
-Essays and Projects share one gutter of gold stars joined by a hairline seam. Essay stars are filled glyphs. Project stars are outline stars and act as disclosure buttons: opening one rotates it 67.5° and draws a short gold branch off the seam into the description, like a kintsugi repair. Several may stay open at once.
+Each index group is its own small constellation: a gutter of gold stars joined by a hairline seam. Filled glyphs mark entries with nothing to open (essays, papers). Outline stars are disclosure buttons: opening one rotates it 67.5° and draws a short gold branch off the seam into the description, like a kintsugi repair. Several may stay open at once. Group labels are mono capitals over a brass hairline.
 
 ### Links
 
@@ -133,9 +137,9 @@ On wide screens the essay has a small constellation in the left margin, one star
 
 Paper, ink and brass. Gold section rules draw in from the left as they enter view. Dates are set in mono tabular figures.
 
-### Quiet signature row
+### Links in the night
 
-GitHub, LinkedIn, Email and "CV" sit in one left-aligned row just above the ocean's horizon.
+GitHub, LinkedIn, Email and CV sit directly under the biography as mono capitals. A gold hairline draws beneath them on hover and focus.
 
 ## Assets
 
@@ -145,7 +149,8 @@ Masters live in `art-source/` and are never served. `python3 scripts/build-art.p
 
 ### Do
 
-- Let the night hold only the greeting and Vela; give the reading to paper.
+- Let the night hold only the greeting, its links and Vela; give the reading to paper.
+- Keep the homepage near two screens. New work joins an index group rather than lengthening the page.
 - Keep decoration hidden from assistive technology and optional to notice.
 - Keep gold for lines and points.
 - Test every new motion with reduced motion on, and make sure the still version is complete.

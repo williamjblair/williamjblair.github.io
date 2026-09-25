@@ -13,7 +13,7 @@ Primary action: Follow a published essay link or read “Constellations of Borro
 
 Proof and content: The supplied first-person biography, three essay titles, two verified external URLs, the 1536×1024 sky painting, and the ocean-and-sailboat painting (boat split into its own layer) are the complete factual and visual content for this surface.
 
-Chosen direction: The Night-Sailing Folio, night first. The first screen is open indigo night with live stars, Vela and the greeting in starlight; scrolling descends through the watercolor sky onto washi paper for Essays and Projects, and the page closes at sea.
+Chosen direction: The Night-Sailing Folio, night first and about two screens long. One screen of indigo night holds the greeting, links and Vela; the watercolour crests at the fold and turns to paper, where a folio index (Writing, then Now, Papers, Proofs & tools, Earlier) reads like a catalogue. The page closes at sea.
 
 Memorable moment: Choosing a Vela star tells you when its light left it. Moving through the sky connects stars with gold hairlines that fade, and the boat drifts into its painted place as you reach the end.
 
