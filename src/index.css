@@ -116,15 +116,22 @@ p {
 
 /* ─── Homepage surface ─────────────────────────────────────────── */
 
+/*
+The first screen is exactly one viewport of night. The painting is placed so it turns to paper
+(--sky-clear of its height) just below the fold; the open night lies over its upper rows and feathers
+away across them, so only the cloud crests show at the bottom of the first screen.
+*/
 .page-shell {
   --home-paper: var(--paper);
   --sky-width: max(100vw, 96rem);
   --sky-height: calc(var(--sky-width) * 2 / 3);
-  --night-height: 70svh;
-  /* How far the painting's top edge dissolves into the open night. */
-  --sky-overlap: 15rem;
-  /* Fraction of the painting after which it is plain paper. */
+  --hero-height: max(100svh, 46rem);
   --sky-clear: 0.72;
+  --stage-top: calc(var(--hero-height) + 2.5rem - var(--sky-height) * var(--sky-clear));
+  --sky-overlap: calc(var(--sky-height) * 0.5);
+  --night-height: calc(var(--stage-top) + var(--sky-overlap));
+  --gutter-left: clamp(1.75rem, 8vw, 9rem);
+  --gutter-right: clamp(1.5rem, 6vw, 6rem);
 
   position: relative;
   z-index: 0;
@@ -141,16 +148,14 @@ p {
   z-index: 2;
 }
 
-/*
-The sky is one tall column: open night, then the painting dissolving out of it, then paper.
-It drifts a little slower than the page, so scrolling reads as a descent.
-*/
+/* The sky drifts a little slower than the page over the first screen, so scrolling reads as a descent. */
 .home-sky {
   position: absolute;
   z-index: 1;
   top: 0;
   right: 0;
   left: 0;
+  height: calc(var(--stage-top) + var(--sky-height));
   overflow: hidden;
   pointer-events: none;
 }
@@ -165,26 +170,25 @@ It drifts a little slower than the page, so scrolling reads as a descent.
 
 @keyframes sky-descend {
   to {
-    transform: translateY(7vh);
+    transform: translateY(6vh);
   }
 }
 
-/*
-The night lies over the painting's top edge and feathers away across --sky-overlap, so its lower
-edge is soft whether or not the painting beneath has arrived yet.
-*/
 .home-sky__night {
   --feather: linear-gradient(
     to bottom,
     #000 calc(100% - var(--sky-overlap)),
-    rgb(0 0 0 / 78%) calc(100% - var(--sky-overlap) * 0.7),
-    rgb(0 0 0 / 38%) calc(100% - var(--sky-overlap) * 0.4),
-    rgb(0 0 0 / 10%) calc(100% - var(--sky-overlap) * 0.15),
+    rgb(0 0 0 / 92%) calc(100% - var(--sky-overlap) * 0.6),
+    rgb(0 0 0 / 68%) calc(100% - var(--sky-overlap) * 0.35),
+    rgb(0 0 0 / 28%) calc(100% - var(--sky-overlap) * 0.15),
     rgb(0 0 0 / 0%) 100%
   );
 
-  position: relative;
+  position: absolute;
   z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
   height: var(--night-height);
   background: linear-gradient(to bottom, var(--night-zenith) 0%, #07080d 55%, var(--night) 100%);
   -webkit-mask-image: var(--feather);
@@ -195,12 +199,12 @@ edge is soft whether or not the painting beneath has arrived yet.
 /* Faint indigo nebulae, breathing very slowly. */
 .home-sky__night::after {
   position: absolute;
-  inset: 0 0 -8rem;
+  inset: 0;
   content: "";
   background:
-    radial-gradient(ellipse 42% 55% at 74% 34%, rgb(44 62 112 / 26%), transparent 72%),
-    radial-gradient(ellipse 36% 42% at 18% 62%, rgb(34 48 94 / 18%), transparent 70%),
-    radial-gradient(ellipse 60% 30% at 48% 8%, rgb(58 66 110 / 10%), transparent 70%);
+    radial-gradient(ellipse 36% 48% at 76% 42%, rgb(44 62 112 / 26%), transparent 72%),
+    radial-gradient(ellipse 34% 40% at 16% 70%, rgb(34 48 94 / 16%), transparent 70%),
+    radial-gradient(ellipse 60% 30% at 48% 6%, rgb(58 66 110 / 10%), transparent 70%);
   animation: nebula-breathe 26s ease-in-out infinite alternate;
 }
 
@@ -215,10 +219,10 @@ edge is soft whether or not the painting beneath has arrived yet.
 }
 
 .home-sky__stage {
-  position: relative;
+  position: absolute;
+  top: var(--stage-top);
   left: 50%;
   width: var(--sky-width);
-  margin-top: calc(-1 * var(--sky-overlap));
   aspect-ratio: 1536 / 1024;
   transform: translateX(-50%);
 }
@@ -249,24 +253,43 @@ edge is soft whether or not the painting beneath has arrived yet.
   left: 0;
   display: block;
   width: 100%;
-  height: calc(var(--night-height) - var(--sky-overlap) + var(--sky-height) * 0.62);
+  height: calc(var(--stage-top) + var(--sky-height) * 0.62);
 }
 
 .home-content {
   position: relative;
   z-index: 3;
-  width: min(100%, 104rem);
+  width: min(100%, 110rem);
   margin: 0;
-  padding: 0 clamp(1.5rem, 6vw, 6rem) 0 clamp(3rem, 10vw, 10rem);
-  background: transparent;
+  padding: 0 var(--gutter-right) 0 var(--gutter-left);
 }
 
-/* The introduction lives in the night; everything after it begins where the painting turns to paper. */
+/* ─── The first screen ─────────────────────────────────────────── */
+
 .home-hero {
-  display: flex;
-  min-height: calc(var(--night-height) - var(--sky-overlap) + var(--sky-height) * var(--sky-clear));
-  flex-direction: column;
-  padding-top: calc(var(--night-height) * 0.34);
+  display: grid;
+  min-height: var(--hero-height);
+  grid-template-rows: auto 1fr;
+  padding-top: clamp(1.5rem, 3.2vw, 2.75rem);
+  /* Leave the cloud crests clear: from where the night lets go to the fold. */
+  padding-bottom: max(3rem, calc(var(--hero-height) - var(--night-height) + 1rem));
+}
+
+.home-hero__masthead {
+  color: var(--starlight-soft);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.home-hero__main {
+  display: grid;
+  /* Vela is sized by the height of the night as well as the width, so its readout never reaches the clouds. */
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, min(25rem, 40svh));
+  align-items: center;
+  gap: clamp(2.5rem, 7vw, 8rem);
+  padding-block: clamp(1.5rem, 4vh, 3rem);
 }
 
 /* ─── Arrival: ink bleeds onto wet paper, then the page settles ─── */
@@ -327,19 +350,23 @@ edge is soft whether or not the painting beneath has arrived yet.
 .vela {
   --vela-gold: #b7924b;
 
-  position: absolute;
+  position: relative;
   z-index: 4;
-  top: clamp(0.5rem, 1.7vh, 1.5rem);
-  right: clamp(11rem, 16vw, 18rem);
-  width: min(21vw, 20rem);
-  aspect-ratio: 1.2;
+  display: grid;
+  grid-template-areas:
+    "identity"
+    "field"
+    "legend";
+  gap: clamp(0.9rem, 1.6vw, 1.4rem);
   color: var(--vela-gold);
   pointer-events: none;
 }
 
 .vela__field {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  grid-area: field;
+  width: 100%;
+  aspect-ratio: 1.2;
 }
 
 .vela__chart {
@@ -453,27 +480,22 @@ edge is soft whether or not the painting beneath has arrived yet.
 
 .vela__identity,
 .vela__legend {
-  position: absolute;
+  position: relative;
   z-index: 2;
   color: var(--starlight);
   font-family: var(--serif);
-  font-size: clamp(0.74rem, 0.55rem + 0.3vw, 0.88rem);
+  font-size: clamp(0.78rem, 0.6rem + 0.25vw, 0.9rem);
   font-weight: 400;
   pointer-events: none;
 }
 
 .vela__identity {
-  top: 3%;
-  left: -38%;
-  width: max-content;
-  max-width: 53%;
+  grid-area: identity;
 }
 
 .vela__legend {
-  top: 84%;
-  left: 8%;
-  width: min(100%, 20rem);
-  min-height: 4.6rem;
+  grid-area: legend;
+  min-height: 4.8rem;
 }
 
 .vela__title,
@@ -578,69 +600,112 @@ edge is soft whether or not the painting beneath has arrived yet.
 
 .intro {
   position: relative;
-  max-width: 75rem;
+  max-width: 44rem;
 }
 
 .intro h1 {
-  max-width: 12ch;
   color: var(--starlight);
-  font-size: clamp(3.25rem, 6vw, 6rem);
+  font-size: clamp(3.4rem, 1.6rem + 5vw, 7rem);
   font-weight: 400;
-  line-height: 0.9;
-  letter-spacing: -0.035em;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 
+.intro h1 em {
+  color: #efdfb8;
+  font-style: italic;
+  letter-spacing: -0.03em;
+}
+
 .intro__bio {
-  max-width: 36em;
-  margin-top: clamp(1.4rem, 2.2vw, 2rem);
+  max-width: 34em;
+  margin-top: clamp(1.5rem, 2.4vw, 2.25rem);
   color: var(--starlight-soft);
   text-shadow: 0 0 1.2rem rgb(4 5 10 / 85%);
-  font-size: clamp(1.0625rem, 0.72rem + 0.55vw, 1.3rem);
-  line-height: 1.55;
+  font-size: clamp(1.0625rem, 0.75rem + 0.5vw, 1.28rem);
+  line-height: 1.58;
   text-wrap: pretty;
 }
 
-/* ─── Essays and projects: one gutter of gold stars ────────────── */
-
-.essays {
-  max-width: 68rem;
+.intro__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.6rem;
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
 }
 
-.projects {
-  max-width: 44rem;
-  margin-top: clamp(2.25rem, 3.2vw, 3.25rem);
+.intro__links a {
+  padding-bottom: 0.35rem;
+  color: var(--starlight-soft);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-image: linear-gradient(#d9b86c, #d9b86c);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition:
+    color 200ms ease,
+    background-size 380ms var(--ease-ink);
 }
 
-.essays h2,
-.projects h2 {
-  color: var(--ink);
-  font-size: clamp(1.4rem, 1rem + 0.85vw, 1.85rem);
+.intro__links a:hover,
+.intro__links a:focus-visible {
+  color: var(--starlight);
+  background-size: 100% 1px;
+}
+
+.intro__links a:focus-visible {
+  outline: 1px solid #d9b86c;
+  outline-offset: 0.3rem;
+}
+
+/* ─── The folio index ──────────────────────────────────────────── */
+
+.folio-index {
+  padding-top: clamp(0.5rem, 1.5vw, 1.5rem);
+}
+
+.index-label {
+  margin: 0;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgb(163 129 63 / 28%);
+  color: var(--gold-deep);
+  font-family: var(--mono);
+  font-size: 0.68rem;
   font-weight: 400;
+  letter-spacing: 0.18em;
   line-height: 1;
-  letter-spacing: -0.025em;
+  text-transform: uppercase;
 }
 
+.index-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 4vw, 4rem) clamp(1.75rem, 3vw, 3.25rem);
+  margin-top: clamp(3.25rem, 5.5vw, 5rem);
+}
+
+/* Each group is its own small constellation: gold stars in a gutter, joined by a seam. */
 .star-list {
-  --star-gutter: 1.65rem;
-  --list-gap: clamp(0.5rem, 0.7vw, 0.6rem);
-  --seam-inset: 0.3rem;
+  --star-gutter: 1.5rem;
+  --list-gap: clamp(0.85rem, 1.1vw, 1.05rem);
+  --seam-inset: 0.5rem;
 
   display: grid;
   gap: var(--list-gap);
-  margin: clamp(0.9rem, 1.2vw, 1.1rem) 0 0 0.2rem;
+  margin: clamp(1.1rem, 1.5vw, 1.4rem) 0 0;
   padding: 0 0 0 var(--star-gutter);
   list-style: none;
-}
-
-.project-list {
-  --seam-inset: 0.55rem;
 }
 
 .star-list > li {
   position: relative;
   max-width: 100%;
-  font-size: clamp(1.0625rem, 0.8rem + 0.35vw, 1.25rem);
+  font-size: clamp(1rem, 0.88rem + 0.18vw, 1.1rem);
   line-height: 1.3;
 }
 
@@ -650,7 +715,7 @@ edge is soft whether or not the painting beneath has arrived yet.
   left: calc(-1 * var(--star-gutter));
   z-index: 1;
   display: grid;
-  width: 1.1rem;
+  width: 1.05rem;
   height: 1.3em;
   place-items: center;
   color: var(--gold);
@@ -659,8 +724,8 @@ edge is soft whether or not the painting beneath has arrived yet.
   text-shadow: 0 0 0.05em var(--paper);
 }
 
-.essay-list__star-glyph {
-  font-size: 0.52em;
+.star-list__glyph {
+  font-size: 0.55em;
 }
 
 /* Kintsugi: a hairline of gold from each star to the next, stretching as rows open. */
@@ -668,7 +733,7 @@ edge is soft whether or not the painting beneath has arrived yet.
   position: absolute;
   top: calc(0.65em + var(--seam-inset));
   left: calc(-1 * var(--star-gutter));
-  width: 1.1rem;
+  width: 1.05rem;
   height: calc(100% + var(--list-gap) - 2 * var(--seam-inset));
   overflow: visible;
   color: var(--gold);
@@ -682,6 +747,58 @@ edge is soft whether or not the painting beneath has arrived yet.
   stroke: currentColor;
   stroke-linecap: round;
   stroke-width: 0.75;
+}
+
+.writing-list {
+  --star-gutter: 2rem;
+  --list-gap: clamp(0.6rem, 1vw, 0.9rem);
+  --seam-inset: 0.2em;
+}
+
+.writing-list > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1.1rem;
+  font-size: clamp(1.65rem, 1rem + 1.7vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.writing-list .star-list__star {
+  height: 1.15em;
+}
+
+.writing-list .star-list__glyph {
+  font-size: 0.34em;
+}
+
+.writing-list .seam {
+  top: calc(0.575em + var(--seam-inset));
+}
+
+.writing-list__title {
+  letter-spacing: -0.03em;
+}
+
+.writing-list .entry-meta {
+  margin: 0;
+}
+
+.entry-meta {
+  display: block;
+  margin-top: 0.32rem;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.index-group--papers .entry__title {
+  font-size: 0.94em;
+  line-height: 1.38;
 }
 
 /* ─── Links: a gold brush stroke that lands and draws across ───── */
@@ -714,15 +831,16 @@ edge is soft whether or not the painting beneath has arrived yet.
   outline-offset: 0.22em;
 }
 
-/* ─── Projects ─────────────────────────────────────────────────── */
+/* ─── Entries ──────────────────────────────────────────────────── */
 
-.project-title {
+.entry__title {
   color: var(--ink);
-  letter-spacing: -0.018em;
+  letter-spacing: -0.016em;
+  text-wrap: pretty;
 }
 
 .project-disclosure {
-  width: 1.1rem;
+  width: 1.05rem;
   padding: 0;
   border: 0;
   background: transparent;
@@ -733,19 +851,19 @@ edge is soft whether or not the painting beneath has arrived yet.
 /* A generous invisible target around the small star. */
 .project-disclosure::before {
   position: absolute;
-  inset: -0.35rem -0.6rem;
+  inset: -0.45rem -0.55rem;
   content: "";
 }
 
 .project-disclosure svg {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 1rem;
+  height: 1rem;
   overflow: visible;
   transition: transform 320ms var(--ease-ink);
 }
 
 .project-disclosure path {
-  fill: rgb(246 237 220 / 90%);
+  fill: rgb(242 238 230 / 92%);
   stroke: currentColor;
   stroke-linejoin: round;
   stroke-width: 0.9;
@@ -771,22 +889,22 @@ edge is soft whether or not the painting beneath has arrived yet.
   outline-offset: 0.1rem;
 }
 
-.project-item.is-open .project-disclosure svg {
+.entry.is-open .project-disclosure svg {
   transform: rotate(67.5deg);
 }
 
-.project-item__branch {
+.entry__branch {
   position: absolute;
   top: 1.05em;
-  left: calc(-1 * var(--star-gutter) + 0.12rem);
-  width: 1.25rem;
-  height: 2.1rem;
+  left: calc(-1 * var(--star-gutter) + 0.1rem);
+  width: 1.2rem;
+  height: 3rem;
   overflow: visible;
   color: var(--gold);
   pointer-events: none;
 }
 
-.project-item__branch path {
+.entry__branch path {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -798,7 +916,7 @@ edge is soft whether or not the painting beneath has arrived yet.
   transition: stroke-dashoffset 260ms ease-in;
 }
 
-.project-item__branch circle {
+.entry__branch circle {
   fill: currentColor;
   opacity: 0;
   transform: scale(0.4);
@@ -809,12 +927,12 @@ edge is soft whether or not the painting beneath has arrived yet.
     transform 160ms ease;
 }
 
-.project-item.is-open .project-item__branch path {
+.entry.is-open .entry__branch path {
   stroke-dashoffset: 0;
   transition: stroke-dashoffset 480ms var(--ease-ink) 60ms;
 }
 
-.project-item.is-open .project-item__branch circle {
+.entry.is-open .entry__branch circle {
   opacity: 0.9;
   transform: scale(1);
   transition:
@@ -822,9 +940,9 @@ edge is soft whether or not the painting beneath has arrived yet.
     transform 320ms var(--ease-ink) 420ms;
 }
 
-.project-item__disclosure {
+.entry__disclosure {
   display: grid;
-  max-width: 65ch;
+  max-width: 62ch;
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
@@ -832,7 +950,7 @@ edge is soft whether or not the painting beneath has arrived yet.
     opacity 220ms ease;
 }
 
-.project-item.is-open .project-item__disclosure {
+.entry.is-open .entry__disclosure {
   grid-template-rows: 1fr;
   opacity: 1;
   transition:
@@ -840,83 +958,36 @@ edge is soft whether or not the painting beneath has arrived yet.
     opacity 320ms ease 120ms;
 }
 
-.project-item__disclosure-inner {
+.entry__disclosure-inner {
   min-height: 0;
   overflow: hidden;
 }
 
-.project-item__description {
+.entry__description {
   margin: 0;
-  padding-top: 0.45rem;
+  padding-top: 0.6rem;
   color: var(--ink-soft);
-  font-size: clamp(0.94rem, 0.8rem + 0.2vw, 1.04rem);
+  font-size: 0.9em;
   line-height: 1.55;
   text-wrap: pretty;
 }
 
-.project-item__description code {
+.entry__description code {
   color: var(--ink);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.86em;
+  font-family: var(--mono);
+  font-size: 0.84em;
 }
 
-.project-item__links {
+.entry__links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
-  padding: 0.45rem 0 0.3rem;
+  padding: 0.5rem 0 0.2rem;
 }
 
-.project-item__links a {
-  font-size: clamp(0.88rem, 0.78rem + 0.15vw, 0.95rem);
+.entry__links a {
+  font-size: 0.86em;
   line-height: 1.35;
-}
-
-/* ─── Signature row ────────────────────────────────────────────── */
-
-.contact-row {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  margin-top: clamp(2.5rem, 4vw, 3.75rem);
-  color: var(--ink-soft);
-}
-
-.contact-row a {
-  display: grid;
-  width: 1.75rem;
-  height: 1.75rem;
-  place-items: center;
-  color: inherit;
-  text-decoration: none;
-  transition:
-    color 180ms ease,
-    transform var(--dur-quick) var(--ease-ink);
-}
-
-.contact-row a:hover,
-.contact-row a:focus-visible {
-  color: var(--gold-deep);
-  transform: translateY(-1px);
-}
-
-.contact-row a:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 0.18rem;
-}
-
-.contact-row svg {
-  width: 1rem;
-  height: 1rem;
-}
-
-.contact-row .contact-row__cv {
-  width: auto;
-  margin-left: 0.1rem;
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  line-height: 1;
-  letter-spacing: 0.12em;
 }
 
 /* ─── The ocean close, where the boat has drifted into place ───── */
@@ -924,7 +995,7 @@ edge is soft whether or not the painting beneath has arrived yet.
 .home-ocean {
   position: relative;
   z-index: 1;
-  margin-top: calc(var(--sky-width) * -0.05);
+  margin-top: calc(var(--sky-width) * -0.035);
   overflow: hidden;
   line-height: 0;
 }
@@ -1344,43 +1415,36 @@ body.constellations-route .sail-home::before {
   }
 }
 
-/* ─── Narrow screens ───────────────────────────────────────────── */
+/* ─── Narrower screens ─────────────────────────────────────────── */
+
+@media (max-width: 72rem) {
+  .index-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
 @media (max-width: 48rem) {
   .page-shell {
     --sky-width: 215vw;
-    --night-height: 78svh;
-    --sky-overlap: 9rem;
+    --gutter-left: clamp(1.5rem, 7vw, 3rem);
+    --gutter-right: clamp(1.25rem, 6vw, 2.5rem);
   }
 
-  .home-content {
-    padding-left: clamp(1.75rem, 8vw, 5rem);
+  .home-hero__main {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: clamp(1.75rem, 6vh, 3rem);
   }
 
-  .home-hero {
-    padding-top: calc(var(--night-height) * 0.4);
-  }
-
-  /* Vela returns as a band across the top of the sky: words on the left, stars on the right. */
+  /* Vela becomes a band across the top: words on the left, stars on the right. */
   .vela {
-    top: 0;
-    right: 0;
-    left: 0;
-    width: auto;
-    height: calc(var(--night-height) * 0.36);
-    aspect-ratio: auto;
-  }
-
-  .vela__field {
-    inset: 0.9rem 0.9rem auto auto;
-    width: 50vw;
-    aspect-ratio: 1.2;
-  }
-
-  .vela__identity {
-    top: 1.35rem;
-    left: clamp(1.75rem, 8vw, 5rem);
-    max-width: 42vw;
+    order: -1;
+    grid-template-areas:
+      "identity field"
+      "legend field";
+    grid-template-columns: minmax(0, 1fr) min(48vw, 15rem);
+    grid-template-rows: auto 1fr;
+    gap: 0.5rem 0.75rem;
   }
 
   .vela__identity,
@@ -1388,18 +1452,8 @@ body.constellations-route .sail-home::before {
     font-size: 0.74rem;
   }
 
-  .vela__legend {
-    top: 4.1rem;
-    left: clamp(1.75rem, 8vw, 5rem);
-    width: 40vw;
-  }
-
   .vela__title {
     letter-spacing: 0.12em;
-  }
-
-  .vela__star-light {
-    max-width: 16em;
   }
 
   .vela__star {
@@ -1407,12 +1461,12 @@ body.constellations-route .sail-home::before {
     height: 2.5rem;
   }
 
-  .home-ocean__stage {
-    --ocean-width: 160vw;
+  .index-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .home-ocean {
-    margin-top: 1.5rem;
+  .home-ocean__stage {
+    --ocean-width: 160vw;
   }
 
   .cv-page {
@@ -1422,8 +1476,8 @@ body.constellations-route .sail-home::before {
 
 @media (max-width: 30rem) {
   .intro h1 {
-    font-size: 3.25rem;
-    line-height: 0.94;
+    font-size: 3.4rem;
+    line-height: 0.92;
   }
 
   .sail-home {

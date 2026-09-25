@@ -1,95 +1,142 @@
 import type { ReactNode } from "react";
+import cvData from "./cv-data.json";
 
 export const essays = [
   {
     title: "Endless Frontiers",
     href: "https://www.vela.space/constellations",
+    meta: "vela.space",
   },
   {
     title: "Constellations of Borrowed Light",
     href: "/constellations-of-borrowed-light/",
+    meta: "Essay · 2022",
     transitionName: "essay-constellations",
   },
 ] as const;
 
-export type Project = {
+export type Entry = {
   title: string;
+  /** One line of plain fact in the catalogue face: role and years, venue and year, or medium. */
+  meta: string;
   href?: string;
-  description: ReactNode;
+  description?: ReactNode;
   links?: ReadonlyArray<{ label: string; href: string }>;
 };
 
-export const projects: ReadonlyArray<Project> = [
+export type EntryGroup = { key: string; label: string; entries: ReadonlyArray<Entry> };
+
+type CvSection = { title: string; entries: Array<{ title: string; date?: string; subtitle?: string }> };
+
+// Papers come straight from the CV so the two never disagree.
+const papers: Entry[] = ((cvData.sections as CvSection[]).find((section) => section.title === "Publications")?.entries ?? []).map(
+  (paper) => ({
+    title: paper.title,
+    meta: [paper.date, paper.subtitle?.split(" · ").pop()].filter(Boolean).join(" · "),
+  }),
+);
+
+export const groups: ReadonlyArray<EntryGroup> = [
   {
-    title: "Vela",
-    description:
-      "Vela is a protocol that turns scientific papers into structured, linked, correctable findings. A finding carries its evidence, confidence, conditions, and lineage. The state of a frontier is the deterministic replay of its event log.",
-    links: [
-      { label: "GitHub", href: "https://github.com/vela-science/vela" },
-      { label: "Publication web", href: "https://www.vela.space/" },
+    key: "now",
+    label: "Now",
+    entries: [
+      {
+        title: "Atlas",
+        meta: "Episteme · 2025–",
+        href: "https://episteme.com/",
+        description:
+          "The researcher intelligence platform at Episteme — how the lab maps talent, evidence, and direction across neuroscience, advanced materials, energy, and compute. Data model, ingest, LLM-driven extraction over open scientific corpora, and the product surface scientists use daily. Internal to the lab.",
+      },
+      {
+        title: "Vela",
+        meta: "Open protocol · 2025–",
+        description:
+          "Vela is a protocol that turns scientific papers into structured, linked, correctable findings. A finding carries its evidence, confidence, conditions, and lineage. The state of a frontier is the deterministic replay of its event log.",
+        links: [
+          { label: "GitHub", href: "https://github.com/vela-science/vela" },
+          { label: "Publication web", href: "https://www.vela.space/" },
+        ],
+      },
+    ],
+  },
+  { key: "papers", label: "Papers", entries: papers },
+  {
+    key: "tools",
+    label: "Proofs & tools",
+    entries: [
+      {
+        title: "Prospect",
+        meta: "Claude for Life Sciences",
+        href: "https://github.com/williamjblair/prospect",
+        description:
+          "Checks which of an AI’s biological claims the underlying data actually supports, before you pass them on. Built with Claude for Life Sciences.",
+      },
+      {
+        title: "lean-proofs",
+        meta: "Lean 4",
+        href: "https://github.com/williamjblair/lean-proofs",
+        description: (
+          <>
+            A self-checking index of formal Lean 4 proofs, CI-gated on <code>#print</code>{" "}
+            axioms so nothing sneaks in on trust. Targets drawn from the Formal Conjectures project.
+          </>
+        ),
+      },
+      {
+        title: "verified-combinatorics",
+        meta: "Sidon & B₃ sets · OEIS",
+        href: "https://github.com/williamjblair/verified-combinatorics",
+        description:
+          "Independently verifiable extremal combinatorial sets — binary Sidon and B₃ — shipped with a standalone checker. Backs contributions to the OEIS.",
+      },
+      {
+        title: "Omneer",
+        meta: "MRI",
+        href: "https://github.com/williamjblair/Omneer",
+        description: "Brain tumor detection and analysis from MRI.",
+      },
     ],
   },
   {
-    title: "Atlas",
-    href: "https://episteme.com/",
-    description:
-      "The researcher intelligence platform at Episteme — how the lab maps talent, evidence, and direction across neuroscience, advanced materials, energy, and compute. Data model, ingest, LLM-driven extraction over open scientific corpora, and the product surface scientists use daily. Internal to the lab.",
-  },
-  {
-    title: "Founding Engineer, Aaru",
-    href: "https://aaru.com/simulation",
-    description:
-      "Large-scale AI-agent simulation for consulting, politics, and government. Built the core platform with the CTO as founding engineer: the simulation runtime, synthetic audience generation, benchmarking and observability, and the customer-facing app. The synthetic-audience pipeline shipped into every customer engagement.",
-  },
-  {
-    title: "Co-founder, Biogenesis",
-    href: "https://www.bayespredictive.com/",
-    description:
-      "End-to-end clinical trials platform, co-founded as COO out of Kleiner Perkins, where I was Engineer in Residence. Built the platform from scratch, hired a team of seven, raised $2.5M led by Jack Altman, and stood up partnerships across 250+ clinics.",
-  },
-  {
-    title: "Founder, ThermoBeat",
-    href: "https://github.com/williamjblair/ThermoBeat",
-    description:
-      "Thermoelectrics for implantable medical devices. A thermoelectric generator and boost-converter system that runs under a 2 °C gradient and produces 3.3 V, enough to power a pacemaker from body heat. Raised $300K+ non-dilutive across NSF I-Corps, NIBIB DEBUT, JHU Spark, and the JHU FUEL Grand Prize.",
-  },
-  {
-    title: "Prospect",
-    href: "https://github.com/williamjblair/prospect",
-    description:
-      "Checks which of an AI’s biological claims the underlying data actually supports, before you pass them on. Built with Claude for Life Sciences.",
-  },
-  {
-    title: "lean-proofs",
-    href: "https://github.com/williamjblair/lean-proofs",
-    description: (
-      <>
-        A self-checking index of formal Lean 4 proofs, CI-gated on <code>#print</code>{" "}
-        axioms so nothing sneaks in on trust. Targets drawn from the Formal Conjectures project.
-      </>
-    ),
-  },
-  {
-    title: "verified-combinatorics",
-    href: "https://github.com/williamjblair/verified-combinatorics",
-    description:
-      "Independently verifiable extremal combinatorial sets — binary Sidon and B₃ — shipped with a standalone checker. Backs contributions to the OEIS.",
-  },
-  {
-    title: "Omneer",
-    href: "https://github.com/williamjblair/Omneer",
-    description: "Brain tumor detection and analysis from MRI.",
-  },
-  {
-    title: "Charm City Science League",
-    href: "https://github.com/williamjblair/scienceolympiad",
-    description:
-      "Science Olympiad mentoring for Baltimore students, run as president: 100+ mentors across 20 schools, a $30K annual budget, and a 14-person executive board.",
-  },
-  {
-    title: "Seedling Hydroponics",
-    href: "https://www.seedlinginc.org/",
-    description: "Hydroponic growing systems for Baltimore neighbourhoods with no nearby grocer.",
+    key: "earlier",
+    label: "Earlier",
+    entries: [
+      {
+        title: "Aaru",
+        meta: "Founding engineer · 2024–25",
+        href: "https://aaru.com/simulation",
+        description:
+          "Large-scale AI-agent simulation for consulting, politics, and government. Built the core platform with the CTO as founding engineer: the simulation runtime, synthetic audience generation, benchmarking and observability, and the customer-facing app. The synthetic-audience pipeline shipped into every customer engagement.",
+      },
+      {
+        title: "Biogenesis",
+        meta: "Co-founder, COO · 2023–24",
+        href: "https://www.bayespredictive.com/",
+        description:
+          "End-to-end clinical trials platform, co-founded as COO out of Kleiner Perkins, where I was Engineer in Residence. Built the platform from scratch, hired a team of seven, raised $2.5M led by Jack Altman, and stood up partnerships across 250+ clinics.",
+      },
+      {
+        title: "ThermoBeat",
+        meta: "Founder · 2019–23",
+        href: "https://github.com/williamjblair/ThermoBeat",
+        description:
+          "Thermoelectrics for implantable medical devices. A thermoelectric generator and boost-converter system that runs under a 2 °C gradient and produces 3.3 V, enough to power a pacemaker from body heat. Raised $300K+ non-dilutive across NSF I-Corps, NIBIB DEBUT, JHU Spark, and the JHU FUEL Grand Prize.",
+      },
+      {
+        title: "Charm City Science League",
+        meta: "President · 2022–23",
+        href: "https://github.com/williamjblair/scienceolympiad",
+        description:
+          "Science Olympiad mentoring for Baltimore students, run as president: 100+ mentors across 20 schools, a $30K annual budget, and a 14-person executive board.",
+      },
+      {
+        title: "Seedling Hydroponics",
+        meta: "Baltimore",
+        href: "https://www.seedlinginc.org/",
+        description: "Hydroponic growing systems for Baltimore neighbourhoods with no nearby grocer.",
+      },
+    ],
   },
 ];
 

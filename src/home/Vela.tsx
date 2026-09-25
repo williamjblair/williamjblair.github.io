@@ -13,7 +13,11 @@ export default function VelaConstellation({ onFocusChange }: { onFocusChange?: (
   }, [activeStar, onFocusChange]);
 
   return (
-    <section className="vela" aria-label="Interactive Vela constellation">
+    <section className="vela arrive" style={{ "--arrive-order": 1 } as CSSProperties} aria-label="Interactive Vela constellation">
+      <div className="vela__identity">
+        <p className="vela__title">Vela · The Sails</p>
+        <p className="vela__instruction">Choose a star.</p>
+      </div>
       <div className="vela__field">
         <svg className="vela__chart" aria-hidden="true" focusable="false">
           {velaConnections.map(([from, to], index) => (
@@ -62,10 +66,6 @@ export default function VelaConstellation({ onFocusChange }: { onFocusChange?: (
             </button>
           );
         })}
-      </div>
-      <div className="vela__identity">
-        <p className="vela__title">Vela · The Sails</p>
-        <p className="vela__instruction">Choose a star.</p>
       </div>
       <div className="vela__legend">
         <div className="vela__readout" aria-live="polite" key={displayedStar.name}>
