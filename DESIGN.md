@@ -1,6 +1,6 @@
 ---
 name: William Blair
-description: A night-sailing folio for a personal introduction, essays, projects, and an editorial CV.
+description: A night-sailing folio for a personal introduction, essays, projects, and the story of how Will got here.
 colors:
   night-zenith: "#04050a"
   night: "#0a0b10"
@@ -90,7 +90,7 @@ Paper is `#f2eee6`, warm but not yellowed. The ocean painting was painted on yel
 
 **Serif:** Iowan Old Style where installed (Apple devices), otherwise the self-hosted Source Serif 4, pinned to weight 400 with its optical-size axis. At opsz 20 its width and x-height are within one percent of Iowan, so line breaks hold across platforms.
 
-**Mono:** Geist Mono, used only for catalogue data: star designations and magnitudes, dates, the "Download CV" label, the CV link. Small, tracked, often uppercase. It is the modern counterweight to the serif and should never set prose.
+**Mono:** Geist Mono, used only for catalogue data: star designations and magnitudes, dates, chapter kickers, chart labels, and small links. Small, tracked, often uppercase. It is the modern counterweight to the serif and should never set prose.
 
 **The regular weight rule.** Nothing is bold. Hierarchy comes from scale, placement and colour.
 
@@ -133,13 +133,18 @@ Text links carry no underline at rest. On hover and focus a tapered brass brush 
 
 On wide screens the essay has a small constellation in the left margin, one star for each turning point in the text (`data-chapter`). Stars light as their passage reaches the reader, the line to the next star draws as they read toward it, and the end of the page completes the figure. It is decorative and never a control.
 
-### Editorial CV
+### How I got here (/about)
 
-Paper, ink and brass. Gold section rules draw in from the left as they enter view. Dates are set in mono tabular figures.
+The CV's replacement. It stays at night the whole way down, and it is the only page that tells Will's life, so it uses only his own published words: the four paragraphs of "How I got here." from his previous site, the Vela README, his old home tagline, and the close of "Constellations of Borrowed Light" (sources noted in `src/about/life.ts`). Everything else on it is catalogue fact.
+
+- **The life chart.** A sticky constellation beside the text on wide screens, and a star rail on phones. Eleven stars, from Toronto to the frontier, joined by lineage rather than chronology. One gold arc, the spine, runs from SickKids to Vela, because that is the page's argument: the knowledge existed but could not reach him, and that ceiling became the work.
+- **Reading lights the sky.** Each chapter lights its stars as it reaches the reader, lines draw once both of their ends are lit, and chapters not yet reached rest at lower opacity. Stars are real buttons that jump to their chapter.
+- **Toward dawn.** A fixed sky sits behind the page. As the reader nears the future, a dawn rises from the horizon and the stars fade, and the open frontier star becomes the morning star.
+- **At the foot:** Email, GitHub, LinkedIn and the CV as a PDF. `/cv` redirects here, as a real redirect on Vercel, a static page on GitHub Pages, and an early script elsewhere.
 
 ### Links in the night
 
-GitHub, LinkedIn, Email and CV sit directly under the biography as mono capitals. A gold hairline draws beneath them on hover and focus.
+GitHub, LinkedIn, Email and About sit directly under the biography as mono capitals. A gold hairline draws beneath them on hover and focus.
 
 ## Assets
 
