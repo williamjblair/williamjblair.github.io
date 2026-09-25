@@ -1,5 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import "./ConstellationsEssay.css";
+import Picture from "./Picture";
+import ReadingConstellation from "./essay/ReadingConstellation";
+import StarField from "./sky/StarField";
 
 /*
 THESIS: A single transparent watercolor hero becomes the opening leaf of the essay and dissolves directly into the paper.
@@ -13,19 +16,30 @@ const nasaSource =
   "https://science.nasa.gov/asset/hubble/ultra-deep-field-looking-out-into-space-looking-back-into-time/";
 
 function EssayHero() {
+  const artRef = useRef<HTMLElement>(null);
+
   return (
     <header className="constellations-hero">
-      <figure className="constellations-hero__art">
-        <img
-          src="/artwork/constellations/constellations-hero-no-text.png"
+      <figure className="constellations-hero__art" ref={artRef}>
+        <Picture
+          stem="/artwork/constellations/hero"
+          widths={[768, 1448]}
+          sizes="100vw"
           alt="Watercolor illustration of a child sailing beneath a constellation over a mountain lake."
           width="1448"
           height="1086"
           fetchPriority="high"
         />
+        <StarField
+          className="constellations-hero__stars"
+          maskSrc="/artwork/constellations/hero-density.png"
+          stageRef={artRef}
+          band={0.22}
+          count={{ wide: 70, compact: 34 }}
+        />
       </figure>
       <div className="constellations-hero__heading">
-        <h1 className="constellations-hero__title">
+        <h1 className="constellations-hero__title" style={{ viewTransitionName: "essay-constellations" }}>
           <span>Constellations of</span>{" "}
           <span>Borrowed Light</span>
         </h1>
@@ -34,7 +48,7 @@ function EssayHero() {
         </time>
       </div>
       <div className="constellations-hero__opening-copy">
-        <p className="constellations-hero__lede">
+        <p className="constellations-hero__lede" data-chapter>
           When I was six years old, I was such a happy kid.
         </p>
         <p>
@@ -47,9 +61,11 @@ function EssayHero() {
 
 function DeepFieldWatercolor() {
   return (
-    <figure className="deep-field-watercolor">
-      <img
-        src="/artwork/constellations/deep-field-watercolor.png"
+    <figure className="deep-field-watercolor essay-figure">
+      <Picture
+        stem="/artwork/constellations/deep-field"
+        widths={[768, 1536]}
+        sizes="(max-width: 46rem) 96vw, 56.25rem"
         alt="A watercolor deep field filled with distant galaxies and points of light."
         width="1536"
         height="1024"
@@ -62,9 +78,11 @@ function DeepFieldWatercolor() {
 
 function CottageMemoryWatercolor() {
   return (
-    <figure className="cottage-memory-watercolor">
-      <img
-        src="/artwork/constellations/chi-chi-cottage-memory.png"
+    <figure className="cottage-memory-watercolor essay-figure">
+      <Picture
+        stem="/artwork/constellations/cottage-memory"
+        widths={[768, 1536]}
+        sizes="(max-width: 46rem) 96vw, 56.25rem"
         alt="A young child runs with a small dog along a lakeside cottage path."
         width="1536"
         height="1024"
@@ -77,9 +95,11 @@ function CottageMemoryWatercolor() {
 
 function VictorySwimWatercolor() {
   return (
-    <figure className="victory-swim-watercolor">
-      <img
-        src="/artwork/constellations/victory-swim-watercolor.png"
+    <figure className="victory-swim-watercolor essay-figure">
+      <Picture
+        stem="/artwork/constellations/victory-swim"
+        widths={[640, 1254]}
+        sizes="(max-width: 46rem) 96vw, 56.25rem"
         alt="A young swimmer races freestyle through blue water in a watercolor illustration."
         width="1254"
         height="1254"
@@ -90,17 +110,34 @@ function VictorySwimWatercolor() {
   );
 }
 
+/* The gold nodes of the painted constellation, found in the master by scripts (bright, warm, above the horizon). */
+const closingStars = [
+  [85.49, 9.54], [84.28, 12.77], [64.64, 5.89], [61.97, 10.58], [59.28, 16.78],
+  [69.13, 24.53], [82.2, 26.27], [77.38, 33.55], [61.59, 32.96], [67.74, 38.3],
+  [42.89, 28.54], [35.1, 35.69], [15.95, 15.66], [15.42, 24.07], [15.4, 36.88],
+] as const;
+
 function BorrowedLightWatercolor() {
   return (
-    <figure className="borrowed-light-watercolor">
-      <img
-        src="/artwork/constellations/borrowed-light-closing.png"
+    <figure className="borrowed-light-watercolor essay-figure">
+      <Picture
+        stem="/artwork/constellations/borrowed-light"
+        widths={[768, 1536]}
+        sizes="(max-width: 46rem) 96vw, 56.25rem"
         alt="Two children sit together beside a moonlit lake beneath constellations of golden light."
         width="1536"
         height="1024"
         loading="lazy"
         decoding="async"
       />
+      <div className="borrowed-light-watercolor__glints" aria-hidden="true">
+        {closingStars.map(([x, y], index) => (
+          <span
+            key={`${x}-${y}`}
+            style={{ left: `${x}%`, top: `${y}%`, "--glint-delay": `${(index * 1.37) % 7}s` } as CSSProperties}
+          />
+        ))}
+      </div>
     </figure>
   );
 }
@@ -119,13 +156,14 @@ export default function ConstellationsEssay() {
 
   return (
     <article className="constellations-essay">
+      <ReadingConstellation />
       <EssayHero />
       <div className="constellations-copy">
         <p>
           One day, everything reached a fever pitch. I felt incredibly sick, and my temperature had climbed to 105 degrees. It was time to rush to the hospital. My mom was frantic. She got me into the car, and we drove to SickKids. The doctors ordered an MRI to see whether something was wrong with my brain. After a short wait, the scan confirmed my mom’s worst fear: there was a tumour growing in my cerebellum. I remember sitting in the waiting room. A volunteer, perhaps fourteen or fifteen years old, tried to comfort my mom and me. But once the news came, there was nothing she could say that would console my mother. My first reaction was confusion, which was perhaps normal for a boy in grade school. I am not even sure I felt afraid at first. Until then, my life had been easy in so many ways. My parents were always there for me, and I felt free to go anywhere. I loved visiting the cottage by the lake in Muskoka and spending time in Westport, a small town in Eastern Ontario. Everything had felt ideal—almost perfect.
         </p>
 
-        <p>In that waiting room, everything changed.</p>
+        <p data-chapter>In that waiting room, everything changed.</p>
 
         <p>
           For the first time, I understood that the world I had been living in was not as safe or perfect as I had believed. I was too confused to understand what it meant—that a tumour had been growing in my cerebellum. The words blurred together into one long sentence I could not make sense of. Over the next few hours, after I was taken to my hospital room, the nurses began running what felt like hundreds of tests. Slowly, the confusion gave way to fear—a frantic, overwhelming kind of fear. I wanted to be back home with my friends, going to school and doing normal, everyday things. That was what I loved. It was my whole world as a six-year-old, and although that world was small, it felt perfect. Then, in a single moment, everything changed. I had no idea what the future held. Was I going to get better? Was I going to survive?
@@ -135,7 +173,7 @@ export default function ConstellationsEssay() {
           As they ran test after test, I found myself questioning everything I understood about my place in the world and what life meant. In those few days, I grew up quickly. It was the first time I realized that life was not all rainbows and butterflies. It could be frightening, uncertain, and far more difficult than I had ever imagined. I still remember those nights clearly: the nurses waking me to run more tests, the loneliness of lying awake, terrified and unable to sleep. Honestly, to my surprise, the hospital food was not all that bad. It even became something I almost looked forward to every day. What I looked forward to most, though, was seeing the other patients around my age. We were all frightened and confused, and somehow that made it easier to understand one another.
         </p>
 
-        <p>
+        <p data-chapter>
           About two days after I was admitted, I met my surgeon, Dr. James Drake. He explained to my parents and me that the tumour in my cerebellum was severe. Had it gone undetected for even a few more weeks, I might not have survived. We had caught it late, but there was still time to operate. He explained what the surgery would involve and the risks that came with it, particularly the possibility of problems with movement and mobility, as well as speech, hearing, and vision. I sat there quietly, taking it all in. I felt numb and did not know how to react. So much had already changed that, by then, nothing could really surprise me.
         </p>
 
@@ -143,13 +181,13 @@ export default function ConstellationsEssay() {
           On the morning of my surgery, I woke very early in the morning, connected to more machines than I could count. The nurses settled me into a hospital bed and wheeled me toward the operating wing. As I was taken into the operating room, I gave my parents a sad wave goodbye and hoped I would see them again when I woke up. My mom was crying, and I tried to be strong for her. Through it all, I felt numb, both physically and emotionally. I could not fully understand what was happening, let alone how I was supposed to feel. I remember learning the word “anesthesiologist,” which seemed impossibly long at the time. He came in smiling, asked how I was feeling, and let me choose the flavour of the gas. I chose watermelon. The mask was placed over my face, and I began to breathe in the sweet watermelon scent.
         </p>
 
-        <p className="constellations-copy__recollection">
+        <p className="constellations-copy__recollection" data-chapter>
           The smell was wonderful, and I felt my eyes slowly close as my senses began to fade. My final thought was not about the surgery, the risks, or my health. It was about my grandmother’s dog, Chi-Chi. I was very close to her, and I wanted to hold on to something happy. I pictured us at the cottage, running together along our secret path and spending the day side by side. That was the last thing I remember before falling unconscious.
         </p>
 
         <CottageMemoryWatercolor />
 
-        <p>
+        <p data-chapter>
           Six hours later, I woke and slowly began to regain my senses. First, I moved my fingers and hands. Then I became aware of the voices around me and the steady beeping of the machines. Soon after, I heard my mom speaking with Dr. Drake. He told her that it could take several hours for me to regain full consciousness and that she should not panic if I woke up and was unable to speak, move, or hear properly. He was trying to prepare her for the possibility that something might seem wrong at first. I overheard all of this. I opened my eyes and, although I cannot remember my exact words, I said something like, “Are you talking about me?” My mom and Dr. Drake turned toward me and smiled. Dr. Drake said he had never seen anyone wake up—and begin speaking—so quickly.
         </p>
 
@@ -165,7 +203,7 @@ export default function ConstellationsEssay() {
           I was bullied often in elementary school. Some people knew what I had been through. I had lost a great deal of weight, sometimes struggled to walk, and was also a bit of a nerd, which made me an easy target. Because I could no longer play contact sports, I also had to give up soccer, which had once meant everything to me. From that point on, I decided that I wanted to devote my life to helping others, whether through research or medicine. I wanted to be like the medical staff who had been there for me and, one day, provide that same care to other children. That was why I focused so intensely on school. Academics felt like the only path I had left and the only way to achieve that vision. Everything else—friends, sports, and the rest of life—came second. For years, that single goal became my identity. I was an unusually serious child, and everyone noticed it: my teachers, my classmates, and my parents. The change began in high school, when I started to make room for other parts of life. I became more open to friendship, sports, and interests beyond school.
         </p>
 
-        <p>Much of that shift came from discovering another passion: swimming.</p>
+        <p data-chapter>Much of that shift came from discovering another passion: swimming.</p>
 
         <p>
           I joined the swim team at UCC in Grade 7, but I never felt as though I belonged. I was still slow and not yet a strong swimmer, since swimming remained part of my rehabilitation. By Grade 9, however, I had become more committed to the team. I attended practices regularly, both for rehabilitation and as a way to take my mind off school. Near the end of the season, the provincial championships were approaching, but I had not qualified. Then, after one practice, my coach and mentor, Vlad, (someone who remains incredibly important to me to this day) pulled me aside. “You’re going to have the opportunity to swim on the provincial relay team,” he said.
@@ -185,7 +223,7 @@ export default function ConstellationsEssay() {
 
         <VictorySwimWatercolor />
 
-        <p>
+        <p data-chapter>
           And we did. I swam that race for Vlad, but also for myself to overcome the limits I had placed on who I believed I could be.
         </p>
 
@@ -195,7 +233,7 @@ export default function ConstellationsEssay() {
 
         <p>I’ll read the important part of the email here:</p>
 
-        <blockquote>
+        <blockquote data-chapter>
           <p>
             “To those who don’t know and were not present yesterday after the team photo, my wife and I lost our son on Tuesday this past week. That was the day that we won that relay. We’re devastated, and we are doing our best to get through this. His name is Tavi Merrick-Rudberg. He weighed in at 8 pounds, 9 ounces, and was 56 centimetres long. He had big hands and big feet, so he was ready to swim the 200 M and would have given incredibly powerful high fives anytime after the age of two months. He was a beautiful boy. Be proud of your hard work and perseverance. You accomplished some very amazing things in the past few months.”
           </p>
@@ -213,7 +251,7 @@ export default function ConstellationsEssay() {
           I learned that I could prove to myself what I was capable of by committing fully to something, even if my six-year-old self could never have imagined achieving it. He would be proud to know how far we have come and what we have been able to accomplish. None of it would have been possible without the serendipitous human connections I formed and sustained along the way. To me, that is exceptionally powerful. Those relationships have shaped how I understand my own potential and the kind of life I want to build from everything I have experienced.
         </p>
 
-        <p>
+        <p data-chapter>
           Consider the photo below; stare into it for a while. Try to imagine the gaps and space between the lights that you see. It must be incredibly difficult to imagine that with all the abundant lights depicted in this famous Deep Field photo, the most distant galaxies are about 13.2 to 13.5 billion light-years away from each other.
         </p>
 
@@ -233,13 +271,13 @@ export default function ConstellationsEssay() {
           That is how I have come to understand the relationships and experiences that have shaped me. They did not give me an entirely new set of stars. Instead, they gave me a new angle from which the pattern gradually became visible. I am grateful for everything I have and everything I have made it through. I want to continue giving back to others and pursuing the things my six-year-old self would have thought impossible.
         </p>
 
-        <p>
+        <p data-chapter>
           I want the life I build from here to reflect the light I have received from so many others—and, in turn, to cast some of that light back into the constellations.
         </p>
 
         <BorrowedLightWatercolor />
 
-        <p className="constellations-copy__dedication">For M.</p>
+        <p className="constellations-copy__dedication" data-chapter>For M.</p>
       </div>
     </article>
   );
