@@ -17,12 +17,12 @@ export default function ReadingConstellation() {
 
   useEffect(() => {
     const anchors = () => Array.from(document.querySelectorAll<HTMLElement>("[data-chapter]"));
-    setCount(anchors().length);
 
     const update = () => {
       frame.current = 0;
       const line = window.innerHeight * 0.62;
       const tops = anchors().map((node) => node.getBoundingClientRect().top);
+      setCount(tops.length);
       let lit = -1;
       tops.forEach((top, index) => {
         if (top < line) lit = index;
