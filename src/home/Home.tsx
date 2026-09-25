@@ -27,11 +27,11 @@ function Hero({ onVelaFocus }: { onVelaFocus: (focused: boolean) => void }) {
             Hi, I’m <em>Will.</em>
           </h1>
           <p className="intro__bio arrive" style={order(1)}>
-            I’m currently building Atlas at Episteme, a Bell Labs–style research
-            organization in San Francisco. I also work on Vela, an open protocol
-            for turning scientific papers into structured, correctable findings.
-            Outside of work, I spend my time thinking and writing about science,
-            poetry, and life.
+            I grew up in Toronto and spent part of my childhood as a patient, where
+            I learned that what science knows does not always reach the people who
+            need it. I work on Vela, an open protocol that turns scientific papers
+            into structured, correctable findings, so that knowledge can compound.
+            I also write about science, poetry, and life.
           </p>
           <nav className="intro__links arrive" style={order(2)} aria-label="Elsewhere">
             <a href="https://github.com/williamjblair" target="_blank" rel="noopener noreferrer">GitHub</a>

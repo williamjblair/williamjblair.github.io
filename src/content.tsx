@@ -37,13 +37,6 @@ export const groups: ReadonlyArray<EntryGroup> = [
     label: "Now",
     entries: [
       {
-        title: "Atlas",
-        meta: "Episteme · 2025–",
-        href: "https://episteme.com/",
-        description:
-          "The researcher intelligence platform at Episteme — how the lab maps talent, evidence, and direction across neuroscience, advanced materials, energy, and compute. Data model, ingest, LLM-driven extraction over open scientific corpora, and the product surface scientists use daily. Internal to the lab.",
-      },
-      {
         title: "Vela",
         meta: "Open protocol · 2025–",
         description:
@@ -52,6 +45,13 @@ export const groups: ReadonlyArray<EntryGroup> = [
           { label: "GitHub", href: "https://github.com/vela-science/vela" },
           { label: "Publication web", href: "https://www.vela.space/" },
         ],
+      },
+      {
+        title: "Atlas",
+        meta: "Episteme · 2025–",
+        href: "https://episteme.com/",
+        description:
+          "The researcher intelligence platform at Episteme — how the lab maps talent, evidence, and direction across neuroscience, advanced materials, energy, and compute. Data model, ingest, LLM-driven extraction over open scientific corpora, and the product surface scientists use daily. Internal to the lab.",
       },
     ],
   },
